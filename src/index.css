@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("/fonts/BebasNeue.woff2") format("woff2")
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("/fonts/NotoSans.woff2") format("woff2");
+}
+
+.font-bebas-neue {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.font-noto-sans {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.bg-Gradient1 {
+  background: rgb(251, 63, 196);
+  background: linear-gradient(90deg, rgba(251, 63, 196, 1) 0%, rgba(248, 252, 70, 1) 100%);
+  background-size: cover;
+}
+
+.bg-Gradient2 {
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+.bg-open-menu {
+  background-image: url('/assets/icon-hamburger.svg');
+}
+
+.bg-close-menu {
+  background-image: url('/assets/icon-close.svg');
+}
+
+.text-3d {
+  text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.text-3d2 {
+  text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.cardImg {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.cardBack {
+  backface-visibility: hidden;
+}
+
+.card {
+  transition: transform .7s;
+  transform-style: preserve-3d;
+}
+
+.card.matched {
+  transform: rotateY(180deg);
+}
+
+.fixPosition {
+  transform: translate(-50%, -50%);
+}
+
+.elevetedButton {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.centerAbsolute {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
