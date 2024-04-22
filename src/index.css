@@ -32,11 +32,12 @@
 }
 
 .bg-open-menu {
-  background-image: url('/assets/icon-hamburger.svg');
+  background-image: url('../src/assets/icon-hamburger.svg');
 }
 
 .bg-close-menu {
-  background-image: url('/assets/icon-close.svg');
+  background-image: url('../src/assets/icon-hamburger.svg');
+
 }
 
 .text-3d {
