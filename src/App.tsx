@@ -7,6 +7,7 @@ import Contact from '@routes/contact/Contact'
 import LogIn from '@routes/login/Login'
 import SignUp from '@routes/signup/SignUp'
 import PrivacyPolicy from '@routes/privacypolicy/PrivacyPolicy'
+import MyAccount from '@routes/myAccount/MyAccount'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/login" Component={LogIn} />
         <Route path="/signup" Component={SignUp} />
         <Route path="/privacypolicy" Component={PrivacyPolicy} />
+        <Route path="/myaccount" Component={MyAccount} />
       </Routes>
     </HashRouter>
   )

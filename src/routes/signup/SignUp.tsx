@@ -42,7 +42,7 @@ const SignUp: React.FC = () => {
         //* Guardar el token en el local storage u otro lugar según sea necesario
         localStorage.setItem('TokenBeesmrt', token);
 
-        navigate("/MyAccount");
+        navigate("/myaccount");
       } else if (response.status === 409) {
         console.error("El usuario ya existe")
         setImageSrc(ShyBee)

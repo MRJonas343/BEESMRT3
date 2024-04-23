@@ -20,11 +20,11 @@ const LogIn: React.FC = () => {
     //*Checamos si ya esta logeado
     useEffect(() => {
         if (localStorage.getItem("TokenBeesmrt")) {
-            navigate("/MyAccount")
+            navigate("/myaccount")
         } else if (localStorage.getItem("TokenFacebook")) {
-            navigate("/MyAccount")
+            navigate("/myaccount")
         } else if (localStorage.getItem("accessToken")) {
-            navigate("/MyAccount")
+            navigate("/myaccount")
         }
     }, [])
 
