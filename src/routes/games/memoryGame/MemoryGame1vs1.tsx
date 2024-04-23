@@ -26,8 +26,6 @@ const MemoryGame1vs1: React.FC = () => {
   //*Estado para el Spinner
   const [showSpinner, setShowSpinner] = useState(true)
 
-  //*Estado para el fetch de la API
-  const [cardItems, setcardItems] = useState([])
 
   //*Inicializa el proceso de fetch y carga de datos
   useEffect(() => {
@@ -39,9 +37,8 @@ const MemoryGame1vs1: React.FC = () => {
     try {
       const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getMemoryGameData')
       const jsonData = await response.json()
-      setcardItems(jsonData)
       setShowSpinner(false)
-      initGame()
+      initGame(jsonData)
     } catch (error) {
       console.error('Error fetching data:', error)
     }
@@ -166,8 +163,8 @@ const MemoryGame1vs1: React.FC = () => {
     card1 ? setCard2(card) : setCard1(card)
   }
 
-  const initGame = () => {
-    const allCards = [...cardItems, ...cardItems]
+  const initGame = (cardItemJson: any) => {
+    const allCards = [...cardItemJson, ...cardItemJson]
       .map((item: CardMemoryGameProps, index: number) => ({ ...item, id: index }))
       .sort(() => Math.random() - 0.5)
     setCards(allCards)
@@ -184,7 +181,7 @@ const MemoryGame1vs1: React.FC = () => {
     setCard1(null)
     setCard2(null)
     setIsPlayer1Active(true)
-    initGame()
+    fetchData()
     if (isModalWinOpen) {
       setModalWinOpen(!isModalWinOpen)
     }
@@ -210,6 +207,7 @@ const MemoryGame1vs1: React.FC = () => {
       setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
     }
     setShowModal(!showModal)
+    e.target.reset();
   }
 
   return (
@@ -227,7 +225,7 @@ const MemoryGame1vs1: React.FC = () => {
             playAgain={playAgain}
           />
           <div>
-            <h1 className="text-2xl font-Principal2 text-white pb-3 text-3d lg:text-4xl text-center xl:ml-[30%] xl:text-start">
+            <h1 className="text-2xl font-Principal text-white pb-3 text-3d lg:text-4xl text-center xl:ml-[30%] xl:text-start">
               Memory Game
             </h1>
 

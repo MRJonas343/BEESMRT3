@@ -20,12 +20,12 @@ const MemoryGameStats: React.FC<MemoryGameStatsProps> = ({ isPlayer1Active, play
 
   return (
     <section className="flex justify-evenly xl:flex-col xl:h-[80vh]">
-      <div className="bg-white/80 px-8 py-2 font-Principal2 text-center rounded-xl md:w-56 2xl:h-48">
+      <div className="bg-white/80 px-8 py-2 font-Principal text-center rounded-xl md:w-56 2xl:h-48">
         <h2 className="text-lg mb-2">TURN: </h2>
         <p className={Player1Class}>PLAYER 1</p>
         <p className={Player2Class}>PLAYER 2</p>
       </div>
-      <div className="bg-white/80 px-8 py-3 font-Principal2 text-center rounded-xl md:w-56">
+      <div className="bg-white/80 px-8 py-3 font-Principal text-center rounded-xl md:w-56">
         <h2 className="text-lg mb-2">SCORE</h2>
         <p className="text-base p-1 mb-2">PlAYER 1: {player1Points}</p>
         <p className="text-base p-1 mb-2">PlAYER 2: {player2Points}</p>

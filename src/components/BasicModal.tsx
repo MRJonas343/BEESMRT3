@@ -18,7 +18,7 @@ const BasicModal: React.FC<BasicModalProps> = ({ showModal, imageSrc, message, m
         <p className="pt-3 text-3xl text-center font-Principal text-Pink1 tracking-wider">{message}</p>
         <img className="flex w-72 mx-auto pt-5" src={imageSrc} alt="Message Image" />
         <div className="flex justify-end pt-4">
-          <button onClick={closeModal} className="bg-red-600 text-white py-3 px-10 rounded-lg font-Principal2 text-xl">Close</button>
+          <button onClick={closeModal} className="bg-red-600 text-white py-3 px-10 rounded-lg font-Principal text-xl">Close</button>
         </div>
       </div>
     </div>
