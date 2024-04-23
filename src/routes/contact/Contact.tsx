@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 
 //* Components
 import NavBar from '@components/NavBar'
-import LoginMessage from "@components/BasicModal"
+import BasicModal from "@components/BasicModal"
 
 //* Assets
 import HelloBee from '@assets/abeja-saludando.webp'
@@ -162,7 +162,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </section>
-      <LoginMessage imageSrc={imageSrc} mainMessage={mainMessage} message={message} showModal={showModal} closeModal={() => setShowModal(!showModal)} />
+      <BasicModal imageSrc={imageSrc} mainMessage={mainMessage} message={message} showModal={showModal} closeModal={() => setShowModal(!showModal)} />
     </main>
   )
 }

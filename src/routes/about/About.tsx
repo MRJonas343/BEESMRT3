@@ -1,5 +1,8 @@
+//* Components
 import NavBar from "@components/NavBar"
 import AboutCard from "@components/AboutCard"
+
+//* Assets
 import AbejitaEstudiosa from "@assets/abejitaestudiosa.webp"
 import Control from "@assets/control.webp"
 import CardImage from "@assets/cardAboutImg.webp"

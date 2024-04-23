@@ -1,6 +1,6 @@
 import { BasicModalProps } from "@types"
 
-const LoginMessage: React.FC<BasicModalProps> = ({ showModal, imageSrc, message, mainMessage, closeModal }) => {
+const BasicModal: React.FC<BasicModalProps> = ({ showModal, imageSrc, message, mainMessage, closeModal }) => {
 
   let modalContainer
 
@@ -25,4 +25,4 @@ const LoginMessage: React.FC<BasicModalProps> = ({ showModal, imageSrc, message,
   )
 }
 
-export default LoginMessage
+export default BasicModal
