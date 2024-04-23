@@ -10,7 +10,7 @@ export default {
     extend: {
       fontFamily: {
         'Principal': ['Bebas Neue', 'sans-serif'],
-        'Secundaria': ['Noto Sans', 'sans-serif'],
+        'Secundaria': ['Oswald', 'sans-serif'],
       },
       colors: {
         "Yellow1": "#FFC924",

@@ -8,16 +8,16 @@
 }
 
 @font-face {
-  font-family: "Noto Sans";
-  src: url("/fonts/NotoSans.woff2") format("woff2");
+  font-family: "Oswald";
+  src: url("/fonts/Oswald.woff2") format("woff2");
 }
 
 .font-bebas-neue {
   font-family: "Bebas Neue", sans-serif;
 }
 
-.font-noto-sans {
-  font-family: "Noto Sans", sans-serif;
+.font-oswald {
+  font-family: "Oswald", sans-serif;
 }
 
 .bg-Gradient1 {
