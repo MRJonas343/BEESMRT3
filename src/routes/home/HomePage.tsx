@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
       <NavBar />
 
       <h1 className="animate-tilt animate-duration-1000 animate-iteration-count-infinite  text-4xl text-center pb-3 text-white text-3d2 font-Principal tracking-wide from-neutral-400 md:text-4xl md:py-5 lg:text-6xl xl:py-6">BEESMRT GAMES</h1>
-      <section className="grid grid-cols-2 justify-items-center gap-4 h-[77vh] lg:flex lg:justify-center lg:items-center lg:gap-6 lg:h-[70vh]">
+      <section className="grid grid-cols-2 justify-items-center gap-4 h-[86dvh] lg:flex lg:justify-center lg:items-center lg:gap-6 lg:h-[70dvh]">
 
         <Link to="/games/MemoryGameInterface" className="flex">
           <HomeCard
@@ -66,7 +66,7 @@ const HomePage: React.FC = () => {
             text="Drag and drop the images to the correct place!!!" />
         </Link>
 
-        <div className="bg-white/70 p-5 rounded-2xl w-[43dvw] flex flex-col items-center justify-center overflow-hidden rounded-2x md:h-[37dvh] lg:w-[22dvw] lg:h-[50dvh]">
+        <div className="bg-white/70 p-5 rounded-2xl w-[43dvw] flex flex-col items-center justify-center overflow-hidden rounded-2x md:h-[37dvh] lg:w-[22dvw] lg:h-[55dvh]">
           <img src={ComingSoonImage} alt={""} className="w-32 lg:w-full" />
         </div>
 
