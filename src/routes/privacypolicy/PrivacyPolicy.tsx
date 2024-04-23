@@ -7,7 +7,7 @@ const PrivacyPolicy: React.FC = () => {
     <>
       <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
         <NavBar />
-        <section className="bg-white/90 p-4 w-[90dvw] mx-auto rounded-md my-3" >
+        <section className="bg-white/90 p-6 lg:p-8 w-[90dvw] mx-auto rounded-md my-3" >
           <h1 className="font-Principal text-2xl text-center">Privacy Policy</h1>
           <p className="font-Secundaria pt-2">
             The BEESMRT website is owned by BEESMRT, which is a data controller of your personal data.
@@ -55,15 +55,15 @@ const PrivacyPolicy: React.FC = () => {
             Why do we process your data?
           </h2>
 
-          <p className="pb-2">
+          <p className="pb-2 font-Secundaria">
             Our top priority is the security of customer data and as such we may process only minimal user data, only to the extent absolutely necessary to maintain the website. The information collected automatically is used only to identify potential cases of abuse and establish statistical information about website usage. This statistical information is not aggregated in such a way as to identify any particular user of the system.
           </p>
 
-          <p>
+          <p className="font-Secundaria">
             You can visit the site without telling us who you are or revealing any information by which someone could identify you as a specific person. However, if you wish to use some of the functions of the website, or wish to receive our newsletter or provide other details by filling out a form, you can provide us with personal data, such as your email, first name, last name, city of residence, organization and number of phone.
           </p>
 
-          <p className="pt-2">
+          <p className="pt-2 font-Secundaria">
             You can choose not to provide your personal data, but you may not be able to take advantage of some of the website's features. For example, you will not be able to receive our newsletter or contact us directly from the website. Users who are unsure what information is required can contact us at angeljonasrosales@gmail.com.
           </p>
 
@@ -71,11 +71,11 @@ const PrivacyPolicy: React.FC = () => {
             Your rights:
           </h2>
 
-          <p>
+          <p className="font-Secundaria">
             If you are a European resident, you have the following rights related to your personal data:
           </p>
 
-          <ul className="list-disc ml-4 mb-4">
+          <ul className="list-disc ml-4 mb-4 font-Secundaria">
             <li className="mb-2">The right to be informed</li>
             <li className="mb-2">The right of access</li>
             <li className="mb-2">The right to rectification</li>
@@ -87,11 +87,11 @@ const PrivacyPolicy: React.FC = () => {
           </ul>
 
 
-          <p className="pb-2">
+          <p className="pb-2 font-Secundaria">
             If you wish to exercise this right, please contact us using the contact information below.
           </p>
 
-          <h2 className="pb-2">
+          <h2 className="pb-2 font-Secundaria">
             Additionally, if you are a European resident, we highlight that we are processing your information to fulfill contracts we might have with you (for example, if you place an order through the site), or otherwise to pursue our legitimate business interests listed above. Additionally, please note that your information may be transferred outside of Europe, including Canada and the United States.
           </h2>
 
