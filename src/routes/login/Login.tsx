@@ -8,7 +8,7 @@ import { LoginSocialFacebook } from 'reactjs-social-login'
 
 //* Componentes
 import NavBar from '@components/NavBar'
-import logo from '@assets/logo_white.webp'
+import logo from '@assets/logo_white-_2_.webp'
 import BasicModal from '@components/BasicModal'
 
 //* Assets

@@ -7,9 +7,9 @@ import NavBar from "@components/NavBar"
 import HomeCard from "@components/HomeCard"
 
 //* Assets
-import MemoryGameImg from '@assets/memoryCardImg.webp'
-import HangmanImg from '@assets/hangmanCardImg.webp'
-import DragImg from '@assets/DandDCardImg.webp'
+import MemoryGameImg from '@assets/perdida-de-memoria_resized.webp'
+import HangmanImg from '@assets/verdugo_resized.webp'
+import DragImg from '@assets/arrastra-y-suelta_resized.webp'
 import ComingSoonImage from "@assets/comingSoon.webp"
 
 const HomePage: React.FC = () => {
