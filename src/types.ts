@@ -54,3 +54,16 @@ export interface CardMemoryGameProps {
 export interface KeyHangmanGameProps {
   element: string
 }
+
+export interface DraggableItemProps {
+  idDraggableItem: number
+  draggableImgSrc: string | null
+  shouldDissaperd: boolean
+}
+
+export interface DroppableProps {
+  idDroppableItem: number
+  imgDropped: string | null
+  description: string | null
+  hasAnItem: boolean
+}

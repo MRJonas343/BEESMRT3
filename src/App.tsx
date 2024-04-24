@@ -12,6 +12,8 @@ import MemoryGameMode from '@routes/games/memoryGame/MemoryGameMode'
 import MemoryGame1vs1 from '@routes/games/memoryGame/MemoryGame1vs1'
 import HangmanGameMode from '@routes/games/hangmanGame/HangmanGameMode'
 import HangmanGameSingle from '@routes/games/hangmanGame/HangmanGameSingle'
+import DragDropGameMode from '@routes/games/dragDropGame/DragDropGameMode'
+import DragDropGameSingle from '@routes/games/dragDropGame/DragDropGameSingle'
 
 const App = () => {
   return (
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/games/memorygame1vs1" Component={MemoryGame1vs1} />
         <Route path="/games/hangmangameMode" Component={HangmanGameMode} />
         <Route path="/games/hangmangameSingle" Component={HangmanGameSingle} />
+        <Route path="/games/dragdropgameMode" Component={DragDropGameMode} />
+        <Route path="/games/dragdropgameSingle" Component={DragDropGameSingle} />
       </Routes>
     </HashRouter>
   )

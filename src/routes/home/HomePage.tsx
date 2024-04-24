@@ -59,7 +59,7 @@ const HomePage: React.FC = () => {
             text="Practice your vocabulary with a hangman, try to solve it before he is executed." />
         </Link>
 
-        <Link to="/games/Drag_DropInterface" className="flex">
+        <Link to="/games/dragdropgameMode" className="flex">
           <HomeCard
             imageSrc={DragImg}
             title="Drag and Drop"
