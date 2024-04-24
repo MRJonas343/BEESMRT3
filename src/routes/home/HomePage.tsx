@@ -45,14 +45,14 @@ const HomePage: React.FC = () => {
       <h1 className="animate-tilt animate-duration-1000 animate-iteration-count-infinite  text-4xl text-center pb-3 text-white text-3d2 font-Principal tracking-wide from-neutral-400 md:text-4xl md:py-5 lg:text-6xl xl:py-6">BEESMRT GAMES</h1>
       <section className="grid grid-cols-2 justify-items-center gap-4 h-[84dvh] md:h-[82dvh] lg:flex lg:justify-center lg:items-center lg:gap-4 lg:h-[70dvh]">
 
-        <Link to="/games/memorygameinterface" className="flex">
+        <Link to="/games/memorygameMode" className="flex">
           <HomeCard
             imageSrc={MemoryGameImg}
             title="Memory Game"
             text="Find all the pairs and answer the questions correctly to earn points." />
         </Link>
 
-        <Link to="/games/HangmanInterface" className="flex">
+        <Link to="/games/hangmangameMode" className="flex">
           <HomeCard
             imageSrc={HangmanImg}
             title="Hangman"

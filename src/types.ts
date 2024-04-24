@@ -50,3 +50,7 @@ export interface CardMemoryGameProps {
   correctAnswer: string
   incorrectAnswers: any
 }
+
+export interface KeyHangmanGameProps {
+  element: string
+}
