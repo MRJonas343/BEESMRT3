@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 
 //* Components
 import NavBar from "@components/NavBar"
@@ -10,8 +9,6 @@ import Friends from "@assets/friends.svg"
 import Medalla from "@assets/medalla.svg"
 
 const MyAccount = () => {
-
-  const navigate = useNavigate()
 
   const [userData, setUserData] = useState({
     nickname: "",
@@ -106,7 +103,7 @@ const MyAccount = () => {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("TokenFacebook")
     localStorage.removeItem("TokenBeesmrt")
-    navigate("https://beesmrt2.vercel.app/")
+    window.location.assign("https://beesmrt2.vercel.app")
   }
 
   return (
