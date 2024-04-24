@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 //* Assets
-import logoWhite from '@assets/logo_white_new_size.webp'
+import logoWhite from '@assets/logo_white-_2_.webp'
 
 
 
