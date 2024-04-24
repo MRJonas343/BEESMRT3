@@ -106,7 +106,7 @@ const MyAccount = () => {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("TokenFacebook")
     localStorage.removeItem("TokenBeesmrt")
-    navigate("/")
+    navigate("https://beesmrt2.vercel.app/")
   }
 
   return (
