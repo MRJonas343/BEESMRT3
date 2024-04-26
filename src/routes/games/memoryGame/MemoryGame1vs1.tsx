@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import confetti from 'canvas-confetti'
+import { Toaster, toast } from "sonner"
 
 //* Components
 import NavBar from "@components/NavBar"
@@ -34,9 +35,10 @@ const MemoryGame1vs1: React.FC = () => {
   }, [])
 
   //*Funcion para obtener los datos de la API
+  //*https://beesmrt-backend-vercel.vercel.app/getMemoryGameData
   const fetchData = async () => {
     try {
-      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getMemoryGameData')
+      const response = await fetch('http://localhost:4000/getMemoryGameData')
       const jsonData = await response.json()
       setShowSpinner(false)
       initGame(jsonData)
@@ -81,8 +83,10 @@ const MemoryGame1vs1: React.FC = () => {
       setActivePlayer(newHeadsOrTails === 0 ? "Player 1 Starts!!!" : "Player 2 Starts!!!")
       if (newHeadsOrTails === 0) {
         setIsPlayer1Active(true)
+        toast.info("Player 1 Turn")
       } else {
         setIsPlayer1Active(false)
+        toast.info("Player 2 Turn")
       }
     }, 3000)
     setTimeout(() => {
@@ -165,8 +169,10 @@ const MemoryGame1vs1: React.FC = () => {
           setIncorrectAnswer3(shuffledAnswersArray[3])
           openModal()
         } else {
+          toast.error("Incorrect Match")
           setTimeout(() => {
             setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active) // Cambiar el turno
+            toast.info(isPlayer1Active ? "Player 2 Turn" : "Player 1 Turn")
           }, 1000)
         }
         setTimeout(() => {
@@ -220,8 +226,10 @@ const MemoryGame1vs1: React.FC = () => {
     if (correctAnswerRef === answer) {
       if (isPlayer1Active) {
         setPlayer1Points(player1Points + 1)
+        toast.success("Correct Match, you got a point and another turn")
       } else {
         setPlayer2Points(player2Points + 1)
+        toast.success("Correct Match, you got a point and another turn")
       }
     } else {
       setCards((prevCards) =>
@@ -238,7 +246,7 @@ const MemoryGame1vs1: React.FC = () => {
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
       <NavBar />
-
+      <Toaster richColors position="top-left" />
       {showSpinner
         ? <Spinner />
 

@@ -25,17 +25,14 @@ const SpinningCoin: React.FC<SpinningCoinProps> = ({ showModalCoin, headsOrTails
 
   //* Estilos para la animacion
   if (headsOrTails === 0) {
-    console.log('cara')
     faceClassName = "absolute w-full h-full routation2 "
     backClassName = "routation"
     coinContainer = "relative w-40 pointer-events-none"
   } else if (headsOrTails === 1) {
-    console.log('cruz')
     faceClassName = "absolute w-full h-full routation"
     backClassName = "routation2"
     coinContainer = "relative w-40 pointer-events-none"
   } else {
-    console.log('reset')
     faceClassName = "face front absolute w-full h-full overflow-hidden"
     backClassName = "face back"
     coinContainer = "relative w-40"
