@@ -7,6 +7,7 @@ import MemoryGameButtton from "@components/ButtonMemoryGame"
 import MemoryGameStats from "@components/MemoryGameStats"
 import MemoryGameModal from "@components/MemoryGameModal"
 import ModalGameOver from "@components/ModalGameOver"
+import SpinningCoin from "@components/SpinningCoin"
 
 //*Assets
 import TrofeoImg from '@assets/trofeo.webp'
@@ -68,6 +69,28 @@ const MemoryGame1vs1: React.FC = () => {
   const [mainMessage, setMainMessage] = useState("")
   const [message, setMessage] = useState("")
   const [imageMessage, setImageMessage] = useState("")
+  const [showSpinningCoin, setShowSpinningCoin] = useState(false)
+  const [headsOrTails, setHeadsOrTails] = useState<number | undefined>(undefined)
+  const [activePlayer, setActivePlayer] = useState<string>("")
+
+  //*Cambiar la moneda
+  const changeCoin = () => {
+    const newHeadsOrTails = Math.floor(Math.random() * 2)
+    setHeadsOrTails(newHeadsOrTails)
+    setTimeout(() => {
+      setActivePlayer(newHeadsOrTails === 0 ? "Player 1 Starts!!!" : "Player 2 Starts!!!")
+      if (newHeadsOrTails === 0) {
+        setIsPlayer1Active(true)
+      } else {
+        setIsPlayer1Active(false)
+      }
+    }, 3000)
+    setTimeout(() => {
+      setActivePlayer("")
+      setHeadsOrTails(undefined)
+      setShowSpinningCoin(!showSpinningCoin)
+    }, 5000)
+  }
 
 
   useEffect(() => {
@@ -164,6 +187,8 @@ const MemoryGame1vs1: React.FC = () => {
   }
 
   const initGame = (cardItemJson: any) => {
+    setShowSpinningCoin(!showSpinningCoin)
+
     const allCards = [...cardItemJson, ...cardItemJson]
       .map((item: CardMemoryGameProps, index: number) => ({ ...item, id: index }))
       .sort(() => Math.random() - 0.5)
@@ -260,6 +285,12 @@ const MemoryGame1vs1: React.FC = () => {
         mainMessage={mainMessage}
         playAgain={playAgain}
         showModalWin={shoModalWin} />
+      <SpinningCoin
+        showModalCoin={showSpinningCoin}
+        headsOrTails={headsOrTails}
+        changeCoin={changeCoin}
+        activePlayer={activePlayer}
+      />
     </main>
   )
 }

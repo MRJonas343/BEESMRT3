@@ -82,3 +82,29 @@
   top: 50%;
   left: 50%;
 }
+
+/* *cards for the coin */
+.face {
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.back {
+  transform: perspective(600px) rotateY(180deg);
+}
+
+/* Termina en cara */
+.routation {
+  backface-visibility: hidden;
+  transition: 3s;
+  transform: perspective(600px) rotateY(1980deg);
+}
+
+.routation2 {
+  backface-visibility: hidden;
+  transition: 3s;
+  transform: perspective(600px) rotateY(2160deg);
+}

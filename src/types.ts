@@ -67,3 +67,19 @@ export interface DroppableProps {
   description: string | null
   hasAnItem: boolean
 }
+
+export interface ModalGameOverProps {
+  showModal: boolean
+  imageSrc: string
+  message: string
+  mainMessage: string
+  playAgain: () => void
+  showModalWin: () => void | null
+}
+
+export interface SpinningCoinProps {
+  activePlayer: string
+  showModalCoin: boolean
+  headsOrTails: number | undefined
+  changeCoin: () => void
+}
