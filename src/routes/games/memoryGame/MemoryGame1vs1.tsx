@@ -82,10 +82,8 @@ const MemoryGame1vs1: React.FC = () => {
       setActivePlayer(newHeadsOrTails === 0 ? "Player 1 Starts!!!" : "Player 2 Starts!!!")
       if (newHeadsOrTails === 0) {
         setIsPlayer1Active(true)
-        toast.info("Player 1 Turn")
       } else {
         setIsPlayer1Active(false)
-        toast.info("Player 2 Turn")
       }
     }, 3000)
     setTimeout(() => {
@@ -168,10 +166,9 @@ const MemoryGame1vs1: React.FC = () => {
           setIncorrectAnswer3(shuffledAnswersArray[3])
           openModal()
         } else {
-          toast.error("Incorrect Match")
           setTimeout(() => {
             setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active) // Cambiar el turno
-            toast.info(isPlayer1Active ? "Player 2 Turn" : "Player 1 Turn")
+            toast.error("Incorrect Match, next player turn")
           }, 1000)
         }
         setTimeout(() => {
@@ -237,6 +234,7 @@ const MemoryGame1vs1: React.FC = () => {
         )
       )
       setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
+      toast.error("Incorrect Match, next player turn")
     }
     setShowModal(!showModal)
     e.target.reset();
