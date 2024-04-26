@@ -234,7 +234,7 @@ const MemoryGame1vs1: React.FC = () => {
         )
       )
       setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
-      toast.error("Incorrect Match, next player turn")
+      toast.error("Incorrect Answer, next player turn")
     }
     setShowModal(!showModal)
     e.target.reset();
