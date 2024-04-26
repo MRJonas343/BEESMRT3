@@ -35,10 +35,9 @@ const MemoryGame1vs1: React.FC = () => {
   }, [])
 
   //*Funcion para obtener los datos de la API
-  //*https://beesmrt-backend-vercel.vercel.app/getMemoryGameData
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/getMemoryGameData')
+      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getMemoryGameData')
       const jsonData = await response.json()
       setShowSpinner(false)
       initGame(jsonData)
