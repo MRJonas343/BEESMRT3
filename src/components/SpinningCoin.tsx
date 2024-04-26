@@ -43,7 +43,7 @@ const SpinningCoin: React.FC<SpinningCoinProps> = ({ showModalCoin, headsOrTails
 
   return (
     <div className={modalContainer}>
-      <div className="bg-white w-[350px] h-4/6 rounded-xl p-7 absolute z-30 top-1/2 left-1/2 fixPosition lg:w-1/3">
+      <div className="bg-white w-[350px] h-3/5 rounded-xl p-7 absolute z-30 top-1/2 left-1/2 fixPosition lg:w-1/3">
         <div className='flex flex-col items-center mt-5'>
           <h1 className='text-5xl text-center weigh font-extrabold font-Principal pb-5 text-3d text-Yellow1 spacing tracking-wider'> Who will start?</h1>
           <h1 className='text-3xl text-center weigh font-extrabold font-Principal pb-5 text-3d text-Pink1 spacing tracking-wider'>Click the Coin</h1>
