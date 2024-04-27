@@ -15,42 +15,18 @@ import TrofeoImg from '@assets/trofeo.webp'
 import Swords from '@assets/espadas.webp'
 import Spinner from "@components/Spinner"
 
-//*Objetos obtenidos del JSON
+//*Types
 import { CardMemoryGameProps } from "@types"
 
 const MemoryGame1vs1: React.FC = () => {
 
-  //* Valores para el efecto confeti
+  //* Conffeti effect
   const duration = 15 * 1000
   const animationEnd = Date.now() + duration
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
-  //*Estado para el Spinner
+  //* Game States
   const [showSpinner, setShowSpinner] = useState(true)
-
-
-  //*Inicializa el proceso de fetch y carga de datos
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  //*Funcion para obtener los datos de la API
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getMemoryGameData')
-      const jsonData = await response.json()
-      setShowSpinner(false)
-      initGame(jsonData)
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    }
-  }
-
-  function randomInRange(min: any, max: any) {
-    return Math.random() * (max - min) + min;
-  }
-
-  //*Estados del juego
   const [cards, setCards] = useState<CardMemoryGameProps[]>([])
   const [card1, setCard1] = useState<CardMemoryGameProps | null>(null)
   const [card2, setCard2] = useState<CardMemoryGameProps | null>(null)
@@ -74,7 +50,19 @@ const MemoryGame1vs1: React.FC = () => {
   const [headsOrTails, setHeadsOrTails] = useState<number | undefined>(undefined)
   const [activePlayer, setActivePlayer] = useState<string>("")
 
-  //*Cambiar la moneda
+  //* Get data from BeeSMRT API
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getMemoryGameData')
+      const jsonData = await response.json()
+      setShowSpinner(false)
+      initGame(jsonData)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
+
+  //* Spin the coin to decide who starts
   const changeCoin = () => {
     const newHeadsOrTails = Math.floor(Math.random() * 2)
     setHeadsOrTails(newHeadsOrTails)
@@ -93,7 +81,77 @@ const MemoryGame1vs1: React.FC = () => {
     }, 5000)
   }
 
+  //* Generete a random number for the confetti effect
+  const randomInRange = (min: any, max: any) => {
+    return Math.random() * (max - min) + min;
+  }
 
+  //*Open the modal for the question
+  const openModal = () => {
+    setShowModal(!showModal)
+  }
+
+  //*Choose the card
+  const chooseCard = (card: CardMemoryGameProps) => {
+    card1 ? setCard2(card) : setCard1(card)
+  }
+
+  //*Call the function to spin the coin and create the table of cards
+  const initGame = (cardItemJson: any) => {
+    setShowSpinningCoin(!showSpinningCoin)
+
+    const allCards = [...cardItemJson, ...cardItemJson]
+      .map((item: CardMemoryGameProps, index: number) => ({ ...item, id: index }))
+      .sort(() => Math.random() - 0.5)
+    setCards(allCards)
+  }
+
+  //*Show the modal when the game is over
+  const shoModalWin = () => {
+    setModalWinOpen(!isModalWinOpen)
+  }
+
+  //*Play again (it resets the game)
+  const playAgain = () => {
+    setResetGame(!resetGame)
+    setPlayer1Points(0)
+    setPlayer2Points(0)
+    setCard1(null)
+    setCard2(null)
+    setIsPlayer1Active(true)
+    fetchData()
+    if (isModalWinOpen) {
+      setModalWinOpen(!isModalWinOpen)
+    }
+  }
+
+  //*Check the answer of the question
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    const Form = new FormData(e.target)
+    const answer = Form.get('Answer')
+    if (correctAnswerRef === answer) {
+      if (isPlayer1Active) {
+        setPlayer1Points(player1Points + 1)
+        toast.success("Correct Match, you got a point and another turn")
+      } else {
+        setPlayer2Points(player2Points + 1)
+        toast.success("Correct Match, you got a point and another turn")
+      }
+    } else {
+      setCards((prevCards) =>
+        prevCards.map((item) =>
+          item.src === imageSrc ? { ...item, matched: false } : item
+        )
+      )
+      setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
+      toast.error("Incorrect Answer, next player turn")
+    }
+    setShowModal(!showModal)
+    e.target.reset();
+  }
+
+  //*Check if the game is over
   useEffect(() => {
     if (player1Points + player2Points === 12) {
       if (player1Points > player2Points) {
@@ -145,6 +203,7 @@ const MemoryGame1vs1: React.FC = () => {
     }
   }, [player1Points, player2Points])
 
+  //*Check if the cards match
   useEffect(() => {
     if (card1 && card2) {
       if (card1.id === card2.id) {
@@ -179,66 +238,10 @@ const MemoryGame1vs1: React.FC = () => {
     }
   }, [card1, card2])
 
-  //*Funciones
-  const openModal = () => {
-    setShowModal(!showModal)
-  }
-
-  const chooseCard = (card: CardMemoryGameProps) => {
-    card1 ? setCard2(card) : setCard1(card)
-  }
-
-  const initGame = (cardItemJson: any) => {
-    setShowSpinningCoin(!showSpinningCoin)
-
-    const allCards = [...cardItemJson, ...cardItemJson]
-      .map((item: CardMemoryGameProps, index: number) => ({ ...item, id: index }))
-      .sort(() => Math.random() - 0.5)
-    setCards(allCards)
-  }
-
-  const shoModalWin = () => {
-    setModalWinOpen(!isModalWinOpen)
-  }
-
-  const playAgain = () => {
-    setResetGame(!resetGame)
-    setPlayer1Points(0)
-    setPlayer2Points(0)
-    setCard1(null)
-    setCard2(null)
-    setIsPlayer1Active(true)
+  //*Start the game
+  useEffect(() => {
     fetchData()
-    if (isModalWinOpen) {
-      setModalWinOpen(!isModalWinOpen)
-    }
-  }
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-    //obtener los radios
-    const Form = new FormData(e.target)
-    const answer = Form.get('Answer')
-    if (correctAnswerRef === answer) {
-      if (isPlayer1Active) {
-        setPlayer1Points(player1Points + 1)
-        toast.success("Correct Match, you got a point and another turn")
-      } else {
-        setPlayer2Points(player2Points + 1)
-        toast.success("Correct Match, you got a point and another turn")
-      }
-    } else {
-      setCards((prevCards) =>
-        prevCards.map((item) =>
-          item.src === imageSrc ? { ...item, matched: false } : item
-        )
-      )
-      setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
-      toast.error("Incorrect Answer, next player turn")
-    }
-    setShowModal(!showModal)
-    e.target.reset();
-  }
+  }, [])
 
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
