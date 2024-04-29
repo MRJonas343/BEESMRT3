@@ -39,7 +39,7 @@ export interface MemoryGameModalProps {
   answer2: string
   answer3: string
   answer4: string
-  handleSubmit: any
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
 
 export interface CardMemoryGameProps {
@@ -48,7 +48,7 @@ export interface CardMemoryGameProps {
   matched: boolean
   question: string
   correctAnswer: string
-  incorrectAnswers: any
+  incorrectAnswers: string[]
 }
 
 export interface KeyHangmanGameProps {

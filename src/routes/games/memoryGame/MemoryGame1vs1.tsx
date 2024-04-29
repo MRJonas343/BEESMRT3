@@ -82,8 +82,8 @@ const MemoryGame1vs1: React.FC = () => {
   }
 
   //* Generete a random number for the confetti effect
-  const randomInRange = (min: any, max: any) => {
-    return Math.random() * (max - min) + min;
+  const randomInRange = (min: number, max: number) => {
+    return Math.random() * (max - min) + min
   }
 
   //*Open the modal for the question
@@ -97,9 +97,8 @@ const MemoryGame1vs1: React.FC = () => {
   }
 
   //*Call the function to spin the coin and create the table of cards
-  const initGame = (cardItemJson: any) => {
+  const initGame = (cardItemJson: CardMemoryGameProps[]) => {
     setShowSpinningCoin(!showSpinningCoin)
-
     const allCards = [...cardItemJson, ...cardItemJson]
       .map((item: CardMemoryGameProps, index: number) => ({ ...item, id: index }))
       .sort(() => Math.random() - 0.5)
@@ -126,9 +125,10 @@ const MemoryGame1vs1: React.FC = () => {
   }
 
   //*Check the answer of the question
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-    const Form = new FormData(e.target)
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+    event.preventDefault()
+    const Form = new FormData(event.target as HTMLFormElement)
     const answer = Form.get('Answer')
     if (correctAnswerRef === answer) {
       if (isPlayer1Active) {
@@ -147,8 +147,8 @@ const MemoryGame1vs1: React.FC = () => {
       setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
       toast.error("Incorrect Answer, next player turn")
     }
+    (event.target as HTMLFormElement).reset()
     setShowModal(!showModal)
-    e.target.reset();
   }
 
   //*Check if the game is over
@@ -160,14 +160,17 @@ const MemoryGame1vs1: React.FC = () => {
         setImageMessage(TrofeoImg)
         shoModalWin()
 
-        const interval: any = setInterval(function () {
+        const interval = setInterval(() => {
           const timeLeft = animationEnd - Date.now()
           if (timeLeft <= 0) {
-            return clearInterval(interval)
+            clearInterval(interval)
+            return
           }
-          const particleCount = 50 * (timeLeft / duration);
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } })
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } })
+          const particleCount = 50 * (timeLeft / duration)
+          const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+          const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+          confetti({ ...defaults, particleCount, origin: origin1 })
+          confetti({ ...defaults, particleCount, origin: origin2 })
         }, 250)
 
 
@@ -176,28 +179,33 @@ const MemoryGame1vs1: React.FC = () => {
         setMessage("Player 2 has won!!!")
         setImageMessage(TrofeoImg)
         shoModalWin()
-
-        const interval: any = setInterval(function () {
+        const interval = setInterval(() => {
           const timeLeft = animationEnd - Date.now()
           if (timeLeft <= 0) {
-            return clearInterval(interval)
+            clearInterval(interval)
+            return
           }
           const particleCount = 50 * (timeLeft / duration)
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } })
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } })
-        }, 250);
+          const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+          const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+          confetti({ ...defaults, particleCount, origin: origin1 })
+          confetti({ ...defaults, particleCount, origin: origin2 })
+        }, 250)
       } else {
         setMainMessage("Tiee!!!")
         setMessage("Good match")
         setImageMessage(Swords)
-        const interval: any = setInterval(function () {
+        const interval = setInterval(() => {
           const timeLeft = animationEnd - Date.now()
           if (timeLeft <= 0) {
-            return clearInterval(interval)
+            clearInterval(interval)
+            return
           }
-          const particleCount = 50 * (timeLeft / duration);
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } })
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } })
+          const particleCount = 50 * (timeLeft / duration)
+          const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+          const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+          confetti({ ...defaults, particleCount, origin: origin1 })
+          confetti({ ...defaults, particleCount, origin: origin2 })
         }, 250)
       }
     }
@@ -233,7 +241,7 @@ const MemoryGame1vs1: React.FC = () => {
         setTimeout(() => {
           setCard1(null)
           setCard2(null)
-        }, 1000);
+        }, 1000)
       }
     }
   }, [card1, card2])
