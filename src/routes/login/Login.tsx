@@ -171,7 +171,7 @@ const LogIn: React.FC = () => {
                             <FacebookLoginButton
                                 className="font-Principal text-white tracking-wide"
                                 align="center"
-                                text={"Log in with Facebook in BeeSMRT"}
+                                text={"Log in with Facebook"}
                             />
                         </LoginSocialFacebook>
                     </div>
@@ -181,7 +181,7 @@ const LogIn: React.FC = () => {
                             onClick={loginWithGithub}
                             className="font-Principal text-white tracking-wide"
                             align="center"
-                            text={"Log in with Github in BeeSMRT"}
+                            text={"Log in with Github"}
                         />
                     </div>
 

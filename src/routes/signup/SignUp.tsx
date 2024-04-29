@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import Lottie from "lottie-react"
 
 //* Componentes
 import NavBar from "@components/NavBar"
@@ -11,6 +12,8 @@ import BasicModal from "@components/BasicModal"
 //* Assets
 import HappyBee from '@assets/abeja-saludando.webp'
 import ShyBee from '@assets/abeja-shy.webp'
+import HelloBee from '@assets/beeLogin.webp'
+import TickCustome from '@assets/Tick_custom_icon.json'
 
 const SignUp: React.FC = () => {
 
@@ -36,13 +39,13 @@ const SignUp: React.FC = () => {
       })
 
       if (response.ok) {
-        const responseData = await response.json();
-        const token = responseData.token;
+        const responseData = await response.json()
+        const token = responseData.token
 
         //* Guardar el token en el local storage u otro lugar según sea necesario
-        localStorage.setItem('TokenBeesmrt', token);
+        localStorage.setItem('TokenBeesmrt', token)
 
-        navigate("/myaccount");
+        navigate("/myaccount")
       } else if (response.status === 409) {
         console.error("El usuario ya existe")
         setImageSrc(ShyBee)
@@ -71,8 +74,48 @@ const SignUp: React.FC = () => {
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
       <NavBar />
-      <div className="flex justify-center">
-        <div className="bg-white rounded-md px-7 pt-7 pb-5 mt-4 text-center w-96 shadow-2xl">
+      <div className="lg:flex justify-around lg:bg-white lg:mx-10 rounded-lg lg:mt-4">
+        <div className="hidden lg:flex flex-col lg:w-3/6 px-7 pt-7 pb-5 mt-4">
+          <div className="flex items-center h-10 gap-2">
+            <img src={HelloBee} className="w-10" />
+            <span className="font-Principal mt-2 text-4xl text-white text-3d tracking-wide">BeeSMART </span>
+          </div>
+          <ul className="pt-4">
+            <li className="font-Secundaria text-lg py-3">
+              <div className="flex gap-2 items-center font-bold">
+                <Lottie
+                  animationData={TickCustome}
+                  className="w-10"
+                />
+                <h3 className="">Create an account to start learning</h3>
+              </div>
+              <span className="font-Secundaria">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+            </li>
+
+            <li className="font-Secundaria text-lg py-3">
+              <div className="flex gap-2 items-center font-bold">
+                <Lottie
+                  animationData={TickCustome}
+                  className="w-10"
+                />
+                <h3 className="">Get access to all the features</h3>
+              </div>
+              <span className="font-Secundaria">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+            </li>
+
+            <li className="font-Secundaria text-lg py-3">
+              <div className="flex gap-2 items-center font-bold">
+                <Lottie
+                  animationData={TickCustome}
+                  className="w-10"
+                />
+                <h3 className="">Join the Bee Team</h3>
+              </div>
+              <span className="font-Secundaria">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+            </li>
+          </ul>
+        </div>
+        <div className="bg-white rounded-md px-7 pt-7 pb-5 mt-4 text-center mx-7 shadow-2xl lg:w-3/6 lg:shadow-none">
           <form onSubmit={handleSubmit(getForm)}>
             <div className="flex justify-center items-center gap-3">
               <span className="font-Principal text-3xl">Join the BEE TEAM!!!</span>
@@ -173,7 +216,9 @@ const SignUp: React.FC = () => {
               Confirm password: <br />
               <input placeholder="Happ&BEE1" type="password" autoComplete="current-password" className="w-full font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out" onChange={chekPassword} />
               <br />
-              <button className="mt-4 font-Principal text-white bg-Pink2 border-0 py-2 px-[138px] w-full focus:outline-none hover:bg-Pink1 rounded text-xl shadow-lg flex-col">Sign Up</button>
+              <div className="py-2 px-1 w-full">
+                <button className="font-Principal text-white bg-Pink2 py-2 w-full focus:outline-none hover:bg-Pink1 rounded text-xl shadow-lg">Sign Up</button>
+              </div>
               <div className="Footer-Login text-center py-2 pt-3 font-Secundaria">
                 Do you already have an account? <br /> <Link to="/login" className="text-indigo-700 font-bold">Go to Log In</Link>
               </div>
