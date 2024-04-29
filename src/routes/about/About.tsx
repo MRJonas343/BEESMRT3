@@ -13,7 +13,7 @@ const About = () => {
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
       <NavBar />
-      <section className="bg-white shadow-xl mt-7 h-auto px-6 rounded-lg mb-9 mx-7 lg:mx-10">
+      <section className="bg-white/90 shadow-xl mt-7 h-auto px-6 rounded-lg mb-9 mx-7 lg:mx-10">
         <h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
         <div className="flex flex-col lg:flex-row">
           <div className="lg:pb-5 lg:w-4/6">
@@ -28,10 +28,10 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="bg-white h-auto px-6 mx-7 rounded-lg shadow-xl mb-6 lg:mx-10">
+      <section className="bg-white/90 h-auto px-6 mx-7 rounded-lg shadow-xl mb-6 lg:mx-10">
         <h2 className="text-center font-Principal text-4xl py-5">What do we offer?</h2>
       </section>
-      <section className="bg-white h-auto w-auto p-6 pb-10 mx-7 shadow-2xl rounded-xl mb-9 lg:pl-14 lg:mx-10">
+      <section className="bg-white/90 h-auto w-auto p-6 pb-10 mx-7 shadow-2xl rounded-xl mb-9 lg:pl-14 lg:mx-10">
         <AboutCard
           image={Control}
           title="Learning by Play:"
