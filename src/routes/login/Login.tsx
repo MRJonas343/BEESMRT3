@@ -119,7 +119,7 @@ const LogIn: React.FC = () => {
             <NavBar />
             <div className="bg-white/90 rounded-lg mx-7 p-7 mt-8 text-center shadow-2xl lg:flex lg:justify-around lg:h-4/5">
                 <div className="flex justify-center items-center flex-col lg:w-2/6 lg:justify-center lg:h-full">
-                    <img src={HelloBee} className="w-36 flex lg:w-3/5" />
+                    <img src={HelloBee} className="w-32 flex lg:w-3/5" />
                 </div>
                 <div className="lg:w-3/6 lg:flex lg:flex-col lg:justify-center">
                     <form onSubmit={handleSubmit(getForm)}>
