@@ -7,7 +7,7 @@ const PrivacyPolicy: React.FC = () => {
     <>
       <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
         <NavBar />
-        <section className="bg-white/90 p-6 lg:p-8 w-[90dvw] mx-auto rounded-md my-3" >
+        <section className="bg-white/90 p-6 lg:p-8 w-[90dvw] mx-auto rounded-lg my-3 shadow-lg" >
           <h1 className="font-Principal text-2xl text-center">Privacy Policy</h1>
           <p className="font-Secundaria pt-2">
             The BEESMRT website is owned by BEESMRT, which is a data controller of your personal data.

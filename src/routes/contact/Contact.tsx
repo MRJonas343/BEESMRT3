@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
       <NavBar />
 
       <section>
-        <div className="w-11/12 mx-auto px-5 py-4 my-2 rounded-md bg-white/90 flex flex-col md:flex-row md:pr-2 md:py-24 md:mx-auto shadow-2xl">
+        <div className="w-11/12 mx-auto px-5 py-4 my-2 rounded-lg bg-white/90 flex flex-col md:flex-row md:pr-2 md:py-24 md:mx-auto shadow-2xl">
           <div className="md:w-2/5 w-full md:flex items-center md:flex-col text-center pr-5">
             <h1 className="text-center text-3xl lg:text-5xl sm:text-4xl font-Principal title-font mb-4">Contact Us</h1>
             <p className="font-Secundaria leading-relaxed text-base md:text-xl">

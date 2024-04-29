@@ -117,7 +117,7 @@ const LogIn: React.FC = () => {
     return (
         <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
             <NavBar />
-            <div className="bg-white/90 rounded-md mx-7 p-7 mt-8 text-center shadow-2xl lg:flex lg:justify-around lg:h-4/5">
+            <div className="bg-white/90 rounded-lg mx-7 p-7 mt-8 text-center shadow-2xl lg:flex lg:justify-around lg:h-4/5">
                 <div className="flex justify-center items-center flex-col lg:w-2/6 lg:justify-center lg:h-full">
                     <img src={HelloBee} className="w-36 flex lg:w-3/5" />
                 </div>

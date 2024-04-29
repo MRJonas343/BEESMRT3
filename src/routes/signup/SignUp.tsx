@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
       <NavBar />
-      <div className="lg:flex justify-around lg:bg-white lg:mx-10 rounded-lg lg:mt-4">
+      <div className="lg:flex justify-around lg:shadow-2xl lg:bg-white lg:mx-10 rounded-lg lg:mt-4">
         <div className="hidden lg:flex flex-col lg:w-3/6 px-7 pt-7 pb-5 mt-4">
           <div className="flex items-center h-10 gap-2">
             <img src={HelloBee} className="w-10" />
@@ -216,7 +216,7 @@ const SignUp: React.FC = () => {
               Confirm password: <br />
               <input placeholder="Happ&BEE1" type="password" autoComplete="current-password" className="w-full font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out" onChange={chekPassword} />
               <br />
-              <div className="py-2 px-1 w-full">
+              <div className="py-2">
                 <button className="font-Principal text-white bg-Pink2 py-2 w-full focus:outline-none hover:bg-Pink1 rounded text-xl shadow-lg">Sign Up</button>
               </div>
               <div className="Footer-Login text-center py-2 pt-3 font-Secundaria">

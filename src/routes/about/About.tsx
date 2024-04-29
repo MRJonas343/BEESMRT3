@@ -13,25 +13,25 @@ const About = () => {
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
       <NavBar />
-      <section className=" bg-white mt-7 h-auto w-auto px-6 mx-8 outline-slate-950 outline rounded-xl mb-9 lg:mx-20">
+      <section className="bg-white shadow-xl mt-7 h-auto px-6 rounded-lg mb-9 mx-7 lg:mx-10">
         <h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-2/3 md:pb-5">
+        <div className="flex flex-col lg:flex-row">
+          <div className="lg:pb-5 lg:w-4/6">
             <p className="font-Secundaria lg:text-xl">Through linguistic challenges, interactive exercises, and a playful approach, users will be able to progressively advance their learning and stay motivated as they become proficient in the language.
               <br></br><br></br>
               The application will offer users a wide variety of interactive games that will allow them to expand their vocabulary and learn useful English expressions in a fun and engaging way.
               <br></br><br></br>
               It seeks to give users the opportunity to learn and refine their English language knowledge and skills through casual, engaging, and entertaining tools and media that will help users understand and use the language in a professional environment, applying what they have learned.</p>
           </div>
-          <div className="flex justify-center py-7 md:mx-auto">
+          <div className="flex justify-center py-7 lg:w-2/6 h-full lg:py-0">
             <img src={AbejitaEstudiosa} alt="bee teacher" className="md:w-48" />
           </div>
         </div>
       </section>
-      <section className="bg-white h-auto w-auto px-6 mx-8 outline-slate-950 outline rounded-xl mb-6 lg:mx-20">
+      <section className="bg-white h-auto px-6 mx-7 rounded-lg shadow-xl mb-6 lg:mx-10">
         <h2 className="text-center font-Principal text-4xl py-5">What do we offer?</h2>
       </section>
-      <section className="bg-white h-auto w-auto px-6 mx-8 outline-slate-950 outline rounded-xl mb-9 pb-5 lg:pl-14 lg:mx-20">
+      <section className="bg-white h-auto w-auto p-6 pb-10 mx-7 shadow-2xl rounded-xl mb-9 lg:pl-14 lg:mx-10">
         <AboutCard
           image={Control}
           title="Learning by Play:"
