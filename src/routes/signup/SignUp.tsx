@@ -89,7 +89,7 @@ const SignUp: React.FC = () => {
                 />
                 <h3 className="">Create an account to start learning</h3>
               </div>
-              <span className="font-Secundaria">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+              <span className="font-Secundaria">Start playing our games and practice your English with our games, with an account you can view your progress and enjoy other unique features.</span>
             </li>
 
             <li className="font-Secundaria text-lg py-3">
@@ -100,7 +100,7 @@ const SignUp: React.FC = () => {
                 />
                 <h3 className="">Get access to all the features</h3>
               </div>
-              <span className="font-Secundaria">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+              <span className="font-Secundaria">Enjoy our wide range of games and modes available, even with progressive experience in some of them.</span>
             </li>
 
             <li className="font-Secundaria text-lg py-3">
@@ -111,7 +111,7 @@ const SignUp: React.FC = () => {
                 />
                 <h3 className="">Join the Bee Team</h3>
               </div>
-              <span className="font-Secundaria">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+              <span className="font-Secundaria">Join the bee team and start playing with people from different parts of the world, or with your friends. </span>
             </li>
           </ul>
         </div>
@@ -219,7 +219,7 @@ const SignUp: React.FC = () => {
               <div className="py-2">
                 <button className="font-Principal text-white bg-Pink2 py-2 w-full focus:outline-none hover:bg-Pink1 rounded text-xl shadow-lg">Sign Up</button>
               </div>
-              <div className="Footer-Login text-center py-2 pt-3 font-Secundaria">
+              <div className="text-center py-2 pt-3 font-Secundaria">
                 Do you already have an account? <br /> <Link to="/login" className="text-indigo-700 font-bold">Go to Log In</Link>
               </div>
               <div className="text-center pt-2 font-Secundaria">

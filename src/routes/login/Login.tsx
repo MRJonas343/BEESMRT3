@@ -185,12 +185,12 @@ const LogIn: React.FC = () => {
                         />
                     </div>
 
-                    <div className="Footer-Login py-2 font-Secundaria">
+                    <div className="Footer-Login py-2 font-Secundaria md:text-xl">
                         Don't you have an account yet? <br />
                     </div>
 
                     <Link to="/signup">
-                        <p className="text-indigo-700 font-semibold pb-2 font-Secundaria">Get an Account</p>
+                        <p className="text-indigo-700 font-semibold pb-2 font-Secundaria md:text-xl">Get an Account</p>
                     </Link>
 
                 </div>
