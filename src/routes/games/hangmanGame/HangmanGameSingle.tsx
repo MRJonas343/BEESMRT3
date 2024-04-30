@@ -21,15 +21,19 @@ import HangmanImg6 from "@assets/hangman-6.svg"
 
 const HangmanGameSingle: React.FC = () => {
 
-  //* Valores para el efecto confeti
+  //* Conffeti effect
   const duration = 15 * 1000
   const animationEnd = Date.now() + duration
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
-  //*Estados
-  const [espacios, setEspacios] = useState<null[]>([])
+  //*Keys
+  const Keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    "P", "Q", "R", "S", "T", "U", "V", "_", "W", "X", "Y", "Z"]
+
+  //* Game States
+  const [espacios, setEspacios] = useState<(null | string)[]>([])
   const [attemps, setAttemps] = useState(0)
-  const [hangmanImg, setHangmanImg] = useState(HangmanImg0)
+  const [hangmanImg, setHangmanImg] = useState("")
   const [imageSrc, setImageSrc] = useState("")
   const [message, setMessage] = useState("")
   const [mainMessage, setMainMessage] = useState("")
@@ -39,26 +43,14 @@ const HangmanGameSingle: React.FC = () => {
   const [hint, setHint] = useState("")
   const [showSpinner, setShowSpinner] = useState(true)
 
-  //*Keys
-  const Keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-    "P", "Q", "R", "S", "T", "U", "V", "_", "W", "X", "Y", "Z"]
-
-  //*Funciones
-  function randomInRange(min: any, max: any) {
-    return Math.random() * (max - min) + min;
-  }
-
-  function playAgain() {
-    fetchData()
-  }
-
-  //*Funcion para obtener los datos de la API
+  //* Get data from BeeSMRT API
   const fetchData = async () => {
     try {
       const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getHangmanWords')
       const Words = await response.json()
       const word = Words[Math.floor(Math.random() * Words.length)]
-      setHangmanImg(hangmanImg)
+      console.log(word)
+      setHangmanImg(HangmanImg0)
       setWordToGess(word.word)
       setHint(word.hint)
       const wordLength = word.word.length
@@ -72,10 +64,12 @@ const HangmanGameSingle: React.FC = () => {
     }
   }
 
-  function handleKeyClick(e: any) {
-    const letter = (e.target.innerHTML).toLowerCase()
+  //* Handle Key Click
+  const handleKeyClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement
+    const letter = (target.innerText).toLowerCase()
     const Word = wordToGess.toLocaleLowerCase()
-    const indexes = [];
+    const indexes = []
     for (let i = 0; i < Word.length; i++) {
       if (Word[i] === letter) {
         indexes.push(i)
@@ -93,17 +87,20 @@ const HangmanGameSingle: React.FC = () => {
       })
       if (todosNoSonNull) {
         setImageSrc(Trofeo)
-        setMessage("You Win")
+        setMessage("You have won")
         setMainMessage("Congratulations")
         setShowModal(true)
-        const interval: any = setInterval(function () {
+        const interval = setInterval(() => {
           const timeLeft = animationEnd - Date.now()
           if (timeLeft <= 0) {
-            return clearInterval(interval)
+            clearInterval(interval)
+            return
           }
-          const particleCount = 50 * (timeLeft / duration);
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } })
-          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } })
+          const particleCount = 50 * (timeLeft / duration)
+          const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+          const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+          confetti({ ...defaults, particleCount, origin: origin1 })
+          confetti({ ...defaults, particleCount, origin: origin2 })
         }, 250)
       }
 
@@ -125,10 +122,17 @@ const HangmanGameSingle: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  //* Generete a random number for the confetti effect
+  const randomInRange = (min: number, max: number) => {
+    return Math.random() * (max - min) + min
+  }
 
+  //* Play again function
+  const playAgain = () => {
+    fetchData()
+  }
+
+  //* Check if the player lose
   useEffect(() => {
     if (attemps === 6) {
       setImageSrc(Defeat)
@@ -136,8 +140,14 @@ const HangmanGameSingle: React.FC = () => {
       setMainMessage("Game Over")
       setShowModal(true)
       setAttemps(0)
+      setHangmanImg(HangmanImg0)
     }
   }, [attemps])
+
+  //* Initial fetch to start the game
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <>
