@@ -49,7 +49,6 @@ const HangmanGameSingle: React.FC = () => {
       const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getHangmanWords')
       const Words = await response.json()
       const word = Words[Math.floor(Math.random() * Words.length)]
-      console.log(word)
       setHangmanImg(HangmanImg0)
       setWordToGess(word.word)
       setHint(word.hint)
