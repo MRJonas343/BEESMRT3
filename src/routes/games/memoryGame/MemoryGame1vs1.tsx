@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, FormEvent } from "react"
 import confetti from 'canvas-confetti'
 import { Toaster, toast } from "sonner"
 
@@ -125,7 +125,7 @@ const MemoryGame1vs1: React.FC = () => {
   }
 
   //*Check the answer of the question
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 
     event.preventDefault()
     const Form = new FormData(event.target as HTMLFormElement)
