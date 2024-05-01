@@ -68,6 +68,13 @@ export interface DroppableProps {
   hasAnItem: boolean
 }
 
+export interface ItemsDnDGameProps {
+  id: number
+  word: string
+  description: string
+  image: string
+}
+
 export interface ModalGameOverProps {
   showModal: boolean
   imageSrc: string
