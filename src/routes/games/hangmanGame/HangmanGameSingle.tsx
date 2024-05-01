@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, MouseEvent } from "react"
 import confetti from 'canvas-confetti'
 
 //* Componentes
@@ -65,7 +65,7 @@ const HangmanGameSingle: React.FC = () => {
   }
 
   //* Handle Key Click
-  const handleKeyClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleKeyClick = (event: MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLDivElement
     const letter = (target.innerText).toLowerCase()
     const Word = wordToGess.toLocaleLowerCase()
