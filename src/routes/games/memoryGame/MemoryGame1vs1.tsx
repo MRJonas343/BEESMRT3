@@ -53,7 +53,8 @@ const MemoryGame1vs1: React.FC = () => {
   //* Get data from BeeSMRT API
   const fetchData = async () => {
     try {
-      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getMemoryGameData')
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      const response = await fetch(BeeSMRTBackendURL + '/getMemoryGameData')
       const jsonData = await response.json()
       setShowSpinner(false)
       initGame(jsonData)

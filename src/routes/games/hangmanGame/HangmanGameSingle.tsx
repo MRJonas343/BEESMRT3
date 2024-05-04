@@ -46,7 +46,8 @@ const HangmanGameSingle: React.FC = () => {
   //* Get data from BeeSMRT API
   const fetchData = async () => {
     try {
-      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getHangmanWords')
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      const response = await fetch(BeeSMRTBackendURL + '/getHangmanWords')
       const Words = await response.json()
       const word = Words[Math.floor(Math.random() * Words.length)]
       setHangmanImg(HangmanImg0)
