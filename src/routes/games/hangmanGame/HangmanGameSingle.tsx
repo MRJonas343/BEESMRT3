@@ -31,6 +31,7 @@ const HangmanGameSingle: React.FC = () => {
     "P", "Q", "R", "S", "T", "U", "V", "_", "W", "X", "Y", "Z"]
 
   //* Game States
+  const [showSpinner, setShowSpinner] = useState(true)
   const [espacios, setEspacios] = useState<(null | string)[]>([])
   const [attemps, setAttemps] = useState(0)
   const [hangmanImg, setHangmanImg] = useState("")
@@ -41,7 +42,6 @@ const HangmanGameSingle: React.FC = () => {
   const [points, setPoints] = useState(0)
   const [wordToGess, setWordToGess] = useState("")
   const [hint, setHint] = useState("")
-  const [showSpinner, setShowSpinner] = useState(true)
 
   //* Get data from BeeSMRT API
   const fetchData = async () => {

@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
     const codeParam = urlParams.get("code")
 
     async function getAccessToken() {
-      await fetch('https://beesmrt-backend-vercel.vercel.app/getAccessTokenGithub?code=' + codeParam, {
+      await fetch(import.meta.env.BEESMRT_BACKEND_URL + '/getAccessTokenGithub?code=' + codeParam, {
         method: 'GET'
       }).then((response) => {
         return response.json()

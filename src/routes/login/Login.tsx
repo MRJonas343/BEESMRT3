@@ -42,7 +42,7 @@ const LogIn: React.FC = () => {
     async function getForm(data: object) {
         console.log(data)
         try {
-            const response = await fetch("https://beesmrt-backend-vercel.vercel.app/loginUser", {
+            const response = await fetch(import.meta.env.BEESMRT_BACKEND_URL + '/loginUser', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -80,7 +80,7 @@ const LogIn: React.FC = () => {
     //* Facebook Login
     async function handleLoginFacebook(data: object) {
         try {
-            const response = await fetch("https://beesmrt-backend-vercel.vercel.app/registerUserFacebook", {
+            const response = await fetch(import.meta.env.BEESMRT_BACKEND_URL + '/registerUserFacebook', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -107,10 +107,9 @@ const LogIn: React.FC = () => {
 
 
     //*Github Login
-    const CLINET_ID_GITHUB = "d985da0f6f9380b24283"
 
     function loginWithGithub() {
-        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLINET_ID_GITHUB)
+        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + import.meta.env.CLIENT_ID_GITHUB)
     }
 
 
