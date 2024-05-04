@@ -17,17 +17,19 @@ import newBee from '@assets/abeja-saludando.webp'
 
 const LogIn: React.FC = () => {
 
-    //*Mensajitos para la modal
+    //*States
     const [imageSrc, setImageSrc] = useState("")
     const [message, setMessage] = useState("")
     const [mainMessage, setMainMessage] = useState("")
     const [showModal, setShowModal] = useState(false)
 
-    //*Navegación
+    //*Navigator
     const navigate = useNavigate()
 
-    //*Form Login
+    //*Form (React Hook Form)
     const { register, formState: { errors }, handleSubmit, reset } = useForm()
+
+    //* Function to send the form
     async function getForm(data: object) {
         try {
             const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
@@ -76,20 +78,18 @@ const LogIn: React.FC = () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
-            });
+            })
 
-            // Verificar si la respuesta es exitosa (status code 200)
             if (response.ok) {
-                const responseData = await response.json();
-                const token = responseData.token;
+                const responseData = await response.json()
+                const token = responseData.token
+                localStorage.setItem('TokenFacebook', token)
+                navigate("/MyAccount")
 
-                //* Guardar el token en el local storage u otro lugar según sea necesario
-                localStorage.setItem('TokenFacebook', token);
-
-                navigate("/MyAccount");
             } else {
                 console.log("Error en la respuesta del servidor:")
             }
+
         } catch (error) {
             console.log("Error:", error)
         }
@@ -97,7 +97,6 @@ const LogIn: React.FC = () => {
 
 
     //*Github Login
-
     function loginWithGithub() {
         const GithubClient = import.meta.env.VITE_CLIENT_ID_GITHUB
         window.location.assign("https://github.com/login/oauth/authorize?client_id=" + GithubClient)

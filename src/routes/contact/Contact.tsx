@@ -12,17 +12,20 @@ import ShyBee from '@assets/abeja-shy.webp'
 
 const Contact: React.FC = () => {
 
-  //*Mensajitos para la modal
+  //*States
   const [imageSrc, setImageSrc] = useState("")
   const [message, setMessage] = useState("")
   const [mainMessage, setMainMessage] = useState("")
   const [showModal, setShowModal] = useState(false)
 
+  //* Form (React Hook Form)
   const { register, formState: { errors }, handleSubmit, reset } = useForm()
 
+  //* Function to send the form
   async function getForm(data: object) {
     try {
-      const response = await fetch("https://beesmrt-backend-dev-dkfz.1.us-1.fl0.io/contactMessage", {
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      const response = await fetch(BeeSMRTBackendURL + '/contactMessage', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

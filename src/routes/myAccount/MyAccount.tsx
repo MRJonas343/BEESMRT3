@@ -10,6 +10,7 @@ import Medalla from "@assets/medalla.svg"
 
 const MyAccount = () => {
 
+  //* States
   const [userData, setUserData] = useState({
     nickname: "",
     fullName: "",
@@ -29,8 +30,10 @@ const MyAccount = () => {
   }, [])
 
 
+  //* Get the user data from Github
   async function getGithubUser() {
-    await fetch('https://beesmrt-backend-vercel.vercel.app/getUserGithub', {
+    const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+    await fetch(BeeSMRTBackendURL + '/getUserGithub', {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
@@ -47,13 +50,15 @@ const MyAccount = () => {
     })
   }
 
+  //* Get the user data from Facebook
   async function getUserFacebook() {
     try {
-      const token = localStorage.getItem('TokenFacebook'); // Obtener el token del local storage
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      const token = localStorage.getItem('TokenFacebook')
 
-      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getUserFacebook', {
+      const response = await fetch(BeeSMRTBackendURL + '/getUserFacebook', {
         headers: {
-          Authorization: `Bearer ${token}` // Incluir el token en el encabezado de autorización
+          Authorization: `Bearer ${token}`
         }
       });
 
@@ -69,17 +74,19 @@ const MyAccount = () => {
         console.error('Error en la respuesta del servidor:', response.statusText);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error)
     }
   }
 
+  //* Get the user data from Beesmrt
   async function getBeeUser() {
     try {
-      const token = localStorage.getItem('TokenBeesmrt'); // Obtener el token del local storage
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      const token = localStorage.getItem('TokenBeesmrt')
 
-      const response = await fetch('https://beesmrt-backend-vercel.vercel.app/getBeeUser', {
+      const response = await fetch(BeeSMRTBackendURL + '/getBeeUser', {
         headers: {
-          Authorization: `Bearer ${token}` // Incluir el token en el encabezado de autorización
+          Authorization: `Bearer ${token}`
         }
       });
 
@@ -92,13 +99,14 @@ const MyAccount = () => {
         }
         setUserData(newUserData)
       } else {
-        console.error('Error en la respuesta del servidor:', response.statusText);
+        console.error('Error en la respuesta del servidor:', response.statusText)
       }
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
+  //* Log out
   function logOut() {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("TokenFacebook")

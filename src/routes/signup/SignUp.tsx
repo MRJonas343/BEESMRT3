@@ -19,18 +19,20 @@ const SignUp: React.FC = () => {
 
   const navigate = useNavigate()
 
-  //*Mensajitos para la modal
+  //*States
   const [imageSrc, setImageSrc] = useState("")
   const [message, setMessage] = useState("")
   const [mainMessage, setMainMessage] = useState("")
   const [showModal, setShowModal] = useState(false)
 
-  //*Form Sign Up
+  //*Form (React Hook Form)
   const { register, formState: { errors }, handleSubmit, reset } = useForm()
 
+  //*Function to send the form
   async function getForm(data: object) {
     try {
-      const response = await fetch("https://beesmrt-backend-vercel.vercel.app/registerUser", {
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      const response = await fetch(BeeSMRTBackendURL + '/registerUser', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -41,17 +43,16 @@ const SignUp: React.FC = () => {
       if (response.ok) {
         const responseData = await response.json()
         const token = responseData.token
-
-        //* Guardar el token en el local storage u otro lugar según sea necesario
         localStorage.setItem('TokenBeesmrt', token)
-
         navigate("/myaccount")
+
       } else if (response.status === 409) {
         console.error("El usuario ya existe")
         setImageSrc(ShyBee)
         setMessage("This user already exists, try with a different email.")
         setMainMessage("User already exists")
         setShowModal(!showModal)
+
       } else {
         console.error("Error:", response)
       }
@@ -62,6 +63,7 @@ const SignUp: React.FC = () => {
     reset()
   }
 
+  //*Function to check if the passwords match
   function chekPassword(e: React.ChangeEvent<HTMLInputElement>) {
     const password = (document.querySelector('input[name="password"]') as HTMLInputElement).value
     if (e.target.value !== password) {
