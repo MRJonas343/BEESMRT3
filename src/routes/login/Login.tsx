@@ -17,17 +17,6 @@ import newBee from '@assets/abeja-saludando.webp'
 
 const LogIn: React.FC = () => {
 
-    //*Checamos si ya esta logeado
-    useEffect(() => {
-        if (localStorage.getItem("TokenBeesmrt")) {
-            navigate("/myaccount")
-        } else if (localStorage.getItem("TokenFacebook")) {
-            navigate("/myaccount")
-        } else if (localStorage.getItem("accessToken")) {
-            navigate("/myaccount")
-        }
-    }, [])
-
     //*Mensajitos para la modal
     const [imageSrc, setImageSrc] = useState("")
     const [message, setMessage] = useState("")
@@ -113,6 +102,39 @@ const LogIn: React.FC = () => {
         const GithubClient = import.meta.env.VITE_CLIENT_ID_GITHUB
         window.location.assign("https://github.com/login/oauth/authorize?client_id=" + GithubClient)
     }
+
+    useEffect(() => {
+        //* Check if the user comes from Github
+        const queryString = window.location.search
+        const urlParams = new URLSearchParams(queryString)
+        const codeParam = urlParams.get("code")
+
+        async function getAccessToken() {
+            const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+            await fetch(BeeSMRTBackendURL + '/getAccessTokenGithub?code=' + codeParam, {
+                method: 'GET'
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                if (data.access_token) {
+                    localStorage.setItem("accessToken", data.access_token)
+                }
+            })
+            navigate("/MyAccount")
+        }
+        if (codeParam && (localStorage.getItem("accessToken") === null)) {
+            getAccessToken()
+        }
+
+        //*Check if the user is already logged in
+        if (localStorage.getItem("TokenBeesmrt")) {
+            navigate("/myaccount")
+        } else if (localStorage.getItem("TokenFacebook")) {
+            navigate("/myaccount")
+        } else if (localStorage.getItem("accessToken")) {
+            navigate("/myaccount")
+        }
+    }, [])
 
 
     return (

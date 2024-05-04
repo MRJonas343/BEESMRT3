@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 //* Components
@@ -13,32 +11,6 @@ import DragImg from '@assets/dragDropGame.webp'
 import ComingSoonImage from "@assets/comingSoon.webp"
 
 const HomePage: React.FC = () => {
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    //reset
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    const codeParam = urlParams.get("code")
-
-    async function getAccessToken() {
-      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-      await fetch(BeeSMRTBackendURL + '/getAccessTokenGithub?code=' + codeParam, {
-        method: 'GET'
-      }).then((response) => {
-        return response.json()
-      }).then((data) => {
-        if (data.access_token) {
-          localStorage.setItem("accessToken", data.access_token)
-        }
-      })
-      navigate("/MyAccount")
-    }
-    if (codeParam && (localStorage.getItem("accessToken") === null)) {
-      getAccessToken()
-    }
-  }, [])
 
   return (
     <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
