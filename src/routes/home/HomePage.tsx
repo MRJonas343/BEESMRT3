@@ -17,6 +17,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    //reset
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const codeParam = urlParams.get("code")
