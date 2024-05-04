@@ -90,3 +90,4 @@ export interface SpinningCoinProps {
   headsOrTails: number | undefined
   changeCoin: () => void
 }
+
