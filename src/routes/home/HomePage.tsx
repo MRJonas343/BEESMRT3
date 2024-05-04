@@ -22,7 +22,8 @@ const HomePage: React.FC = () => {
     const codeParam = urlParams.get("code")
 
     async function getAccessToken() {
-      await fetch(import.meta.env.BEESMRT_BACKEND_URL + '/getAccessTokenGithub?code=' + codeParam, {
+      const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+      await fetch(BeeSMRTBackendURL + '/getAccessTokenGithub?code=' + codeParam, {
         method: 'GET'
       }).then((response) => {
         return response.json()

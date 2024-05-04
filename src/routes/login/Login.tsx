@@ -40,9 +40,9 @@ const LogIn: React.FC = () => {
     //*Form Login
     const { register, formState: { errors }, handleSubmit, reset } = useForm()
     async function getForm(data: object) {
-        console.log(data)
         try {
-            const response = await fetch(import.meta.env.BEESMRT_BACKEND_URL + '/loginUser', {
+            const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+            const response = await fetch(BeeSMRTBackendURL + '/loginUser', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -80,7 +80,8 @@ const LogIn: React.FC = () => {
     //* Facebook Login
     async function handleLoginFacebook(data: object) {
         try {
-            const response = await fetch(import.meta.env.BEESMRT_BACKEND_URL + '/registerUserFacebook', {
+            const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+            const response = await fetch(BeeSMRTBackendURL + '/registerUserFacebook', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -109,7 +110,8 @@ const LogIn: React.FC = () => {
     //*Github Login
 
     function loginWithGithub() {
-        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + import.meta.env.CLIENT_ID_GITHUB)
+        const GithubClient = import.meta.env.VITE_CLIENT_ID_GITHUB
+        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + GithubClient)
     }
 
 
