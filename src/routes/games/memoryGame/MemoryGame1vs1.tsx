@@ -253,7 +253,7 @@ const MemoryGame1vs1: React.FC = () => {
   }, [])
 
   return (
-    <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
+    <main className="w-screen h-screen bg-blue-500 overflow-x-hidden">
       <NavBar />
       <Toaster richColors position="top-left" />
       {showSpinner

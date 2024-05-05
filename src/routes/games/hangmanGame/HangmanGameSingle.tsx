@@ -151,7 +151,7 @@ const HangmanGameSingle: React.FC = () => {
 
   return (
     <>
-      <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
+      <main className="w-screen h-screen bg-Yellow1 overflow-x-hidden">
         <NavBar />
         <h1 className="text-3xl font-Principal text-white text-3d text-center my-2">Hangman Game</h1>
         {showSpinner ? <Spinner />

@@ -149,7 +149,7 @@ const DragDropGameSingle: React.FC = () => {
 
 
   return (
-    <main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
+    <main className="w-screen h-screen bg-green-400 overflow-x-hidden">
       <NavBar />
       <h1 className="font-Principal tracking-wide text-center text-2xl text-white text-3d lg:text-4xl" >Drag and Drop</h1>
       <DndContext sensors={sensores} onDragEnd={imageDroped} autoScroll={false}>
