@@ -4,6 +4,7 @@ import { Route, Routes, HashRouter } from 'react-router-dom'
 import HomePage from '@routes/home/HomePage'
 import About from '@routes/about/About'
 import Contact from '@routes/contact/Contact'
+import NotFound from '@routes/notFound/NotFound'
 import LogIn from '@routes/login/Login'
 import SignUp from '@routes/signup/SignUp'
 import PrivacyPolicy from '@routes/privacypolicy/PrivacyPolicy'
@@ -21,14 +22,14 @@ const RoutesTree = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="*" element={<>404 not found</>} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-
         <Route path="/myaccount" element={<MyAccount />} />
+
         <Route path="/games/hangmangameMode" element={<HangmanGameMode />} />
         <Route path="/games/memorygameMode" element={<MemoryGameMode />} />
         <Route path="/games/dragdropgameMode" element={<DragDropGameMode />} />
