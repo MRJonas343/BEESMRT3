@@ -20,19 +20,22 @@ const RoutesTree = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" Component={HomePage} />
-        <Route path="/about" Component={About} />
-        <Route path="/contact" Component={Contact} />
-        <Route path="/login" Component={LogIn} />
-        <Route path="/signup" Component={SignUp} />
-        <Route path="/privacypolicy" Component={PrivacyPolicy} />
-        <Route path="/games/dragdropgameSingle" Component={DragDropGameSingle} />
-        <Route path="/games/hangmangameSingle" Component={HangmanGameSingle} />
-        <Route path="/games/memorygame1vs1" Component={MemoryGame1vs1} />
-        <Route path="/myaccount" Component={MyAccount} />
-        <Route path="/games/hangmangameMode" Component={HangmanGameMode} />
-        <Route path="/games/memorygameMode" Component={MemoryGameMode} />
-        <Route path="/games/dragdropgameMode" Component={DragDropGameMode} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<>404 not found</>} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+
+        <Route path="/myaccount" element={<MyAccount />} />
+        <Route path="/games/hangmangameMode" element={<HangmanGameMode />} />
+        <Route path="/games/memorygameMode" element={<MemoryGameMode />} />
+        <Route path="/games/dragdropgameMode" element={<DragDropGameMode />} />
+
+        <Route path="/games/dragdropgameSingle" element={<DragDropGameSingle />} />
+        <Route path="/games/hangmangameSingle" element={<HangmanGameSingle />} />
+        <Route path="/games/memorygame1vs1" element={<MemoryGame1vs1 />} />
       </Routes>
     </HashRouter>
   )
