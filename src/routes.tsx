@@ -21,7 +21,7 @@ const DragDropGameSingle = lazy(() => import('@routes/games/dragDropGame/DragDro
 
 const RoutesTree = () => {
   return (
-    <Suspense fallback={<div className='flex w-dvw h-dvh items-center justify-center'><Spinner /></div>}>
+    <Suspense fallback={<div className='flex w-dvw h-dvh items-center justify-center bg-Gradient1'><Spinner /></div>}>
       <HashRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
