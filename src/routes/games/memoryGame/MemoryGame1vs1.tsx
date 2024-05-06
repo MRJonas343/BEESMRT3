@@ -134,10 +134,21 @@ const MemoryGame1vs1: React.FC = () => {
     if (correctAnswerRef === answer) {
       if (isPlayer1Active) {
         setPlayer1Points(player1Points + 1)
-        toast.success("Correct Match, you got a point and another turn")
+        toast(
+          <div className="flex flex-col mx-auto text-center tracking-wide py-10 font-Principal text-3d text-green-600 text-3xl">
+            <div>+ 1 </div>
+            <div>Perfect!!! do it again</div>
+          </div>
+        )
+
       } else {
         setPlayer2Points(player2Points + 1)
-        toast.success("Correct Match, you got a point and another turn")
+        toast(
+          <div className="py-10 flex-col mx-auto tracking-wide text-center font-Principal text-3d text-green-600 text-3xl">
+            <div>+ 1 </div>
+            <div>Perfect!!! do it again</div>
+          </div>
+        )
       }
     } else {
       setCards((prevCards) =>
@@ -146,7 +157,6 @@ const MemoryGame1vs1: React.FC = () => {
         )
       )
       setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
-      toast.error("Incorrect Answer, next player turn")
     }
     (event.target as HTMLFormElement).reset()
     setShowModal(!showModal)
@@ -236,7 +246,6 @@ const MemoryGame1vs1: React.FC = () => {
         } else {
           setTimeout(() => {
             setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active) // Cambiar el turno
-            toast.error("Incorrect Match, next player turn")
           }, 1000)
         }
         setTimeout(() => {
