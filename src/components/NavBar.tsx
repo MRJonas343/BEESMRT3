@@ -7,7 +7,6 @@ import { Link } from "react-router-dom"
 import logoWhite from '@assets/logo_white.webp'
 
 
-
 const NavBar: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false)
   const btnClassName = isExpanded ? 'bg-close-menu w-5 h-5 bg-cover bg-center cursor-pointer transition-all z-50 md:hidden' : ' w-5 h-5 bg-cover bg-center cursor-pointer transition-all z-50 md:hidden bg-open-menu'
