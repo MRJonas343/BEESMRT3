@@ -10,6 +10,9 @@ import Online from "@assets/tienda-online.webp"
 import ComingSoon from "@assets/comingSoon.webp"
 
 const DragDropGameMode: React.FC = () => {
+	function sumar() {
+		console.log("HolaMundo1")
+	}
 	return (
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 			<NavBar />
