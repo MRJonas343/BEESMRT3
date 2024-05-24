@@ -16,7 +16,7 @@ through dynamic and fun games.
 - Error Lens
 - Pretty TS
 
-**VS code Configurations **
+** VS code Configurations **
 
 - Default Spaces for identacion : 2
 - Format on Save
