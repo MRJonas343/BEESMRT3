@@ -12,8 +12,8 @@ const About = () => {
 	return (
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 			<NavBar />
-			<div className="grid place-items-center mt-10 gap-5">
-				<section className="bg-white/90 shadow-xl h-auto px-6 rounded-lg w-10/12 md:w-2/5">
+			<div className="flex flex-col mx-4 lg:mx-72 gap-5 my-7">
+				<section className="bg-white/90 shadow-xl h-auto px-6 rounded-lg">
 					<h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
 					<div className="flex flex-col lg:flex-row">
 						<div className="lg:pb-5 lg:w-4/6">
@@ -45,12 +45,12 @@ const About = () => {
 						</div>
 					</div>
 				</section>
-				<section className="bg-white/90 h-auto px-6 rounded-lg shadow-xl w-10/12 md:w-2/5">
+				<section className="bg-white/90 h-auto px-6 rounded-lg shadow-xl">
 					<h2 className="text-center font-Principal text-4xl py-5">
 						What do we offer?
 					</h2>
 				</section>
-				<section className="bg-white/90 h-auto p-6 pb-10 shadow-2xl rounded-xl lg:pl-14 w-10/12 md:w-2/5">
+				<section className="bg-white/90 h-auto p-6 pb-10 shadow-2xl rounded-xl lg:pl-14">
 					<AboutCard
 						image={Control}
 						title="Learning by Play:"
