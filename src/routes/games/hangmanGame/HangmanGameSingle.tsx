@@ -102,14 +102,17 @@ const HangmanGameSingle: React.FC = () => {
 		}
 		if (indexes.length > 0) {
 			const newEspacios = [...espacios]
-			indexes.forEach((index) => {
+			for (const index of indexes) {
 				setPoints(points + 1)
 				newEspacios[index] = letter
-			})
+			}
+
 			setEspacios(newEspacios)
-			const todosNoSonNull = newEspacios.every(function (elemento) {
+
+			const todosNoSonNull = newEspacios.every((elemento) => {
 				return elemento !== null
 			})
+
 			if (todosNoSonNull) {
 				setImageSrc(Trofeo)
 				setMessage("You have won")
@@ -186,16 +189,16 @@ const HangmanGameSingle: React.FC = () => {
 					<div className="bg-white/70 w-11/12 h-auto rounded-lg mx-auto lg:flex lg:w-[90%] justify-evenly items-center lg:h-[70%]">
 						<div className="basis-2/6">
 							<div className="flex w-full justify-center pt-4 pb-4">
-								<img src={hangmanImg} className="w-48 lg:w-56"></img>
+								<img alt="hangman" src={hangmanImg} className="w-48 lg:w-56" />
 							</div>
 						</div>
 						<div className="basis-4/6">
 							<div className="font-bold h-16 items-end flex w-full justify-center gap-3">
-								{espacios.map((element, index) => {
+								{espacios.map((element, key) => {
 									return (
-										<div key={index} className="text-center pt-7">
+										<div key={key} className="text-center pt-7">
 											{element}
-											<div className="outline outline-black w-4 h-0 m-1 mb-4 lg:w-6"></div>
+											<div className="outline outline-black w-4 h-0 m-1 mb-4 lg:w-6" />
 										</div>
 									)
 								})}
@@ -216,6 +219,7 @@ const HangmanGameSingle: React.FC = () => {
 							</div>
 							<div className="flex w-full justify-around pt-5 pb-5">
 								<button
+									type="button"
 									className="font-Secundaria  text-base bg-red-600 rounded-md p-2 w-24 text-white lg:w-32 lg:text-lg"
 									onClick={playAgain}
 								>
