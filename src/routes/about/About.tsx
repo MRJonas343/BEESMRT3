@@ -50,7 +50,7 @@ const About = () => {
 						What do we offer?
 					</h2>
 				</section>
-				<section className="bg-white/90 h-auto p-6 pb-10 shadow-2xl rounded-xl lg:pl-14">
+				<section className="bg-white/90 h-auto shadow-2xl rounded-xl lg:pl-14 p-4">
 					<AboutCard
 						image={Control}
 						title="Learning by Play:"
