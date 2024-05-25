@@ -12,7 +12,7 @@ const About = () => {
 	return (
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 			<NavBar />
-			<div className="flex flex-col mx-4 lg:mx-72 gap-5 my-7">
+			<div className="flex flex-col mx-4 lg:mx-80 gap-5 my-7">
 				<section className="bg-white/90 shadow-xl h-auto px-6 rounded-lg">
 					<h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
 					<div className="flex flex-col lg:flex-row">
