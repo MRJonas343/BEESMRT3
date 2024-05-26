@@ -10,6 +10,9 @@ import HelloBee from "@assets/abeja-saludando.webp"
 import AngryBee from "@assets/angryBee.webp"
 import ShyBee from "@assets/abeja-shy.webp"
 
+//*Types
+import { contactMessage } from "@types"
+
 const Contact: React.FC = () => {
 	//*States
 	const [imageSrc, setImageSrc] = useState("")
@@ -23,10 +26,10 @@ const Contact: React.FC = () => {
 		formState: { errors },
 		handleSubmit,
 		reset,
-	} = useForm()
+	} = useForm<contactMessage>()
 
 	//* Function to send the form
-	async function getForm(data: object) {
+	async function getForm(data: contactMessage) {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 			const response = await fetch(`${BeeSMRTBackendURL}/contactMessage`, {
@@ -132,27 +135,27 @@ const Contact: React.FC = () => {
 										id="name"
 										type="text"
 										className="w-full font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out "
-										{...register("name", {
+										{...register("nameUser", {
 											required: true,
 											minLength: 5,
 											maxLength: 50,
 											pattern: /^[A-Za-z]+$/i,
 										})}
 									/>
-									{errors.name?.type === "required" && (
+									{errors.nameUser?.type === "required" && (
 										<p className="text-red-600">This field is required</p>
 									)}
-									{errors.name?.type === "minLength" && (
+									{errors.nameUser?.type === "minLength" && (
 										<p className="text-red-600">
-											Your name should have 5 letters at least
+											Your nameUser should have 5 letters at least
 										</p>
 									)}
-									{errors.name?.type === "maxLength" && (
+									{errors.nameUser?.type === "maxLength" && (
 										<p className="text-red-600">
-											Your name can't be longer that 50 letters
+											Your nameUser can't be longer that 50 letters
 										</p>
 									)}
-									{errors.name?.type === "pattern" && (
+									{errors.nameUser?.type === "pattern" && (
 										<p className="text-red-600">
 											Your name should just have letters
 										</p>

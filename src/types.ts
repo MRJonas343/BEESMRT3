@@ -90,3 +90,21 @@ export interface SpinningCoinProps {
 	headsOrTails: number | undefined
 	changeCoin: () => void
 }
+
+export interface contactMessage {
+	nameUser: string
+	email: string
+	message: string
+}
+
+export interface registerUser {
+	fullName: string
+	nickName: string
+	email: string
+	password: string
+}
+
+export interface userDataLogin {
+	email: string
+	password: string
+}

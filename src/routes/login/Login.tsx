@@ -18,6 +18,9 @@ import BasicModal from "@components/BasicModal"
 import angryBee from "@assets/angryBee.webp"
 import newBee from "@assets/abeja-saludando.webp"
 
+//* Types
+import { userDataLogin } from "@types"
+
 const LogIn: React.FC = () => {
 	//*States
 	const [imageSrc, setImageSrc] = useState("")
@@ -34,13 +37,13 @@ const LogIn: React.FC = () => {
 		formState: { errors },
 		handleSubmit,
 		reset,
-	} = useForm()
+	} = useForm<userDataLogin>()
 
 	//* Function to send the form
-	async function getForm(data: object) {
+	async function getForm(data: userDataLogin) {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			const response = await fetch(`${BeeSMRTBackendURL}/loginUser`, {
+			const response = await fetch(`${BeeSMRTBackendURL}/auth/login`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -209,7 +212,7 @@ const LogIn: React.FC = () => {
 						</div>
 						<div className="py-2 px-1 w-full">
 							<button
-								type="button"
+								type="submit"
 								className="font-Principal text-white bg-Pink2 py-2 w-full focus:outline-none hover:bg-Pink1 rounded text-xl shadow-lg"
 							>
 								LOG IN

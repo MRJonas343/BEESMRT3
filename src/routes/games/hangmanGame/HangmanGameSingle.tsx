@@ -72,7 +72,7 @@ const HangmanGameSingle: React.FC = () => {
 	const fetchData = async () => {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			const response = await fetch(`${BeeSMRTBackendURL}/getHangmanWords`)
+			const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`)
 			const Words = await response.json()
 			const word = Words[Math.floor(Math.random() * Words.length)]
 			setHangmanImg(HangmanImg0)

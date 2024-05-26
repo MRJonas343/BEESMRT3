@@ -55,7 +55,11 @@ const MemoryGame1vs1: React.FC = () => {
 	const fetchData = async () => {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGameData`)
+			const headers = new Headers()
+			headers.set("englishLevel", "B1Level4")
+			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
+				headers,
+			})
 			const jsonData = await response.json()
 			setShowSpinner(false)
 			initGame(jsonData)

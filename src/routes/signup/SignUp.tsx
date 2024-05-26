@@ -14,6 +14,9 @@ import ShyBee from "@assets/abeja-shy.webp"
 import HelloBee from "@assets/beeLogin.webp"
 import TickCustome from "@assets/Tick_custom_icon.json"
 
+//*Types
+import { registerUser } from "@types"
+
 const SignUp: React.FC = () => {
 	const navigate = useNavigate()
 
@@ -29,13 +32,13 @@ const SignUp: React.FC = () => {
 		formState: { errors },
 		handleSubmit,
 		reset,
-	} = useForm()
+	} = useForm<registerUser>()
 
 	//*Function to send the form
-	async function getForm(data: object) {
+	async function getForm(data: registerUser) {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			const response = await fetch(`${BeeSMRTBackendURL}/registerUser`, {
+			const response = await fetch(`${BeeSMRTBackendURL}/auth/register`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -268,7 +271,7 @@ const SignUp: React.FC = () => {
 							<div className="py-2">
 								<button
 									className="font-Principal text-white bg-Pink2 py-2 w-full focus:outline-none hover:bg-Pink1 rounded text-xl shadow-lg"
-									type="button"
+									type="submit"
 								>
 									Sign Up
 								</button>
