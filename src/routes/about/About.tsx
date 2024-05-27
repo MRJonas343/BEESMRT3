@@ -39,7 +39,7 @@ const About = () => {
 							<img
 								src={AbejitaEstudiosa}
 								alt="bee teacher"
-								className="md:w-48"
+								className="md:w-40"
 							/>
 						</div>
 					</div>
