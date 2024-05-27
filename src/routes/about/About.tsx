@@ -21,14 +21,13 @@ const About = () => {
 								Through linguistic challenges, interactive exercises, and a
 								playful approach, users will be able to progressively advance
 								their learning and stay motivated as they become proficient in
-								the language.
-								<br />
-								<br />
-								The application will offer users a wide variety of interactive
-								games that will allow them to expand their vocabulary and learn
-								useful English expressions in a fun and engaging way.
-								<br />
-								<br />
+								the language. The application will offer users a wide variety of
+								interactive games that will allow them to expand their
+								vocabulary and learn useful English expressions in a fun and
+								engaging way.
+							</p>
+							<br />
+							<p className="font-Secundaria lg:text-xl">
 								It seeks to give users the opportunity to learn and refine their
 								English language knowledge and skills through casual, engaging,
 								and entertaining tools and media that will help users understand
