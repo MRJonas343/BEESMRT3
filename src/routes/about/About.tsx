@@ -11,9 +11,9 @@ const About = () => {
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 			<NavBar />
 			<div className="flex flex-col mx-4 lg:mx-80 gap-3 my-7">
-				<section className="bg-white/90 shadow-xl h-auto px-6 rounded-lg">
+				<section className="bg-white/90 shadow-xl h-auto px-8 rounded-lg">
 					<h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
-					<div className="flex flex-col lg:flex-row font-light">
+					<div className="flex flex-col lg:flex-row font-light justify-between">
 						<div className="lg:pb-5 lg:w-4/6">
 							<p className="font-Secundaria lg:text-xl">
 								Through linguistic challenges, interactive exercises, and a
@@ -45,7 +45,7 @@ const About = () => {
 						What do we offer?
 					</h2>
 				</section>
-				<section className="bg-white/90 h-auto shadow-2xl rounded-xl lg:pl-14 p-4 font-light">
+				<section className="bg-white/90 h-auto shadow-2xl rounded-xl lg:pl-14 px-8 py-5 font-light grid gap-5">
 					<AboutCard
 						image={Control}
 						title="Learning by Play:"
