@@ -11,7 +11,7 @@ const About = () => {
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 			<NavBar />
 			<div className="flex flex-col mx-4 lg:mx-80 gap-3 my-7">
-				<section className="bg-white/90 shadow-xl h-auto px-8 rounded-lg">
+				<section className="bg-white/90 shadow-xl h-auto px-8 py-3 rounded-lg">
 					<h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
 					<div className="flex flex-col lg:flex-row font-light justify-between">
 						<div className="lg:pb-5 lg:w-4/6">
