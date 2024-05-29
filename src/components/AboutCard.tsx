@@ -7,7 +7,7 @@ const AboutCard: React.FC<AboutCardProps> = ({ image, title, text }) => {
 				<img src={image} alt={title} />
 			</div>
 			<div className="flex flex-col w-full">
-				<span className="font-Principal tracking-wide font-bold text-2xl py-2 text-center lg:text-left">
+				<span className="font-Principal tracking-wide font-normal text-2xl py-2 text-center lg:text-left">
 					{title}
 				</span>
 				<p className="font-Secundaria basis-[75%] lg:text-xl lg:pb-5">{text}</p>
