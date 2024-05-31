@@ -11,9 +11,9 @@ import Medalla from "@assets/medalla.svg"
 const MyAccount = () => {
 	//* States
 	const [userData, setUserData] = useState({
-		nickname: "",
+		nickname: "BeeStudent",
 		fullName: "",
-		avatar_url: "",
+		avatar_url: "/defaultProfile.svg",
 	})
 
 	//*Check wich token is available
@@ -124,12 +124,11 @@ const MyAccount = () => {
 			<NavBar />
 			<section>
 				<div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
-					<div className="rounded-t-lg h-32 overflow-hidden">
-						<img
-							className="object-cover object-top w-full"
-							src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-							alt="Mountain"
-						/>
+					<div
+						className="rounded-t-lg h-32 overflow-hidden bg-slate-800"
+						id="backgroundUser"
+					>
+						{/* BackgroundUserCard */}
 					</div>
 					<div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
 						<img
