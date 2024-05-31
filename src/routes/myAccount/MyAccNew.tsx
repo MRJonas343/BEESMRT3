@@ -6,9 +6,9 @@ function MyAccNew() {
 			<div className="bg-slate-900 py-5">
 				<NavBar />
 			</div>
-			<div className="flex flex-wrap justify-around mt-16 gap-2">
-				<div className="bg-white flex gap-5 p-6 rounded-lg">
-					<img src="/defaultProfile.svg" alt="imgProfDef" />
+			<div className="flex flex-wrap justify-center mt-16 gap-8">
+				<div className="bg-white flex gap-5 p-6 rounded-lg w-11/12 sm:w-1/3">
+					<img width={100} src="/defaultProfile.svg" alt="imgProfDef" />
 					<div className="grid">
 						<h1 className="font-semibold">BeeYam</h1>
 						<h2 className="">BeeName</h2>
@@ -16,7 +16,7 @@ function MyAccNew() {
 						<h2>Skill Level: 1</h2>
 					</div>
 				</div>
-				<div className="bg-white grid p-8 w-3/4 rounded-lg">
+				<div className="bg-white grid p-8 rounded-lg w-11/12 sm:w-3/5">
 					<h1 className="font-bold m-0">Advancements</h1>
 					<div className="flex flex-wrap gap-7">
 						<img src="" alt="imgAd1" />
