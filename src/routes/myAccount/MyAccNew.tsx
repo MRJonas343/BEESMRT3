@@ -20,7 +20,7 @@ function MyAccNew() {
 						</div>
 					</div>
 				</div>
-				<div className="bg-white flex gap-5 p-8">
+				<div className="bg-white flex gap-5 p-8 w-2/3">
 					<h1 className="font-bold">Advancements</h1>
 				</div>
 			</div>
