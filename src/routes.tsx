@@ -69,7 +69,13 @@ const RoutesTree = () => {
 						path="/games/hangmangameSingle"
 						element={<HangmanGameSingle />}
 					/>
+
 					<Route path="/games/memorygame1vs1" element={<MemoryGame1vs1 />} />
+					<Route
+						path="/games/memorygameSingle"
+						element={<MemoryGameSingle />}
+					/>
+
 					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
 				</Routes>
 			</HashRouter>
