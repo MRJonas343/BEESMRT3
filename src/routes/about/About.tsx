@@ -1,7 +1,5 @@
-//* Components
 import NavBar from "@components/NavBar"
 import AboutCard from "@components/AboutCard"
-//* Assets
 import AbejitaEstudiosa from "@assets/abejitaestudiosa.webp"
 import Control from "@assets/control.webp"
 import CardImage from "@assets/cardAboutImg.webp"
@@ -12,19 +10,17 @@ const About = () => {
 	return (
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 			<NavBar />
-			<div className="flex flex-col mx-4 lg:mx-80 gap-5 my-7">
-				<section className="bg-white/90 shadow-xl h-auto px-6 rounded-lg">
+			<div className="flex flex-col mx-4 lg:mx-80 gap-3 my-7">
+				<section className="bg-white/90 shadow-xl h-auto px-8 py-3 rounded-lg">
 					<h1 className="text-center font-Principal text-4xl py-5">About Us</h1>
-					<div className="flex flex-col lg:flex-row">
+					<div className="flex flex-col lg:flex-row font-light justify-between">
 						<div className="lg:pb-5 lg:w-4/6">
 							<p className="font-Secundaria lg:text-xl">
 								Through linguistic challenges, interactive exercises, and a
-								playful approach, users will be able to progressively advance
-								their learning and stay motivated as they become proficient in
-								the language. The application will offer users a wide variety of
-								interactive games that will allow them to expand their
-								vocabulary and learn useful English expressions in a fun and
-								engaging way.
+								playful approach. The application will offer users a wide
+								variety of interactive games that will allow them to expand
+								their vocabulary and learn useful English expressions in a fun
+								and engaging way.
 							</p>
 							<br />
 							<p className="font-Secundaria lg:text-xl">
@@ -49,7 +45,7 @@ const About = () => {
 						What do we offer?
 					</h2>
 				</section>
-				<section className="bg-white/90 h-auto shadow-2xl rounded-xl lg:pl-14 p-4">
+				<section className="bg-white/90 h-auto shadow-2xl rounded-xl lg:pl-14 px-8 py-5 font-light grid gap-5">
 					<AboutCard
 						image={Control}
 						title="Learning by Play:"

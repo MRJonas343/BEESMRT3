@@ -1,5 +1,6 @@
 import { Route, Routes, HashRouter } from "react-router-dom"
 import { Suspense, lazy } from "react"
+import MyAccNew from "@routes/myAccount/MyAccNew"
 
 //* Components
 import Spinner from "@components/Spinner"
@@ -29,7 +30,6 @@ const DragDropGameMode = lazy(
 const DragDropGameSingle = lazy(
 	() => import("@routes/games/dragDropGame/DragDropGameSingle"),
 )
-
 const MemoryGameSingle = lazy(
 	() => import("@routes/games/memoryGame/MemoryGameSingle"),
 )
@@ -65,17 +65,12 @@ const RoutesTree = () => {
 						path="/games/dragdropgameSingle"
 						element={<DragDropGameSingle />}
 					/>
-
 					<Route
 						path="/games/hangmangameSingle"
 						element={<HangmanGameSingle />}
 					/>
-
 					<Route path="/games/memorygame1vs1" element={<MemoryGame1vs1 />} />
-					<Route
-						path="/games/memorygameSingle"
-						element={<MemoryGameSingle />}
-					/>
+					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
 				</Routes>
 			</HashRouter>
 		</Suspense>
