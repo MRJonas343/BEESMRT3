@@ -3,7 +3,7 @@ import NavBar from "@components/NavBar"
 function MyAccNew() {
 	return (
 		<div className="bg-Gradient1 h-screen">
-			<div className="bg-slate-900 py-5">
+			<div className="bg-slate-900 py-1 pb-3">
 				<NavBar />
 			</div>
 			<div className="flex flex-wrap justify-center mt-16 gap-8">
