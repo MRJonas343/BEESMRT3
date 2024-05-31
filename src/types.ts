@@ -108,3 +108,9 @@ export interface userDataLogin {
 	email: string
 	password: string
 }
+
+export interface MemoryGameStatsPropsSingle {
+	player1Points: number
+	playAgain: () => void
+	failPercentage: number
+}
