@@ -287,7 +287,7 @@ const MemoryGameSingleMode: React.FC = () => {
 							Memory Game
 						</h1>
 
-						<div className="mx-4 my-4">
+						<div className="mx-4 mt-4 mb-6">
 							<MemoryGameStatsSingleMode
 								level="Level 4"
 								englishLevel="B1"
@@ -296,7 +296,7 @@ const MemoryGameSingleMode: React.FC = () => {
 							/>
 						</div>
 
-						<section className="grid grid-cols-4 place-items-center bg-white/40 p-5 mx-4 rounded-xl gap-3 md:grid-cols-6">
+						<section className="grid grid-cols-4 place-items-center bg-white/40 p-5 mx-4 rounded-xl gap-3 md:grid-cols-6 lg:gap-5">
 							{cards.map((card) => (
 								<MemoryGameButtton
 									key={card.id}
