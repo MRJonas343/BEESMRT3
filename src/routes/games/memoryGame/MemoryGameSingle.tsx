@@ -296,7 +296,7 @@ const MemoryGameSingleMode: React.FC = () => {
 							/>
 						</div>
 
-						<section className="grid grid-cols-4 bg-white/40 p-5 mx-3 justify-items-center rounded-xl gap-3 md:grid-cols-6 xl:p-6">
+						<section className="grid grid-cols-4 bg-white/40 p-5 mx-3 justify-items-center rounded-xl gap-3 md:grid-cols-6">
 							{cards.map((card) => (
 								<MemoryGameButtton
 									key={card.id}
