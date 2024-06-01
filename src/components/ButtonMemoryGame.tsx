@@ -13,12 +13,12 @@ const MemoryGameButtton: React.FC<MemoryGameButttonProps> = ({
 
 	const classCard = `card ${
 		flipped ? "matched" : ""
-	} w-20 h-14 bg-gray-100 flex relative justify-center items-center cursor-pointer md:w-24 md:h-20`
+	} w-20 h-14 bg-gray-100 flex relative justify-center items-center cursor-pointer md:w-24 md:h-20 lg:w-36 lg:h-24`
 
 	return (
 		<div className={classCard} onClick={cardHandleClick}>
 			<img
-				className="cardImg w-12 md:w-20 absolute p-1 "
+				className="cardImg w-12 md:w-20 absolute p-1"
 				alt={card.src}
 				src={card.src}
 			/>
