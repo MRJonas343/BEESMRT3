@@ -107,7 +107,7 @@ const MemoryGameSingleMode: React.FC = () => {
 
 	//*Call the function to spin the coin and create the table of cards
 	const initGame = (cardItemJson: CardMemoryGameProps[]) => {
-		setShowSpinningCoin(!showSpinningCoin)
+		// setShowSpinningCoin(!showSpinningCoin)
 		const allCards = [...cardItemJson, ...cardItemJson]
 			.map((item: CardMemoryGameProps, index: number) => ({
 				...item,
@@ -278,20 +278,23 @@ const MemoryGameSingleMode: React.FC = () => {
 	return (
 		<main className="w-screen h-screen bg-blue-500 overflow-x-hidden">
 			<NavBar />
-			<Toaster richColors position="top-left" />
 			{showSpinner ? (
 				<Spinner />
 			) : (
-				<div className="flex mt-4 flex-col gap-3 mb-1 xl:flex-row xl:justify-center">
-					<MemoryGameStatsSingleMode
-						playAgain={playAgain}
-						player1Points={player1Points}
-						failPercentage={60}
-					/>
-					<div>
-						<h1 className="text-2xl font-Principal text-white pb-3 text-3d lg:text-4xl text-center xl:ml-[30%] xl:text-start">
+				<>
+					<section className="lg:max-w-[1280px] lg:mx-auto">
+						<h1 className="text-center text-3xl font-Principal text-3d text-white mt-4 lg:text-4xl">
 							Memory Game
 						</h1>
+
+						<div className="mx-4 my-4">
+							<MemoryGameStatsSingleMode
+								level="Level 4"
+								englishLevel="B1"
+								completedPercentage={100}
+								progressBarColor="blue"
+							/>
+						</div>
 
 						<section className="grid grid-cols-4 bg-white/40 p-5 mx-3 justify-items-center rounded-xl gap-3 md:grid-cols-6 xl:p-6">
 							{cards.map((card) => (
@@ -303,10 +306,11 @@ const MemoryGameSingleMode: React.FC = () => {
 								/>
 							))}
 						</section>
-					</div>
-				</div>
+					</section>
+				</>
 			)}
 
+			<Toaster richColors position="top-left" />
 			<MemoryGameModal
 				showModal={showModal}
 				Question={question}

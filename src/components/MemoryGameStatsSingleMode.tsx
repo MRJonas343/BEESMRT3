@@ -1,28 +1,36 @@
 // *Types
 import { MemoryGameStatsPropsSingle } from "@types"
+
+//* Components
 import ProgressBar from "@ramonak/react-progress-bar"
 
+//* Assets
+import Throphy from "@assets/trophisIcon.png"
+
 const MemoryGameStatsSingleMode: React.FC<MemoryGameStatsPropsSingle> = ({
-	player1Points,
-	playAgain,
-	failPercentage,
+	level,
+	completedPercentage,
+	englishLevel,
+	progressBarColor,
 }) => {
 	return (
-		<section className="flex justify-evenly xl:flex-col xl:h-[80vh]">
-			<div className="bg-white/80 flex w-[500px] justify-between h-28 w-  font-Principal rounded-xl">
-				<p className="">Points {player1Points}</p>
+		<section className="bg-white/70 rounded-md flex py-4 items-center">
+			<div className="w-1/3 flex flex-col items-center justify-center">
+				<p className="font-Secundaria text-lg">{englishLevel}</p>
+				<p className="font-Secundaria text-lg">{level}</p>
+			</div>
+			<div className="w-1/3 flex justify-center">
 				<ProgressBar
-					// height="40"
-					completed={failPercentage}
-					className="w-[250px]"
+					completed={completedPercentage}
+					className="w-full font-Secundaria"
+					animateOnRender={true}
+					bgColor={progressBarColor}
+					height="30"
 				/>
-				<button
-					type="button"
-					className="text-base px-6 py-2 bg-red-600 rounded-md p-1 text-white"
-					onClick={playAgain}
-				>
-					RESET
-				</button>
+			</div>
+			<div className="w-1/3 flex gap-3 justify-center items-center">
+				<p className="font-Secundaria">100</p>
+				<img src={Throphy} alt="Throphy" className="w-10 h-10" />
 			</div>
 		</section>
 	)

@@ -19,7 +19,7 @@ const MemoryGameButtton: React.FC<MemoryGameButttonProps> = ({
 		<div className={classCard} onClick={cardHandleClick}>
 			<img
 				className="cardImg w-12 md:w-20  absolute xl:w-24 p-1 "
-				alt=""
+				alt={card.src}
 				src={card.src}
 			/>
 			<img

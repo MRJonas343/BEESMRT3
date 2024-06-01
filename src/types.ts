@@ -110,7 +110,8 @@ export interface userDataLogin {
 }
 
 export interface MemoryGameStatsPropsSingle {
-	player1Points: number
-	playAgain: () => void
-	failPercentage: number
+	englishLevel: string
+	level: string
+	completedPercentage: number
+	progressBarColor: string
 }
