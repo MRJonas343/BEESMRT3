@@ -37,6 +37,20 @@ function MyAccNew() {
 					<div className="bg-Gradient3 flex justify-center p-1 rounded-full text-center">
 						<span className="font-semibold">LEVEL MAX. [500 LV.]</span>
 					</div>
+					<div className="flex justify-around mt-10">
+						<div className="grid justify-items-center gap-2">
+							<h1 className="font-semibold font-Secundaria">Trophies</h1>
+							<img src="/medallas1.svg" alt="imgTrophy" />
+							<span className="font-semibold">10,203,343 Trophies</span>
+						</div>
+						<div className="grid justify-items-center items-center">
+							<h1 className="font-semibold font-Secundaria">Global Position</h1>
+							<div className="text-4xl font-bold flex items-center gap-2">
+								<img width={60} src="/beeTop.svg" alt="imgtop" />
+								#1
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
