@@ -18,23 +18,13 @@ const MemoryGameMode: React.FC = () => {
 					Select Mode
 				</h1>
 			</div>
-			<section className="flex flex-col lg:flex-row lg:h-[80dvh] lg:w-[90dvw] lg:mx-auto gap-5 lg:gap-0 lg:justify-evenly items-center">
-				<div className="w-[60dvw] hover:scale-105 ease-in-out duration-200 relative p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh]">
-					<div className="centerAbsolute rounded-lg z-10 w-[60dvw] h-[25dvh] bg-yellow-400/90 lg:w-[25dvw] lg:h-[50dvh]">
-						<div className="centerAbsolute">
-							<img
-								alt="comingSoon"
-								src={ComingSoon}
-								className="w-36 xl:w-full"
-							/>
-						</div>
-					</div>
 
-					<div className="lg:flex lg:flex-col lg:items-center lg:justify-center lg:h-full">
+			<section className="flex flex-col lg:flex-row lg:h-[80dvh] lg:w-[90dvw] lg:mx-auto gap-5 lg:gap-0 lg:justify-evenly items-center">
+				<Link to="/games/memorygameLevels">
+					<div className="w-[60dvw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh] lg:flex lg:flex-col lg:items-center lg:justify-center">
 						<div className="overflow-hidden flex items-center justify-center">
 							<img className="w-20 lg:w-28" src={Single} alt="" />
 						</div>
-
 						<div className="">
 							<p className="font-Principal text-xl text-center text-black">
 								Single Player
@@ -49,7 +39,7 @@ const MemoryGameMode: React.FC = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</Link>
 
 				<Link to="/games/memorygame1vs1">
 					<div className="w-[60dvw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh] lg:flex lg:flex-col lg:items-center lg:justify-center">

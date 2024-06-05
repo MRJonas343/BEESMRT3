@@ -115,3 +115,10 @@ export interface MemoryGameStatsPropsSingle {
 	completedPercentage: number
 	progressBarColor: string
 }
+
+export interface EnglishLevel {
+	EnglishLevel: string
+	LevelName: string
+	Level: string
+	Trophys: number
+}

@@ -33,6 +33,9 @@ const DragDropGameSingle = lazy(
 const MemoryGameSingle = lazy(
 	() => import("@routes/games/memoryGame/MemoryGameSingle"),
 )
+const MemoryGameLevels = lazy(
+	() => import("@routes/games/memoryGame/MemoryGameLevels"),
+)
 
 const RoutesTree = () => {
 	return (
@@ -74,6 +77,10 @@ const RoutesTree = () => {
 					<Route
 						path="/games/memorygameSingle"
 						element={<MemoryGameSingle />}
+					/>
+					<Route
+						path="/games/memorygameLevels"
+						element={<MemoryGameLevels />}
 					/>
 
 					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
