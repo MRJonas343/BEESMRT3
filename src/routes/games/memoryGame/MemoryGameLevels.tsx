@@ -30,8 +30,9 @@ const MemoryGameLevels = () => {
 		const levelObject = englishLevels.find(
 			(level) => level.LevelName === chosenLevel,
 		)
+		const trophys = levelObject?.Trophys
 		const level = levelObject?.Level
-		navigate("/games/memorygameSingle", { state: { level } })
+		navigate("/games/memorygameSingle", { state: { level, trophys } })
 	}
 
 	return (

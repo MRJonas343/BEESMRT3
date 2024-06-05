@@ -2,6 +2,7 @@ import { useState, useEffect, FormEvent } from "react"
 import confetti from "canvas-confetti"
 import { Toaster, toast } from "sonner"
 import cardsMemoryGame from "./dataTest.json"
+import { useLocation } from "react-router-dom"
 
 //* Components
 import NavBar from "@components/NavBar"
@@ -9,17 +10,18 @@ import MemoryGameButtton from "@components/ButtonMemoryGame"
 import MemoryGameStatsSingleMode from "@components/MemoryGameStatsSingleMode"
 import MemoryGameModal from "@components/MemoryGameModal"
 import ModalGameOver from "@components/ModalGameOver"
-import SpinningCoin from "@components/SpinningCoin"
 
 //*Assets
 import TrofeoImg from "@assets/trofeo.webp"
-import Swords from "@assets/espadas.webp"
 import Spinner from "@components/Spinner"
 
 //*Types
 import { CardMemoryGameProps } from "@types"
 
 const MemoryGameSingleMode: React.FC = () => {
+	//* Location
+	const location = useLocation()
+
 	//* Conffeti effect
 	const duration = 15 * 1000
 	const animationEnd = Date.now() + duration
@@ -30,9 +32,6 @@ const MemoryGameSingleMode: React.FC = () => {
 	const [cards, setCards] = useState<CardMemoryGameProps[]>([])
 	const [card1, setCard1] = useState<CardMemoryGameProps | null>(null)
 	const [card2, setCard2] = useState<CardMemoryGameProps | null>(null)
-	const [isPlayer1Active, setIsPlayer1Active] = useState(true)
-	const [player1Points, setPlayer1Points] = useState(0)
-	const [player2Points, setPlayer2Points] = useState(0)
 	const [resetGame, setResetGame] = useState(false)
 	const [showModal, setShowModal] = useState(false)
 	const [isModalWinOpen, setModalWinOpen] = useState(false)
@@ -43,51 +42,43 @@ const MemoryGameSingleMode: React.FC = () => {
 	const [incorrectAnswer1, setIncorrectAnswer1] = useState("")
 	const [incorrectAnswer2, setIncorrectAnswer2] = useState("")
 	const [incorrectAnswer3, setIncorrectAnswer3] = useState("")
+
 	const [mainMessage, setMainMessage] = useState("")
 	const [message, setMessage] = useState("")
 	const [imageMessage, setImageMessage] = useState("")
-	const [showSpinningCoin, setShowSpinningCoin] = useState(false)
-	const [headsOrTails, setHeadsOrTails] = useState<number | undefined>(
-		undefined,
-	)
-	const [activePlayer, setActivePlayer] = useState<string>("")
+
+	const [trophys, setTrophys] = useState(0)
+	const [completedPercentage, setCompletedPercentage] = useState(0)
+	const [levelName, setLevelName] = useState("")
+	const [englishLevel, setEnglishLevel] = useState("")
 
 	//* Get data from BeeSMRT API
 	const fetchData = async () => {
 		try {
+			//? To do : fetch data from the API with the level as a header
+			const { level, trophys } = location.state
+			const levelName = String(`${level.substring(2, 7)} ${level.substring(7)}`)
+			const englishLevel = String(level).substring(0, 2)
+
+			setLevelName(levelName)
+			setEnglishLevel(englishLevel)
+			setTrophys(trophys)
+
+			// const levelNumber = parseInt(level)
 			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 			// const headers = new Headers()
 			// headers.set("englishLevel", "B1Level4")
 			// const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
 			// 	headers,
 			// })
+
+			//* const jsonData = await response.json()
 			const jsonData = cardsMemoryGame
 			setShowSpinner(false)
 			initGame(jsonData)
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
-	}
-
-	//* Spin the coin to decide who starts
-	const changeCoin = () => {
-		const newHeadsOrTails = Math.floor(Math.random() * 2)
-		setHeadsOrTails(newHeadsOrTails)
-		setTimeout(() => {
-			setActivePlayer(
-				newHeadsOrTails === 0 ? "Player 1 Starts!!!" : "Player 2 Starts!!!",
-			)
-			if (newHeadsOrTails === 0) {
-				setIsPlayer1Active(true)
-			} else {
-				setIsPlayer1Active(false)
-			}
-		}, 3000)
-		setTimeout(() => {
-			setActivePlayer("")
-			setHeadsOrTails(undefined)
-			setShowSpinningCoin(!showSpinningCoin)
-		}, 5000)
 	}
 
 	//* Generete a random number for the confetti effect
@@ -105,9 +96,8 @@ const MemoryGameSingleMode: React.FC = () => {
 		card1 ? setCard2(card) : setCard1(card)
 	}
 
-	//*Call the function to spin the coin and create the table of cards
+	//*Create the table of cards
 	const initGame = (cardItemJson: CardMemoryGameProps[]) => {
-		// setShowSpinningCoin(!showSpinningCoin)
 		const allCards = [...cardItemJson, ...cardItemJson]
 			.map((item: CardMemoryGameProps, index: number) => ({
 				...item,
@@ -125,11 +115,8 @@ const MemoryGameSingleMode: React.FC = () => {
 	//*Play again (it resets the game)
 	const playAgain = () => {
 		setResetGame(!resetGame)
-		setPlayer1Points(0)
-		setPlayer2Points(0)
 		setCard1(null)
 		setCard2(null)
-		setIsPlayer1Active(true)
 		fetchData()
 		if (isModalWinOpen) {
 			setModalWinOpen(!isModalWinOpen)
@@ -142,94 +129,53 @@ const MemoryGameSingleMode: React.FC = () => {
 		const Form = new FormData(event.target as HTMLFormElement)
 		const answer = Form.get("Answer")
 		if (correctAnswerRef === answer) {
-			if (isPlayer1Active) {
-				setPlayer1Points(player1Points + 1)
-				toast(
-					<div className="flex flex-col mx-auto text-center tracking-wider py-6 font-Principal text-3d text-green-600 text-4xl">
-						<div>+ 1 </div>
-						<div>Perfect!!! do it again</div>
-					</div>,
-					{ duration: 2000 },
-				)
-			} else {
-				setPlayer2Points(player2Points + 1)
-				toast(
-					<div className="py-6 flex-col mx-auto tracking-wider text-center font-Principal text-3d text-green-600 text-4xl">
-						<div>+ 1 </div>
-						<div>Perfect!!! do it again</div>
-					</div>,
-					{ duration: 2000 },
-				)
-			}
+			setCompletedPercentage((prevPercentage) => {
+				const newPercentage = prevPercentage + 100 / 12
+				if (newPercentage > 96) {
+					throwConfetti()
+					return 100
+				}
+				return Math.min(100, Math.round(newPercentage * 100) / 100)
+			})
+
+			//*Give points to the player
+			toast(
+				<div className="flex flex-col mx-auto text-center tracking-wider py-6 font-Principal text-3d text-green-600 text-4xl">
+					<div>+ 1 </div>
+					<div>Perfect!!! do it again</div>
+				</div>,
+				{ duration: 2000 },
+			)
 		} else {
 			setCards((prevCards) =>
 				prevCards.map((item) =>
 					item.src === imageSrc ? { ...item, matched: false } : item,
 				),
 			)
-			setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active)
 		}
-		;(event.target as HTMLFormElement).reset()
+		event.currentTarget.reset()
 		setShowModal(!showModal)
 	}
 
-	//*Check if the game is over
-	useEffect(() => {
-		if (player1Points + player2Points === 12) {
-			if (player1Points > player2Points) {
-				setMainMessage("Victory")
-				setMessage("Player 1 has won!!!")
-				setImageMessage(TrofeoImg)
-				shoModalWin()
-
-				const interval = setInterval(() => {
-					const timeLeft = animationEnd - Date.now()
-					if (timeLeft <= 0) {
-						clearInterval(interval)
-						return
-					}
-					const particleCount = 50 * (timeLeft / duration)
-					const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-					const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-					confetti({ ...defaults, particleCount, origin: origin1 })
-					confetti({ ...defaults, particleCount, origin: origin2 })
-				}, 250)
-			} else if (player1Points < player2Points) {
-				setMainMessage("Victory")
-				setMessage("Player 2 has won!!!")
-				setImageMessage(TrofeoImg)
-				shoModalWin()
-				const interval = setInterval(() => {
-					const timeLeft = animationEnd - Date.now()
-					if (timeLeft <= 0) {
-						clearInterval(interval)
-						return
-					}
-					const particleCount = 50 * (timeLeft / duration)
-					const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-					const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-					confetti({ ...defaults, particleCount, origin: origin1 })
-					confetti({ ...defaults, particleCount, origin: origin2 })
-				}, 250)
-			} else {
-				setMainMessage("Tiee!!!")
-				setMessage("Good match")
-				setImageMessage(Swords)
-				const interval = setInterval(() => {
-					const timeLeft = animationEnd - Date.now()
-					if (timeLeft <= 0) {
-						clearInterval(interval)
-						return
-					}
-					const particleCount = 50 * (timeLeft / duration)
-					const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-					const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-					confetti({ ...defaults, particleCount, origin: origin1 })
-					confetti({ ...defaults, particleCount, origin: origin2 })
-				}, 250)
+	//*Throw confetti
+	const throwConfetti = () => {
+		setMainMessage("Victory")
+		setMessage(`You have won ${trophys} trophys`)
+		setImageMessage(TrofeoImg)
+		shoModalWin()
+		const interval = setInterval(() => {
+			const timeLeft = animationEnd - Date.now()
+			if (timeLeft <= 0) {
+				clearInterval(interval)
+				return
 			}
-		}
-	}, [player1Points, player2Points])
+			const particleCount = 50 * (timeLeft / duration)
+			const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+			const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+			confetti({ ...defaults, particleCount, origin: origin1 })
+			confetti({ ...defaults, particleCount, origin: origin2 })
+		}, 250)
+	}
 
 	//*Check if the cards match
 	useEffect(() => {
@@ -258,9 +204,6 @@ const MemoryGameSingleMode: React.FC = () => {
 					setIncorrectAnswer3(shuffledAnswersArray[3])
 					openModal()
 				} else {
-					setTimeout(() => {
-						setIsPlayer1Active((prevIsPlayer1Active) => !prevIsPlayer1Active) // Cambiar el turno
-					}, 1000)
 				}
 				setTimeout(() => {
 					setCard1(null)
@@ -289,10 +232,10 @@ const MemoryGameSingleMode: React.FC = () => {
 
 						<div className="mx-4 mt-4 mb-6">
 							<MemoryGameStatsSingleMode
-								level="Level 4"
-								englishLevel="B1"
-								completedPercentage={100}
-								progressBarColor="blue"
+								trophys={trophys}
+								level={levelName}
+								englishLevel={englishLevel}
+								completedPercentage={completedPercentage}
 							/>
 						</div>
 
@@ -328,12 +271,6 @@ const MemoryGameSingleMode: React.FC = () => {
 				mainMessage={mainMessage}
 				playAgain={playAgain}
 				showModalWin={shoModalWin}
-			/>
-			<SpinningCoin
-				showModalCoin={showSpinningCoin}
-				headsOrTails={headsOrTails}
-				changeCoin={changeCoin}
-				activePlayer={activePlayer}
 			/>
 		</main>
 	)
