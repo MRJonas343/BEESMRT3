@@ -33,6 +33,11 @@
   background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 
+.bg-Gradient3 {
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #253fc2 0%, #ca36c0 46%, #ffbf48 100%);
+}
+
 .bg-open-menu {
   background-image: url('../src/assets/icon-hamburger.svg');
 }
