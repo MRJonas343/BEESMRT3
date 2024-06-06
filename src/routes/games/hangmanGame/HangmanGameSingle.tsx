@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent } from "react"
+import { useState, useEffect, useRef, MouseEvent } from "react"
 import confetti from "canvas-confetti"
 
 //* Componentes
@@ -59,7 +59,7 @@ const HangmanGameSingle: React.FC = () => {
 	const [showSpinner, setShowSpinner] = useState(true)
 	const [espacios, setEspacios] = useState<(null | string)[]>([])
 	const [attemps, setAttemps] = useState(0)
-	const [hangmanImg, setHangmanImg] = useState("")
+	const [hangmanImg, setHangmanImg] = useState(HangmanImg0)
 	const [imageSrc, setImageSrc] = useState("")
 	const [message, setMessage] = useState("")
 	const [mainMessage, setMainMessage] = useState("")
@@ -67,22 +67,31 @@ const HangmanGameSingle: React.FC = () => {
 	const [points, setPoints] = useState(0)
 	const [wordToGess, setWordToGess] = useState("")
 	const [hint, setHint] = useState("")
+	const IncorrectAttempsRef = useRef(0)
+	const hangmanImages: { [key: number]: string } = {
+		0: HangmanImg0,
+		1: HangmanImg1,
+		2: HangmanImg2,
+		3: HangmanImg3,
+		4: HangmanImg4,
+		5: HangmanImg5,
+		6: HangmanImg6,
+	}
 
 	//* Get data from BeeSMRT API
 	const fetchData = async () => {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 			const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`)
+
 			const Words = await response.json()
-			const word = Words[Math.floor(Math.random() * Words.length)]
-			setHangmanImg(HangmanImg0)
-			setWordToGess(word.word)
-			setHint(word.hint)
-			const wordLength = word.word.length
+			// const Words = HangmanDemo
+			const selectedWord = Words[Math.floor(Math.random() * Words.length)]
+			const wordLength = selectedWord.word.length
+
+			setWordToGess(selectedWord.word)
+			setHint(selectedWord.hint)
 			setEspacios(Array(wordLength).fill(null))
-			setAttemps(0)
-			setShowModal(false)
-			setPoints(0)
 			setShowSpinner(false)
 		} catch (error) {
 			console.error("Error fetching data:", error)
@@ -92,61 +101,68 @@ const HangmanGameSingle: React.FC = () => {
 	//* Handle Key Click
 	const handleKeyClick = (event: MouseEvent<HTMLDivElement>) => {
 		const target = event.target as HTMLDivElement
-		const letter = target.innerText.toLowerCase()
-		const Word = wordToGess.toLocaleLowerCase()
-		const indexes = []
-		for (let i = 0; i < Word.length; i++) {
-			if (Word[i] === letter) {
-				indexes.push(i)
+		const currentLetter = target.innerText.toLowerCase()
+		const currentWord = wordToGess.toLowerCase()
+		const wordIndexes: number[] = []
+
+		for (let i = 0; i < currentWord.length; i++) {
+			// //* If the letter is already in the word, return
+			if (espacios[i] === currentLetter) {
+				return
+			}
+
+			//* If the letter is in the word, add the index to the array
+			if (currentWord[i] === currentLetter) {
+				wordIndexes.push(i)
 			}
 		}
-		if (indexes.length > 0) {
+
+		if (wordIndexes.length > 0) {
+			//* Update the state of the game with the points and the letters
 			const newEspacios = [...espacios]
-			for (const index of indexes) {
+
+			for (const index of wordIndexes) {
 				setPoints(points + 1)
-				newEspacios[index] = letter
+				newEspacios[index] = currentLetter
 			}
 
 			setEspacios(newEspacios)
 
-			const todosNoSonNull = newEspacios.every((elemento) => {
+			//* Check if the player has won
+			const isEveryLetterGuess = newEspacios.every((elemento) => {
 				return elemento !== null
 			})
 
-			if (todosNoSonNull) {
-				setImageSrc(Trofeo)
-				setMessage("You have won")
-				setMainMessage("Congratulations")
-				setShowModal(true)
-				const interval = setInterval(() => {
-					const timeLeft = animationEnd - Date.now()
-					if (timeLeft <= 0) {
-						clearInterval(interval)
-						return
-					}
-					const particleCount = 50 * (timeLeft / duration)
-					const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-					const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-					confetti({ ...defaults, particleCount, origin: origin1 })
-					confetti({ ...defaults, particleCount, origin: origin2 })
-				}, 250)
+			if (isEveryLetterGuess) {
+				showWinning()
 			}
-		} else {
-			setAttemps(attemps + 1)
-			if (attemps === 0) {
-				setHangmanImg(HangmanImg1)
-			} else if (attemps === 1) {
-				setHangmanImg(HangmanImg2)
-			} else if (attemps === 2) {
-				setHangmanImg(HangmanImg3)
-			} else if (attemps === 3) {
-				setHangmanImg(HangmanImg4)
-			} else if (attemps === 4) {
-				setHangmanImg(HangmanImg5)
-			} else if (attemps === 5) {
-				setHangmanImg(HangmanImg6)
-			}
+
+			return
 		}
+
+		//* If the letter is not in the word, update the attemps and the hangman image
+		setAttemps((prevState) => prevState + 1)
+		IncorrectAttempsRef.current += 1
+		setHangmanImg(hangmanImages[IncorrectAttempsRef.current])
+	}
+
+	const showWinning = () => {
+		setImageSrc(Trofeo)
+		setMessage("You have won")
+		setMainMessage("Congratulations")
+		setShowModal(true)
+		const interval = setInterval(() => {
+			const timeLeft = animationEnd - Date.now()
+			if (timeLeft <= 0) {
+				clearInterval(interval)
+				return
+			}
+			const particleCount = 50 * (timeLeft / duration)
+			const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+			const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+			confetti({ ...defaults, particleCount, origin: origin1 })
+			confetti({ ...defaults, particleCount, origin: origin2 })
+		}, 250)
 	}
 
 	//* Generete a random number for the confetti effect
@@ -157,6 +173,9 @@ const HangmanGameSingle: React.FC = () => {
 	//* Play again function
 	const playAgain = () => {
 		fetchData()
+		setAttemps(0)
+		setPoints(0)
+		setHangmanImg(HangmanImg0)
 	}
 
 	//* Check if the player lose
