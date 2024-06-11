@@ -35,17 +35,49 @@ const MemoryGameModal: React.FC<MemoryGameModalProps> = ({
 					alt={`Imagen de ${Question}`}
 				/>
 				<form className="pt-3" onSubmit={handleSubmit}>
-					<input className="mr-2" name="Answer" type="radio" value={answer1} />
-					<label className="text-base font-Secundaria">{answer1}</label>
+					<input
+						id="answer1"
+						className="mr-2"
+						name="Answer"
+						type="radio"
+						value={answer1}
+					/>
+					<label htmlFor="answer1" className="text-base font-Secundaria">
+						{answer1}
+					</label>
 					<br />
-					<input className="mr-2" name="Answer" type="radio" value={answer2} />
-					<label className="text-base font-Secundaria">{answer2}</label>
+					<input
+						id="answer2"
+						className="mr-2"
+						name="Answer"
+						type="radio"
+						value={answer2}
+					/>
+					<label htmlFor="answer2" className="text-base font-Secundaria">
+						{answer2}
+					</label>
 					<br />
-					<input className="mr-2" name="Answer" type="radio" value={answer3} />
-					<label className="text-base font-Secundaria">{answer3}</label>
+					<input
+						id="answer3"
+						className="mr-2"
+						name="Answer"
+						type="radio"
+						value={answer3}
+					/>
+					<label htmlFor="answer3" className="text-base font-Secundaria">
+						{answer3}
+					</label>
 					<br />
-					<input className="mr-2" name="Answer" type="radio" value={answer4} />
-					<label className="text-base font-Secundaria">{answer4}</label>
+					<input
+						id="answer4"
+						className="mr-2"
+						name="Answer"
+						type="radio"
+						value={answer4}
+					/>
+					<label htmlFor="answer4" className="text-base font-Secundaria">
+						{answer4}
+					</label>
 					<br className="pt-3" />
 					<hr className="pb-5 mt-3" />
 					<button
