@@ -351,7 +351,7 @@ const HangmanGameSingle: React.FC = () => {
 							trophys={trophys}
 							Round={Round}
 						/>
-						<div className="lg:flex lg:h-full lg:items-center lg:p-5">
+						<div className="lg:flex lg:h-full lg:items-center lg:p-5 lg:pb-20">
 							<div className="basis-2/6">
 								<div className="flex w-full justify-center pt-4 pb-4">
 									<img
@@ -361,7 +361,7 @@ const HangmanGameSingle: React.FC = () => {
 									/>
 								</div>
 							</div>
-							<div className="basis-4/6 lg:mb-14">
+							<div className="basis-4/6 lg:mb-16">
 								<div className="font-bold h-16 items-end flex w-full justify-center gap-3">
 									{espacios.map((element, key) => {
 										return (
