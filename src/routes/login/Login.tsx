@@ -2,12 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
-import {
-	FacebookLoginButton,
-	GithubLoginButton,
-} from "react-social-login-buttons"
-// @ts-ignore
-import { LoginSocialFacebook } from "reactjs-social-login"
+import { usePersonStore } from "../../store/auth"
 
 //* Componentes
 import NavBar from "@components/NavBar"
@@ -16,12 +11,21 @@ import BasicModal from "@components/BasicModal"
 
 //* Assets
 import angryBee from "@assets/angryBee.webp"
-import newBee from "@assets/abeja-saludando.webp"
 
 //* Types
 import { userDataLogin } from "@types"
 
 const LogIn: React.FC = () => {
+	//*Store
+	const setUserNickName = usePersonStore((state) => state.setNickName)
+	const setUserFullName = usePersonStore((state) => state.setFullName)
+	const setUserEmail = usePersonStore((state) => state.setEmail)
+	const setUserProfileImage = usePersonStore((state) => state.setProfileImage)
+	const setToken = usePersonStore((state) => state.setToken)
+	const setUserEnglishLevel = usePersonStore(
+		(state) => state.setUserEnglishLevel,
+	)
+
 	//*States
 	const [imageSrc, setImageSrc] = useState("")
 	const [message, setMessage] = useState("")
@@ -51,69 +55,45 @@ const LogIn: React.FC = () => {
 				body: JSON.stringify(data),
 			})
 
-			if (response.ok) {
-				const responseData = await response.json()
-				const token = responseData.token
-
-				//* Guardar el token en el local storage u otro lugar según sea necesario
-				localStorage.setItem("TokenBeesmrt", token)
-
-				navigate("/MyAccount")
-			} else if (response.status === 404) {
-				setImageSrc(newBee)
-				setMessage(
-					"This user does not exist, create an account and join the BeeTeam now!",
-				)
-				setMainMessage("User not found")
-				setShowModal(!showModal)
-			} else if (response.status === 401) {
+			if (response.status === 406) {
 				setImageSrc(angryBee)
-				setMessage(
-					"The password is incorrect, try again. Aren't you a hacker, right?",
-				)
-				setMainMessage("Incorrect password")
-				setShowModal(!showModal)
+				setMainMessage("Oh no!")
+				setMessage("You sent wrong data, please check your information")
+				setShowModal(true)
+				return
+			}
+
+			if (response.status === 404) {
+				setImageSrc(angryBee)
+				setMainMessage("Oh no!")
+				setMessage("User not found")
+				setShowModal(true)
+				return
+			}
+
+			if (response.status === 401) {
+				setImageSrc(angryBee)
+				setMainMessage("Oh no!")
+				setMessage("Wrong password")
+				setShowModal(true)
+				return
+			}
+
+			if (response.status === 200) {
+				const data = await response.json()
+
+				setUserNickName(data.nickName)
+				setUserFullName(data.fullName)
+				setUserEmail(data.email)
+				setUserProfileImage(data.profileImage)
+				setUserEnglishLevel(data.englishLevel)
+				setToken(data.token)
+				navigate("/myaccount")
 			}
 		} catch (error) {
 			console.log("Error:", error)
 		}
 		reset()
-	}
-
-	//* Facebook Login
-	async function handleLoginFacebook(data: object) {
-		try {
-			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			const response = await fetch(
-				`${BeeSMRTBackendURL}/registerUserFacebook`,
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(data),
-				},
-			)
-
-			if (response.ok) {
-				const responseData = await response.json()
-				const token = responseData.token
-				localStorage.setItem("TokenFacebook", token)
-				navigate("/MyAccount")
-			} else {
-				console.log("Error en la respuesta del servidor:")
-			}
-		} catch (error) {
-			console.log("Error:", error)
-		}
-	}
-
-	//*Github Login
-	function loginWithGithub() {
-		const GithubClient = import.meta.env.VITE_CLIENT_ID_GITHUB
-		window.location.assign(
-			`https://github.com/login/oauth/authorize?client_id="${GithubClient}`,
-		)
 	}
 
 	useEffect(() => {
@@ -222,28 +202,8 @@ const LogIn: React.FC = () => {
 					<div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500">
 						<p className="mx-4 font-Secundaria mb-0 text-center"> OR </p>
 					</div>
-					<div>
-						<LoginSocialFacebook
-							appId="1563554197766018"
-							onResolve={handleLoginFacebook}
-							onReject={(error: string) => console.log(error)}
-						>
-							<FacebookLoginButton
-								className="font-Principal text-white tracking-wide"
-								align="center"
-								text={"Log in with Facebook"}
-							/>
-						</LoginSocialFacebook>
-					</div>
+
 					<div className="pb-1" />
-					<div>
-						<GithubLoginButton
-							onClick={loginWithGithub}
-							className="font-Principal text-white tracking-wide"
-							align="center"
-							text={"Log in with Github"}
-						/>
-					</div>
 
 					<div className="Footer-Login py-2 font-Secundaria md:text-xl">
 						Don't you have an account yet? <br />

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import Lottie from "lottie-react"
+import confetti from "canvas-confetti"
 
 //* Componentes
 import NavBar from "@components/NavBar"
@@ -18,6 +19,16 @@ import TickCustome from "@assets/Tick_custom_icon.json"
 import { registerUser } from "@types"
 
 const SignUp: React.FC = () => {
+	//* Conffeti effect
+	const duration = 15 * 1000
+	const animationEnd = Date.now() + duration
+	const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
+
+	//* Generete a random number for the confetti effect
+	const randomInRange = (min: number, max: number) => {
+		return Math.random() * (max - min) + min
+	}
+
 	const navigate = useNavigate()
 
 	//*States
@@ -46,19 +57,50 @@ const SignUp: React.FC = () => {
 				body: JSON.stringify(data),
 			})
 
-			if (response.ok) {
-				const responseData = await response.json()
-				const token = responseData.token
-				localStorage.setItem("TokenBeesmrt", token)
-				navigate("/myaccount")
-			} else if (response.status === 409) {
-				console.error("El usuario ya existe")
+			if (response.status === 406) {
 				setImageSrc(ShyBee)
-				setMessage("This user already exists, try with a different email.")
-				setMainMessage("User already exists")
-				setShowModal(!showModal)
-			} else {
-				console.error("Error:", response)
+				setMainMessage("Oh no!")
+				setMessage("You sent wrong data, please check your information")
+				setShowModal(true)
+				return
+			}
+
+			if (response.status === 409) {
+				setImageSrc(ShyBee)
+				setMainMessage("Oh no!")
+				setMessage("This email is already registered")
+				setShowModal(true)
+				return
+			}
+
+			if (response.status === 500) {
+				setImageSrc(ShyBee)
+				setMainMessage("Oh no!")
+				setMessage("Something went wrong, please try again later")
+				setShowModal(true)
+				return
+			}
+
+			if (response.status === 201) {
+				setImageSrc(HappyBee)
+				setMainMessage("Welcome to the BEE TEAM!!!")
+				setMessage("You have successfully registered")
+				setShowModal(true)
+				const interval = setInterval(() => {
+					const timeLeft = animationEnd - Date.now()
+					if (timeLeft <= 0) {
+						clearInterval(interval)
+						return
+					}
+					const particleCount = 50 * (timeLeft / duration)
+					const origin1 = { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+					const origin2 = { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+					confetti({ ...defaults, particleCount, origin: origin1 })
+					confetti({ ...defaults, particleCount, origin: origin2 })
+				}, 250)
+				setTimeout(() => {
+					navigate("/login")
+				}, 3000)
 			}
 		} catch (error) {
 			console.error("Error:", error)
@@ -304,7 +346,7 @@ const SignUp: React.FC = () => {
 				mainMessage={mainMessage}
 				message={message}
 				showModal={showModal}
-				closeModal={() => setShowModal(!showModal)}
+				closeModal={() => setShowModal(false)}
 			/>
 		</main>
 	)
