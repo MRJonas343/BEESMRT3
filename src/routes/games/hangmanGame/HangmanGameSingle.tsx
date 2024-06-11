@@ -343,7 +343,7 @@ const HangmanGameSingle: React.FC = () => {
 				{showSpinner ? (
 					<Spinner />
 				) : (
-					<div className="bg-white/70 pb-8 w-11/12 h-auto rounded-lg mx-auto lg:flex lg:w-[90%] justify-evenly items-center lg:h-[70%] drop-shadow-lg">
+					<div className="bg-white/70 lg:max-w-[1600px] pb-8 w-11/12 h-auto rounded-lg mx-auto lg:w-[90%] justify-evenly lg:h-[70%] drop-shadow-lg">
 						<HangmanGameStatsSingle
 							level={level}
 							completedPercentage={completedPercentage}
@@ -351,35 +351,41 @@ const HangmanGameSingle: React.FC = () => {
 							trophys={trophys}
 							Round={Round}
 						/>
-						<div className="basis-2/6">
-							<div className="flex w-full justify-center pt-4 pb-4">
-								<img alt="hangman" src={hangmanImg} className="w-48 lg:w-56" />
+						<div className="lg:flex lg:h-full lg:items-center lg:p-5">
+							<div className="basis-2/6">
+								<div className="flex w-full justify-center pt-4 pb-4">
+									<img
+										alt="hangman"
+										src={hangmanImg}
+										className="w-48 lg:w-56"
+									/>
+								</div>
 							</div>
-						</div>
-						<div className="basis-4/6">
-							<div className="font-bold h-16 items-end flex w-full justify-center gap-3">
-								{espacios.map((element, key) => {
-									return (
-										<div key={key} className="text-center pt-7">
-											{element}
-											<div className="outline outline-black w-4 h-0 m-1 mb-4 lg:w-6" />
-										</div>
-									)
-								})}
-							</div>
-							<div className="mt-3 text-xl flex flex-col w-10/12 items-center mx-auto">
-								<p className="font-Secundaria text-lg">{hint}</p>
-								<p className="font-Secundaria text-lg mt-3">
-									Incorrect Attempts: {attemps}/6
-								</p>
-							</div>
-							<div
-								onClick={handleKeyClick}
-								className="grid grid-cols-9 gap-2 mt-4 mx-4"
-							>
-								{Keys.map((element, index) => {
-									return <KeyHangmanGame key={index} element={element} />
-								})}
+							<div className="basis-4/6 lg:mb-14">
+								<div className="font-bold h-16 items-end flex w-full justify-center gap-3">
+									{espacios.map((element, key) => {
+										return (
+											<div key={key} className="text-center pt-7">
+												{element}
+												<div className="outline outline-black w-4 h-0 m-1 mb-4 lg:w-6" />
+											</div>
+										)
+									})}
+								</div>
+								<div className="mt-3 text-xl flex flex-col w-10/12 items-center mx-auto">
+									<p className="font-Secundaria text-lg">{hint}</p>
+									<p className="font-Secundaria text-lg mt-3">
+										Incorrect Attempts: {attemps}/6
+									</p>
+								</div>
+								<div
+									onClick={handleKeyClick}
+									className="grid grid-cols-9 gap-2 mt-4 mx-4"
+								>
+									{Keys.map((element, index) => {
+										return <KeyHangmanGame key={index} element={element} />
+									})}
+								</div>
 							</div>
 						</div>
 					</div>

@@ -21,12 +21,12 @@ const HangmanGameStatsSingle: React.FC<HangmanGameSingleStats> = ({
 				<p className="">{level}</p>
 			</div>
 			<div className="w-1/3 flex flex-col justify-center items-center">
-				<p className="font-Principal text-xl text-3d text-Yellow1">
+				<p className="font-Principal text-xl text-3d text-Yellow1 md:text-3xl">
 					Round {Round} / 5
 				</p>
 				<ProgressBar
 					completed={completedPercentage}
-					className="w-full font-Secundaria drop-shadow-md text-3d"
+					className="w-full font-Secundaria drop-shadow-md text-3d md:text-3xl"
 					animateOnRender={true}
 					bgColor="#FC9503"
 					height="30"
