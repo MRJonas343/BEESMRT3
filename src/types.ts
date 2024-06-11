@@ -114,6 +114,7 @@ export interface MemoryGameStatsPropsSingle {
 	level: string
 	completedPercentage: number
 	trophys: number
+	pairs: number
 }
 
 export interface EnglishLevel {

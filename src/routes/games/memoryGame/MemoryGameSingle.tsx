@@ -1,15 +1,15 @@
-import { useState, useEffect, FormEvent } from "react"
+import { useState, useEffect, FormEvent, useRef } from "react"
 import confetti from "canvas-confetti"
 import { Toaster, toast } from "sonner"
 import cardsMemoryGame from "./dataTest.json"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 //* Components
 import NavBar from "@components/NavBar"
 import MemoryGameButtton from "@components/ButtonMemoryGame"
 import MemoryGameStatsSingleMode from "@components/MemoryGameStatsSingleMode"
 import MemoryGameModal from "@components/MemoryGameModal"
-import ModalGameOver from "@components/ModalGameOver"
+import ModalSingleMode from "@components/ModalSingleModes"
 
 //*Assets
 import TrofeoImg from "@assets/trofeo.webp"
@@ -21,6 +21,7 @@ import { CardMemoryGameProps } from "@types"
 const MemoryGameSingleMode: React.FC = () => {
 	//* Location
 	const location = useLocation()
+	const navigate = useNavigate()
 
 	//* Conffeti effect
 	const duration = 15 * 1000
@@ -28,11 +29,14 @@ const MemoryGameSingleMode: React.FC = () => {
 	const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
 	//* Game States
+	const levelRef = useRef("")
+	const [victoryOrDefeat, setVictoryOrDefeat] = useState<
+		"Victory" | "Defeat" | "NotDefined"
+	>("Victory")
 	const [showSpinner, setShowSpinner] = useState(true)
 	const [cards, setCards] = useState<CardMemoryGameProps[]>([])
 	const [card1, setCard1] = useState<CardMemoryGameProps | null>(null)
 	const [card2, setCard2] = useState<CardMemoryGameProps | null>(null)
-	const [resetGame, setResetGame] = useState(false)
 	const [showModal, setShowModal] = useState(false)
 	const [isModalWinOpen, setModalWinOpen] = useState(false)
 	const [question, setQuestion] = useState("")
@@ -42,6 +46,7 @@ const MemoryGameSingleMode: React.FC = () => {
 	const [incorrectAnswer1, setIncorrectAnswer1] = useState("")
 	const [incorrectAnswer2, setIncorrectAnswer2] = useState("")
 	const [incorrectAnswer3, setIncorrectAnswer3] = useState("")
+	const [pairs, setPairs] = useState(0)
 
 	const [mainMessage, setMainMessage] = useState("")
 	const [message, setMessage] = useState("")
@@ -57,6 +62,7 @@ const MemoryGameSingleMode: React.FC = () => {
 		try {
 			//? To do : fetch data from the API with the level as a header
 			const { level, trophys } = location.state
+			levelRef.current = level
 			const levelName = String(`${level.substring(2, 7)} ${level.substring(7)}`)
 			const englishLevel = String(level).substring(0, 2)
 
@@ -113,14 +119,14 @@ const MemoryGameSingleMode: React.FC = () => {
 	}
 
 	//*Play again (it resets the game)
-	const playAgain = () => {
-		setResetGame(!resetGame)
+	const resetGame = () => {
 		setCard1(null)
 		setCard2(null)
-		fetchData()
-		if (isModalWinOpen) {
-			setModalWinOpen(!isModalWinOpen)
-		}
+		setcorrectAnswerRef("")
+		setPairs(0)
+		setCompletedPercentage(0)
+		setTrophys(0)
+		setCards([])
 	}
 
 	//*Check the answer of the question
@@ -139,10 +145,11 @@ const MemoryGameSingleMode: React.FC = () => {
 			})
 
 			//*Give points to the player
+			setPairs((prevPairs) => prevPairs + 1)
 			toast(
 				<div className="flex flex-col mx-auto text-center tracking-wider py-6 font-Principal text-3d text-green-600 text-4xl">
-					<div>+ 1 </div>
-					<div>Perfect!!! do it again</div>
+					<div>Well done</div>
+					<div>+ 1 Pair</div>
 				</div>,
 				{ duration: 2000 },
 			)
@@ -160,7 +167,7 @@ const MemoryGameSingleMode: React.FC = () => {
 	//*Throw confetti
 	const throwConfetti = () => {
 		setMainMessage("Victory")
-		setMessage(`You have won ${trophys} trophys`)
+		setMessage("You have completed the level")
 		setImageMessage(TrofeoImg)
 		shoModalWin()
 		const interval = setInterval(() => {
@@ -218,6 +225,92 @@ const MemoryGameSingleMode: React.FC = () => {
 		fetchData()
 	}, [])
 
+	const closeGame = () => {
+		navigate("/games/memorygameLevels")
+	}
+
+	const nextLevel = () => {
+		setModalWinOpen(false)
+		try {
+			const currentLevel = levelRef.current
+
+			//!The user reached the last level
+			if (currentLevel === "B1Level6") {
+				setVictoryOrDefeat("NotDefined")
+				//*Display the modal with the message "ups you have reached the last level"
+				setMainMessage("Oops!")
+				setMessage("You have completed all the levels")
+				setImageMessage(TrofeoImg)
+				setModalWinOpen(true)
+				return
+			}
+
+			//! The user reached the last level of the english level
+
+			const levelNumber = Number(currentLevel.slice(-1))
+			if (levelNumber === 6) {
+				setShowSpinner(true)
+				const englishLevels: { [key: string]: string } = {
+					A1: "A2",
+					A2: "B1",
+				}
+
+				const englishLevel = currentLevel.slice(0, 2)
+				const nextEnglishLevel = englishLevels[englishLevel]
+				const nextLevelName = `${nextEnglishLevel}Level1`
+				levelRef.current = nextLevelName
+
+				setLevelName(nextLevelName)
+				setEnglishLevel(nextEnglishLevel)
+
+				//*Ask the backend for the next level
+				// const levelNumber = parseInt(level)
+				// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+				// const headers = new Headers()
+				// headers.set("englishLevel", level)
+				// const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
+				// 	headers,
+				// })
+				// const jsonData = await response.json()
+				resetGame()
+				const jsonData = cardsMemoryGame
+
+				initGame(jsonData)
+
+				setShowSpinner(false)
+				return
+			}
+
+			//! Send the user to the next level
+			setShowSpinner(true)
+			resetGame()
+			const englishLevel = currentLevel.slice(0, 2)
+			const nextLevelNumber = levelNumber + 1
+			const nextLevelName = `${englishLevel}Level${nextLevelNumber}`
+			levelRef.current = nextLevelName
+
+			setLevelName(nextLevelName)
+			setEnglishLevel(englishLevel)
+
+			//*Ask the backend for the next level
+			// const levelNumber = parseInt(level)
+			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			// const headers = new Headers()
+			// headers.set("englishLevel", level)
+			// const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
+			// 	headers,
+			// })
+			// const jsonData = await response.json()
+
+			const jsonData = cardsMemoryGame
+			initGame(jsonData)
+			setShowSpinner(false)
+			return
+		} catch (error) {
+			console.error("Error fetching data:", error)
+		}
+	}
+
 	return (
 		<main className="w-screen h-screen bg-blue-500 overflow-x-hidden">
 			<NavBar />
@@ -236,6 +329,7 @@ const MemoryGameSingleMode: React.FC = () => {
 								level={levelName}
 								englishLevel={englishLevel}
 								completedPercentage={completedPercentage}
+								pairs={pairs}
 							/>
 						</div>
 
@@ -264,13 +358,15 @@ const MemoryGameSingleMode: React.FC = () => {
 				answer4={incorrectAnswer3}
 				handleSubmit={handleSubmit}
 			/>
-			<ModalGameOver
+			<ModalSingleMode
+				showModal={isModalWinOpen}
 				imageSrc={imageMessage}
 				message={message}
-				showModal={isModalWinOpen}
 				mainMessage={mainMessage}
-				playAgain={playAgain}
-				showModalWin={shoModalWin}
+				close={closeGame}
+				nextLevel={nextLevel}
+				tryAgain={() => {}}
+				victoryOrDefeat={victoryOrDefeat}
 			/>
 		</main>
 	)

@@ -240,6 +240,7 @@ const HangmanGameSingle: React.FC = () => {
 
 			//!The user reached the last level
 			if (currentLevel === "B1Level6") {
+				setVictoryOrDefeat("NotDefined")
 				//*Display the modal with the message "ups you have reached the last level"
 				setImgSrcBasicModal(shyBee)
 				setMessageBasicModal("You have reached the last level")

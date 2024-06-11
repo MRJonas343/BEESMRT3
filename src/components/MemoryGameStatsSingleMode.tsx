@@ -12,6 +12,7 @@ const MemoryGameStatsSingleMode: React.FC<MemoryGameStatsPropsSingle> = ({
 	completedPercentage,
 	englishLevel,
 	trophys,
+	pairs,
 }) => {
 	return (
 		<section className="bg-white/70 rounded-md flex py-4 items-center">
@@ -20,7 +21,9 @@ const MemoryGameStatsSingleMode: React.FC<MemoryGameStatsPropsSingle> = ({
 				<p className="">{level}</p>
 			</div>
 			<div className="w-1/3 flex flex-col justify-center items-center">
-				<p className="font-Principal text-xl text-3d text-Yellow1">Progress</p>
+				<p className="font-Principal text-xl text-3d text-Yellow1 md:text-3xl">
+					Pairs: {pairs} / 12
+				</p>
 				<ProgressBar
 					completed={completedPercentage}
 					className="w-full font-Secundaria"

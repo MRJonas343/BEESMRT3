@@ -22,7 +22,7 @@ const ModalSingleMode: React.FC<ModalSingleModeProps> = ({
 				Next Level
 			</button>
 		)
-	} else {
+	} else if (victoryOrDefeat === "Defeat") {
 		mainButton = (
 			<button
 				type="button"
@@ -31,6 +31,12 @@ const ModalSingleMode: React.FC<ModalSingleModeProps> = ({
 			>
 				Try Again
 			</button>
+		)
+	} else {
+		mainButton = (
+			<>
+				<div />
+			</>
 		)
 	}
 
