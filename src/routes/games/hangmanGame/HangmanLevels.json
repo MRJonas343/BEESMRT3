@@ -1,0 +1,218 @@
+[
+  {
+    "EnglishLevel": "A1",
+    "LevelName": "Home",
+    "Level": "A1Level1",
+    "Trophys": 50
+  },
+  {
+    "EnglishLevel": "A1",
+    "LevelName": "Food",
+    "Level": "A1Level2",
+    "Trophys": 0
+  },
+  {
+    "EnglishLevel": "A1",
+    "LevelName": "Family",
+    "Level": "A1Level3",
+    "Trophys": 50
+  },
+  {
+    "EnglishLevel": "A1",
+    "LevelName": "School",
+    "Level": "A1Level4",
+    "Trophys": 0
+  },
+  {
+    "EnglishLevel": "A1",
+    "LevelName": "Hobbies",
+    "Level": "A1Level5",
+    "Trophys": 0
+  },
+  {
+    "EnglishLevel": "A1",
+    "LevelName": "Shopping",
+    "Level": "A1Level6",
+    "Trophys": 50
+  },
+  {
+    "EnglishLevel": "A2",
+    "LevelName": "Verbs",
+    "Level": "A2Level1",
+    "Trophys": 175
+  },
+  {
+    "EnglishLevel": "A2",
+    "LevelName": "Adjectives",
+    "Level": "A2Level2",
+    "Trophys": 200
+  },
+  {
+    "EnglishLevel": "A2",
+    "LevelName": "Adverbs",
+    "Level": "A2Level3",
+    "Trophys": 225
+  },
+  {
+    "EnglishLevel": "A2",
+    "LevelName": "Prepositions",
+    "Level": "A2Level4",
+    "Trophys": 250
+  },
+  {
+    "EnglishLevel": "A2",
+    "LevelName": "Conjunctions",
+    "Level": "A2Level5",
+    "Trophys": 275
+  },
+  {
+    "EnglishLevel": "A2",
+    "LevelName": "Pronouns",
+    "Level": "A2Level6",
+    "Trophys": 300
+  },
+  {
+    "EnglishLevel": "B1",
+    "LevelName": "Present Simple",
+    "Level": "B1Level1",
+    "Trophys": 325
+  },
+  {
+    "EnglishLevel": "B1",
+    "LevelName": "Present Continuous",
+    "Level": "B1Level2",
+    "Trophys": 350
+  },
+  {
+    "EnglishLevel": "B1",
+    "LevelName": "Past Simple",
+    "Level": "B1Level3",
+    "Trophys": 375
+  },
+  {
+    "EnglishLevel": "B1",
+    "LevelName": "Past Continuous",
+    "Level": "B1Level4",
+    "Trophys": 400
+  },
+  {
+    "EnglishLevel": "B1",
+    "LevelName": "Future Simple",
+    "Level": "B1Level5",
+    "Trophys": 425
+  },
+  {
+    "EnglishLevel": "B1",
+    "LevelName": "Future Continuous",
+    "Level": "B1Level6",
+    "Trophys": 450
+  },
+  {
+    "EnglishLevel": "B2",
+    "LevelName": "Present Perfect",
+    "Level": "B2Level1",
+    "Trophys": 475
+  },
+  {
+    "EnglishLevel": "B2",
+    "LevelName": "Past Perfect",
+    "Level": "B2Level2",
+    "Trophys": 500
+  },
+  {
+    "EnglishLevel": "B2",
+    "LevelName": "Future Perfect",
+    "Level": "B2Level3",
+    "Trophys": 525
+  },
+  {
+    "EnglishLevel": "B2",
+    "LevelName": "Present Perfect Continuous",
+    "Level": "B2Level4",
+    "Trophys": 550
+  },
+  {
+    "EnglishLevel": "B2",
+    "LevelName": "Past Perfect Continuous",
+    "Level": "B2Level5",
+    "Trophys": 575
+  },
+  {
+    "EnglishLevel": "B2",
+    "LevelName": "Future Perfect Continuous",
+    "Level": "B2Level6",
+    "Trophys": 600
+  },
+  {
+    "EnglishLevel": "C1",
+    "LevelName": "Zero Conditional",
+    "Level": "C1Level1",
+    "Trophys": 625
+  },
+  {
+    "EnglishLevel": "C1",
+    "LevelName": "First Conditional",
+    "Level": "C1Level2",
+    "Trophys": 650
+  },
+  {
+    "EnglishLevel": "C1",
+    "LevelName": "Second Conditional",
+    "Level": "C1Level3",
+    "Trophys": 675
+  },
+  {
+    "EnglishLevel": "C1",
+    "LevelName": "Third Conditional",
+    "Level": "C1Level4",
+    "Trophys": 700
+  },
+  {
+    "EnglishLevel": "C1",
+    "LevelName": "Mixed Conditionals",
+    "Level": "C1Level5",
+    "Trophys": 725
+  },
+  {
+    "EnglishLevel": "C1",
+    "LevelName": "Passive Voice",
+    "Level": "C1Level6",
+    "Trophys": 750
+  },
+  {
+    "EnglishLevel": "C2",
+    "LevelName": "Reported Speech",
+    "Level": "C2Level1",
+    "Trophys": 775
+  },
+  {
+    "EnglishLevel": "C2",
+    "LevelName": "Relative Clauses",
+    "Level": "C2Level2",
+    "Trophys": 800
+  },
+  {
+    "EnglishLevel": "C2",
+    "LevelName": "Modal Verbs",
+    "Level": "C2Level3",
+    "Trophys": 825
+  },
+  {
+    "EnglishLevel": "C2",
+    "LevelName": "Phrasal Verbs",
+    "Level": "C2Level4",
+    "Trophys": 850
+  },
+  {
+    "EnglishLevel": "C2",
+    "LevelName": "Idioms",
+    "Level": "C2Level5",
+    "Trophys": 875
+  },
+  {
+    "EnglishLevel": "C2",
+    "LevelName": "Collocations",
+    "Level": "C2Level6",
+    "Trophys": 900
+  }
+]

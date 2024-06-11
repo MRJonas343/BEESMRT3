@@ -37,6 +37,10 @@ const MemoryGameLevels = lazy(
 	() => import("@routes/games/memoryGame/MemoryGameLevels"),
 )
 
+const HangmanGameLevels = lazy(
+	() => import("@routes/games/hangmanGame/HangmanGameLevels"),
+)
+
 const RoutesTree = () => {
 	return (
 		<Suspense
@@ -48,6 +52,7 @@ const RoutesTree = () => {
 		>
 			<HashRouter>
 				<Routes>
+					{/* App rotes */}
 					<Route path="/" element={<HomePage />} />
 					<Route path="*" element={<NotFound />} />
 					<Route path="/about" element={<About />} />
@@ -56,34 +61,40 @@ const RoutesTree = () => {
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/myaccount" element={<MyAccount />} />
+					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
 
-					<Route path="/games/hangmangameMode" element={<HangmanGameMode />} />
+					{/* Memory Game Routes */}
 					<Route path="/games/memorygameMode" element={<MemoryGameMode />} />
 					<Route
-						path="/games/dragdropgameMode"
-						element={<DragDropGameMode />}
+						path="/games/memorygameLevels"
+						element={<MemoryGameLevels />}
 					/>
-
-					<Route
-						path="/games/dragdropgameSingle"
-						element={<DragDropGameSingle />}
-					/>
-					<Route
-						path="/games/hangmangameSingle"
-						element={<HangmanGameSingle />}
-					/>
-
 					<Route path="/games/memorygame1vs1" element={<MemoryGame1vs1 />} />
 					<Route
 						path="/games/memorygameSingle"
 						element={<MemoryGameSingle />}
 					/>
-					<Route
-						path="/games/memorygameLevels"
-						element={<MemoryGameLevels />}
-					/>
 
-					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
+					{/* Hangman Game Routes */}
+					<Route
+						path="/games/hangmangameLevels"
+						element={<HangmanGameLevels />}
+					/>
+					<Route
+						path="/games/hangmangameSingle"
+						element={<HangmanGameSingle />}
+					/>
+					<Route path="/games/hangmangameMode" element={<HangmanGameMode />} />
+
+					{/* DragDrop Game Routes */}
+					<Route
+						path="/games/dragdropgameMode"
+						element={<DragDropGameMode />}
+					/>
+					<Route
+						path="/games/dragdropgameSingle"
+						element={<DragDropGameSingle />}
+					/>
 				</Routes>
 			</HashRouter>
 		</Suspense>

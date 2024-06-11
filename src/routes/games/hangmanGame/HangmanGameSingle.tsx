@@ -1,11 +1,16 @@
 import { useState, useEffect, useRef, MouseEvent } from "react"
 import confetti from "canvas-confetti"
+import HangmanDemo from "./hangmanDemo.json"
+import { useLocation, useNavigate } from "react-router-dom"
+import { Toaster, toast } from "sonner"
 
 //* Componentes
 import NavBar from "@components/NavBar"
-import ModalGameOver from "@components/ModalGameOver"
+import ModalSingleMode from "@components/ModalSingleModes"
 import KeyHangmanGame from "@components/KeyHangmanGame"
 import Spinner from "@components/Spinner"
+import HangmanGameStatsSingle from "@components/HangmanGameStatsSingle"
+import BasicModal from "@components/BasicModal"
 
 //* Assets
 import Defeat from "@assets/perder.webp"
@@ -17,45 +22,39 @@ import HangmanImg3 from "@assets/hangman-3.svg"
 import HangmanImg4 from "@assets/hangman-4.svg"
 import HangmanImg5 from "@assets/hangman-5.svg"
 import HangmanImg6 from "@assets/hangman-6.svg"
+import shyBee from "@assets/abeja-shy.webp"
+
+//* Types
+import { HangmanWords } from "@types"
 
 const HangmanGameSingle: React.FC = () => {
 	//* Conffeti effect
+	const randomInRange = (min: number, max: number) => {
+		return Math.random() * (max - min) + min
+	}
 	const duration = 15 * 1000
 	const animationEnd = Date.now() + duration
 	const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
-	//*Keys
-	const Keys = [
-		"A",
-		"B",
-		"C",
-		"D",
-		"E",
-		"F",
-		"G",
-		"H",
-		"I",
-		"J",
-		"K",
-		"L",
-		"M",
-		"N",
-		"O",
-		"P",
-		"Q",
-		"R",
-		"S",
-		"T",
-		"U",
-		"V",
-		"_",
-		"W",
-		"X",
-		"Y",
-		"Z",
-	]
+	const location = useLocation()
+	const navigate = useNavigate()
+
+	// biome-ignore format: It will take many lines to format the array
+	const Keys = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
+	"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "_", "W", "X", "Y", "Z", ]
 
 	//* Game States
+	const levelRef = useRef("")
+	const round = useRef(0)
+	const [victoryOrDefeat, setVictoryOrDefeat] = useState<
+		"Victory" | "Defeat" | "NotDefined"
+	>("NotDefined")
+	const hangmanWordsRef = useRef<HangmanWords[]>([])
+	const [level, setLevel] = useState("Level1")
+	const [englishLevel, setEnglishLevel] = useState("A1")
+	const [completedPercentage, setCompletedPercentage] = useState(0)
+	const [Round, setRound] = useState(0)
+	const [trophys, setTrophys] = useState(50)
 	const [showSpinner, setShowSpinner] = useState(true)
 	const [espacios, setEspacios] = useState<(null | string)[]>([])
 	const [attemps, setAttemps] = useState(0)
@@ -64,7 +63,6 @@ const HangmanGameSingle: React.FC = () => {
 	const [message, setMessage] = useState("")
 	const [mainMessage, setMainMessage] = useState("")
 	const [showModal, setShowModal] = useState(false)
-	const [points, setPoints] = useState(0)
 	const [wordToGess, setWordToGess] = useState("")
 	const [hint, setHint] = useState("")
 	const IncorrectAttempsRef = useRef(0)
@@ -77,25 +75,58 @@ const HangmanGameSingle: React.FC = () => {
 		5: HangmanImg5,
 		6: HangmanImg6,
 	}
+	const [showBasicModal, setShowBasicModal] = useState(false)
+	const [imgSrcBasicModal, setImgSrcBasicModal] = useState("")
+	const [messageBasicModal, setMessageBasicModal] = useState("")
+	const [mainMessageBasicModal, setMainMessageBasicModal] = useState("")
+
+	const closeBasicModal = () => {
+		navigate("/games/hangmangameLevels")
+	}
 
 	//* Get data from BeeSMRT API
 	const fetchData = async () => {
 		try {
-			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`)
+			const { level, trophys } = location.state
+			levelRef.current = level
+			const levelName = String(`${level.substring(2, 7)} ${level.substring(7)}`)
+			const englishLevel = String(level).substring(0, 2)
+			setLevel(levelName)
+			setEnglishLevel(englishLevel)
+			setTrophys(trophys)
 
-			const Words = await response.json()
-			// const Words = HangmanDemo
-			const selectedWord = Words[Math.floor(Math.random() * Words.length)]
-			const wordLength = selectedWord.word.length
+			// const levelNumber = parseInt(level)
+			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			// const headers = new Headers()
+			// headers.set("englishLevel", level)
+			// const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
+			// 	headers,
+			// })
+			//const Words = await response.json()
 
-			setWordToGess(selectedWord.word)
-			setHint(selectedWord.hint)
-			setEspacios(Array(wordLength).fill(null))
+			const Words: HangmanWords[] = HangmanDemo
+			hangmanWordsRef.current = Words
+			setRoundContent()
+
 			setShowSpinner(false)
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
+	}
+
+	const setRoundContent = () => {
+		const newRound = round.current
+		const wordToGess = hangmanWordsRef.current[newRound].word
+		const hint = hangmanWordsRef.current[newRound].hint
+		const espacios = Array(wordToGess.length).fill(null)
+		IncorrectAttempsRef.current = 0
+		setCompletedPercentage(0)
+		setRound((prevRound) => prevRound + 1)
+		setAttemps(0)
+		setHangmanImg(HangmanImg0)
+		setEspacios(espacios)
+		setWordToGess(wordToGess)
+		setHint(hint)
 	}
 
 	//* Handle Key Click
@@ -122,7 +153,15 @@ const HangmanGameSingle: React.FC = () => {
 			const newEspacios = [...espacios]
 
 			for (const index of wordIndexes) {
-				setPoints(points + 1)
+				//*Update the progress bar
+				const isLetterAlreadyInEspacios = newEspacios[index] !== null
+				if (!isLetterAlreadyInEspacios) {
+					setCompletedPercentage((prevPercentage) => {
+						const newPercentage = prevPercentage + 100 / currentWord.length
+						return Math.min(100, Math.round(newPercentage * 100) / 100)
+					})
+				}
+
 				newEspacios[index] = currentLetter
 			}
 
@@ -134,7 +173,20 @@ const HangmanGameSingle: React.FC = () => {
 			})
 
 			if (isEveryLetterGuess) {
-				showWinning()
+				round.current += 1
+				if (round.current === 5) {
+					setVictoryOrDefeat("Victory")
+					showWinning()
+					return
+				}
+				toast(
+					<div className="flex flex-col mx-auto text-center tracking-wider py-6 font-Principal text-3d text-green-600 text-4xl">
+						<div>Well done</div>
+						<div>Next round coming</div>
+					</div>,
+					{ duration: 2000 },
+				)
+				setRoundContent()
 			}
 
 			return
@@ -143,6 +195,7 @@ const HangmanGameSingle: React.FC = () => {
 		//* If the letter is not in the word, update the attemps and the hangman image
 		setAttemps((prevState) => prevState + 1)
 		IncorrectAttempsRef.current += 1
+		console.log(IncorrectAttempsRef.current)
 		setHangmanImg(hangmanImages[IncorrectAttempsRef.current])
 	}
 
@@ -165,22 +218,106 @@ const HangmanGameSingle: React.FC = () => {
 		}, 250)
 	}
 
-	//* Generete a random number for the confetti effect
-	const randomInRange = (min: number, max: number) => {
-		return Math.random() * (max - min) + min
+	const tryAgain = () => {
+		console.log("try again")
+		IncorrectAttempsRef.current = 0
+		console.log(IncorrectAttempsRef.current)
+		setRound((prevRound) => prevRound - 1)
+		setRoundContent()
+		setShowModal(false)
 	}
 
-	//* Play again function
-	const playAgain = () => {
-		fetchData()
-		setAttemps(0)
-		setPoints(0)
-		setHangmanImg(HangmanImg0)
+	const close = () => {
+		setShowModal(false)
+		navigate("/games/hangmangameLevels")
+	}
+
+	const nextLevel = () => {
+		setShowSpinner(true)
+		setShowModal(false)
+		try {
+			const currentLevel = levelRef.current
+
+			//!The user reached the last level
+			if (currentLevel === "B1Level6") {
+				//*Display the modal with the message "ups you have reached the last level"
+				setImgSrcBasicModal(shyBee)
+				setMessageBasicModal("You have reached the last level")
+				setMainMessageBasicModal("Ups!")
+				setShowBasicModal(true)
+				setShowSpinner(false)
+				return
+			}
+
+			//! The user reached the last level of the english level
+			const levelNumber = Number(currentLevel.slice(-1))
+
+			if (levelNumber === 6) {
+				const englishLevels: { [key: string]: string } = {
+					A1: "A2",
+					A2: "B1",
+				}
+				const englishLevel = currentLevel.slice(0, 2)
+				const nextEnglishLevel = englishLevels[englishLevel]
+				const nextLevelName = `${nextEnglishLevel}Level1`
+				levelRef.current = nextLevelName
+
+				setLevel(nextLevelName)
+				setEnglishLevel(nextEnglishLevel)
+
+				//*Ask the backend for the next level
+				// const levelNumber = parseInt(level)
+				// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+				// const headers = new Headers()
+				// headers.set("englishLevel", level)
+				// const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
+				// 	headers,
+				// })
+				//const Words = await response.json()
+
+				const Words: HangmanWords[] = HangmanDemo
+				hangmanWordsRef.current = Words
+				round.current = 0
+				setRound(0)
+				setRoundContent()
+				setShowSpinner(false)
+				return
+			}
+
+			//! Send the user to the next level
+			const englishLevel = currentLevel.slice(0, 2)
+			const nextLevelNumber = levelNumber + 1
+			const nextLevelName = `${englishLevel}Level${nextLevelNumber}`
+			levelRef.current = nextLevelName
+
+			setLevel(nextLevelName)
+			setEnglishLevel(englishLevel)
+
+			//*Ask the backend for the next level
+			// const levelNumber = parseInt(level)
+			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			// const headers = new Headers()
+			// headers.set("englishLevel", level)
+			// const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
+			// 	headers,
+			// })
+			//const Words = await response.json()
+
+			const Words: HangmanWords[] = HangmanDemo
+			hangmanWordsRef.current = Words
+			round.current = 0
+			setRound(0)
+			setRoundContent()
+			setShowSpinner(false)
+		} catch (error) {
+			console.error("Error fetching data:", error)
+		}
 	}
 
 	//* Check if the player lose
 	useEffect(() => {
 		if (attemps === 6) {
+			setVictoryOrDefeat("Defeat")
 			setImageSrc(Defeat)
 			setMessage("You Lose")
 			setMainMessage("Game Over")
@@ -199,13 +336,21 @@ const HangmanGameSingle: React.FC = () => {
 		<>
 			<main className="w-screen h-screen bg-Yellow1 overflow-x-hidden">
 				<NavBar />
+				<Toaster richColors position="top-left" />
 				<h1 className="text-3xl font-Principal text-white text-3d text-center my-2">
 					Hangman Game
 				</h1>
 				{showSpinner ? (
 					<Spinner />
 				) : (
-					<div className="bg-white/70 w-11/12 h-auto rounded-lg mx-auto lg:flex lg:w-[90%] justify-evenly items-center lg:h-[70%]">
+					<div className="bg-white/70 pb-8 w-11/12 h-auto rounded-lg mx-auto lg:flex lg:w-[90%] justify-evenly items-center lg:h-[70%] drop-shadow-lg">
+						<HangmanGameStatsSingle
+							level={level}
+							completedPercentage={completedPercentage}
+							englishLevel={englishLevel}
+							trophys={trophys}
+							Round={Round}
+						/>
 						<div className="basis-2/6">
 							<div className="flex w-full justify-center pt-4 pb-4">
 								<img alt="hangman" src={hangmanImg} className="w-48 lg:w-56" />
@@ -236,28 +381,25 @@ const HangmanGameSingle: React.FC = () => {
 									return <KeyHangmanGame key={index} element={element} />
 								})}
 							</div>
-							<div className="flex w-full justify-around pt-5 pb-5">
-								<button
-									type="button"
-									className="font-Secundaria  text-base bg-red-600 rounded-md p-2 w-24 text-white lg:w-32 lg:text-lg"
-									onClick={playAgain}
-								>
-									RESET
-								</button>
-								<p className="font-Secundaria text-base bg-green-500 rounded-md p-2 w-24 text-white lg:w-32 lg:text-lg">
-									Points : {points}
-								</p>
-							</div>
 						</div>
 					</div>
 				)}
-				<ModalGameOver
+				<ModalSingleMode
 					showModal={showModal}
 					imageSrc={imageSrc}
 					message={message}
 					mainMessage={mainMessage}
-					playAgain={playAgain}
-					showModalWin={() => setShowModal(!showModal)}
+					victoryOrDefeat={victoryOrDefeat}
+					tryAgain={tryAgain}
+					nextLevel={nextLevel}
+					close={close}
+				/>
+				<BasicModal
+					showModal={showBasicModal}
+					imageSrc={imgSrcBasicModal}
+					message={messageBasicModal}
+					mainMessage={mainMessageBasicModal}
+					closeModal={closeBasicModal}
 				/>
 			</main>
 		</>

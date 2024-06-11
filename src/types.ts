@@ -122,3 +122,27 @@ export interface EnglishLevel {
 	Level: string
 	Trophys: number
 }
+
+export interface HangmanGameSingleStats {
+	englishLevel: string
+	level: string
+	completedPercentage: number
+	trophys: number
+	Round: number
+}
+
+export interface HangmanWords {
+	word: string
+	hint: string
+}
+
+export interface ModalSingleModeProps {
+	showModal: boolean
+	imageSrc: string
+	message: string
+	mainMessage: string
+	victoryOrDefeat: "Victory" | "Defeat" | "NotDefined"
+	nextLevel: () => void
+	tryAgain: () => void
+	close: () => void
+}
