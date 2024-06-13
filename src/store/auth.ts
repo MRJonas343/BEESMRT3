@@ -2,35 +2,35 @@ import { StateCreator, create } from "zustand"
 import { persist } from "zustand/middleware"
 
 type AuthStore = {
-	userNickName: string
-	userFullName: string
-	userEmail: string
-	userProfileImage: string
-	userEnglishLevel: string
-	token: string
-	setNickName: (nickName: string) => void
-	setFullName: (fullName: string) => void
-	setEmail: (email: string) => void
-	setProfileImage: (profileImage: string) => void
-	setToken: (token: string) => void
-	setUserEnglishLevel: (englishLevel: string) => void
+	userNickName: string | null
+	userFullName: string | null
+	userEmail: string | null
+	userProfileImage: string | null
+	userEnglishLevel: string | null
+	token: string | null
+	setNickName: (nickName: string | null) => void
+	setFullName: (fullName: string | null) => void
+	setEmail: (email: string | null) => void
+	setProfileImage: (profileImage: string | null) => void
+	setToken: (token: string | null) => void
+	setUserEnglishLevel: (englishLevel: string | null) => void
 }
 
 const userAPI: StateCreator<AuthStore> = (set) => ({
-	userNickName: "",
-	userFullName: "",
-	userEmail: "",
-	userEnglishLevel: "",
-	userProfileImage: "",
-	token: "",
-	setNickName: (nickName: string) => set({ userNickName: nickName }),
-	setFullName: (fullName: string) => set({ userFullName: fullName }),
-	setUserEnglishLevel: (englishLevel: string) =>
+	userNickName: null,
+	userFullName: null,
+	userEmail: null,
+	userEnglishLevel: null,
+	userProfileImage: null,
+	token: null,
+	setNickName: (nickName: string | null) => set({ userNickName: nickName }),
+	setFullName: (fullName: string | null) => set({ userFullName: fullName }),
+	setUserEnglishLevel: (englishLevel: string | null) =>
 		set({ userEnglishLevel: englishLevel }),
-	setEmail: (email: string) => set({ userEmail: email }),
-	setProfileImage: (profileImage: string) =>
+	setEmail: (email: string | null) => set({ userEmail: email }),
+	setProfileImage: (profileImage: string | null) =>
 		set({ userProfileImage: profileImage }),
-	setToken: (token: string) => set({ token: token }),
+	setToken: (token: string | null) => set({ token: token }),
 })
 
 export const usePersonStore = create<AuthStore>()(

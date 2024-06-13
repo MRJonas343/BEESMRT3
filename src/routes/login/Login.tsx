@@ -11,12 +11,14 @@ import BasicModal from "@components/BasicModal"
 
 //* Assets
 import angryBee from "@assets/angryBee.webp"
+import happyBee from "@assets/abeja-shy.webp"
 
 //* Types
 import { userDataLogin } from "@types"
 
 const LogIn: React.FC = () => {
 	//*Store
+	const token = usePersonStore((state) => state.token)
 	const setUserNickName = usePersonStore((state) => state.setNickName)
 	const setUserFullName = usePersonStore((state) => state.setFullName)
 	const setUserEmail = usePersonStore((state) => state.setEmail)
@@ -96,43 +98,64 @@ const LogIn: React.FC = () => {
 		reset()
 	}
 
-	useEffect(() => {
-		//* Check if the user comes from Github
-		const queryString = window.location.search
-		const urlParams = new URLSearchParams(queryString)
-		const codeParam = urlParams.get("code")
-
-		async function getAccessToken() {
+	const checkUserSession = async () => {
+		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			await fetch(
-				`${BeeSMRTBackendURL}/getAccessTokenGithub?code=${codeParam}`,
-				{
-					method: "GET",
+			const response = await fetch(`${BeeSMRTBackendURL}/auth/checkjwt`, {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`,
 				},
-			)
-				.then((response) => {
-					return response.json()
-				})
-				.then((data) => {
-					if (data.access_token) {
-						localStorage.setItem("accessToken", data.access_token)
-					}
-				})
-			navigate("/MyAccount")
-		}
-		if (codeParam && localStorage.getItem("accessToken") === null) {
-			getAccessToken()
-		}
+			})
 
-		//*Check if the user is already logged in
-		if (localStorage.getItem("TokenBeesmrt")) {
-			navigate("/myaccount")
-		} else if (localStorage.getItem("TokenFacebook")) {
-			navigate("/myaccount")
-		} else if (localStorage.getItem("accessToken")) {
-			navigate("/myaccount")
+			if (response.status === 498) {
+				setToken(null)
+				setUserNickName(null)
+				setUserFullName(null)
+				setUserEmail(null)
+				setUserProfileImage(null)
+				setUserEnglishLevel(null)
+				setImageSrc(happyBee)
+				setMainMessage("Oh no!")
+				setMessage("You session has expired, please log in again")
+				setShowModal(true)
+				setTimeout(() => {
+					navigate("/home")
+				}, 3000)
+				return
+			}
+
+			if (response.status === 401) {
+				setToken(null)
+				setUserNickName(null)
+				setUserFullName(null)
+				setUserEmail(null)
+				setUserProfileImage(null)
+				setUserEnglishLevel(null)
+				setImageSrc(angryBee)
+				setMainMessage("Oh no!")
+				setMessage("You are not authorized, please log in again")
+				setShowModal(true)
+				setTimeout(() => {
+					navigate("/home")
+				}, 3000)
+				return
+			}
+
+			if (response.status === 200) {
+				navigate("/myaccount")
+				return
+			}
+		} catch (error) {
+			console.log("Error:", error)
 		}
-	}, [])
+	}
+
+	useEffect(() => {
+		if (token !== null) {
+			checkUserSession()
+		}
+	})
 
 	return (
 		<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
