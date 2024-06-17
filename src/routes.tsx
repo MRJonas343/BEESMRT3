@@ -41,6 +41,10 @@ const HangmanGameLevels = lazy(
 	() => import("@routes/games/hangmanGame/HangmanGameLevels"),
 )
 
+const HangmanGame1vs1 = lazy(
+	() => import("@routes/games/hangmanGame/HangmanGame1vs1"),
+)
+
 const RoutesTree = () => {
 	return (
 		<Suspense
@@ -85,6 +89,7 @@ const RoutesTree = () => {
 						element={<HangmanGameSingle />}
 					/>
 					<Route path="/games/hangmangameMode" element={<HangmanGameMode />} />
+					<Route path="/games/hangmangame1vs1" element={<HangmanGame1vs1 />} />
 
 					{/* DragDrop Game Routes */}
 					<Route

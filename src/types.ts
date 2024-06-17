@@ -147,3 +147,11 @@ export interface ModalSingleModeProps {
 	tryAgain: () => void
 	close: () => void
 }
+
+export interface HangmanGameStats1vs1Props {
+	activePlayer: "" | "player1" | "player2"
+	player1WonRounds: number
+	player2WonRounds: number
+	player1Mistakes: number
+	player2Mistakes: number
+}
