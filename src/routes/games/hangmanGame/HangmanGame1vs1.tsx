@@ -48,7 +48,7 @@ const HangmanGame1vs1: React.FC = () => {
 	const [hangmanImagePlayer2, setHangmanImagePlayer2] = useState(HangmanImg0)
 	const [player1Mistakes, setPlayer1Mistakes] = useState(0)
 	const [player2Mistakes, setPlayer2Mistakes] = useState(0)
-	const [showSpinningCoin, setShowSpinningCoin] = useState(true)
+	const [showSpinningCoin, setShowSpinningCoin] = useState(false)
 	const [wordToGess, setWordToGess] = useState("")
 	const [hint, setHint] = useState("")
 	const hangmanImages: { [key: number]: string } = {
@@ -81,6 +81,7 @@ const HangmanGame1vs1: React.FC = () => {
 			console.error("Error fetching data:", error)
 		}
 		setShowSpinner(false)
+		setShowSpinningCoin(!showSpinningCoin)
 	}
 
 	//* Spin the coin to decide who starts
@@ -357,7 +358,7 @@ const HangmanGame1vs1: React.FC = () => {
 						<h1 className="text-3xl font-Principal text-white text-3d text-center my-2">
 							Hangman Game
 						</h1>
-						<div className="bg-white/70 lg:max-w-[1600px] pb-8 w-11/12 h-auto rounded-lg mx-auto justify-evenly drop-shadow-lg lg:flex lg:flex-col lg:h-[70%]">
+						<div className="bg-white/70 lg:max-w-[1600px] pb-8 w-11/12 h-auto rounded-lg mx-auto justify-evenly drop-shadow-lg lg:flex lg:flex-col">
 							<HangmanStats1vs1
 								activePlayer={activePlayer}
 								player1Mistakes={player1Mistakes}
