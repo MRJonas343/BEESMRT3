@@ -119,7 +119,6 @@ const HangmanGame1vs1: React.FC = () => {
 
 	useEffect(() => {
 		fetchData()
-		setShowSpinningCoin(true)
 		initRound()
 	}, [])
 
