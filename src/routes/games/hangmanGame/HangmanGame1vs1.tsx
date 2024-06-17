@@ -34,6 +34,7 @@ const HangmanGame1vs1: React.FC = () => {
 	const [headsOrTails, setHeadsOrTails] = useState<number | undefined>(
 		undefined,
 	)
+	const [whoStarts, setWhoStarts] = useState("")
 	const [showSpinner, setShowSpinner] = useState(true)
 	const [activePlayer, setActivePlayer] = useState<"player1" | "player2" | "">(
 		"",
@@ -91,13 +92,16 @@ const HangmanGame1vs1: React.FC = () => {
 		setTimeout(() => {
 			if (newHeadsOrTails === 0) {
 				setActivePlayer("player1")
+				setWhoStarts("Player 1 Starts!!!")
 				activePlayerRef.current = "player1"
 			} else {
+				setWhoStarts("Player 2 Starts!!!")
 				setActivePlayer("player2")
 				activePlayerRef.current = "player2"
 			}
 		}, 3000)
 		setTimeout(() => {
+			setWhoStarts("")
 			setHeadsOrTails(undefined)
 			setShowSpinningCoin(!showSpinningCoin)
 		}, 5000)
@@ -143,8 +147,6 @@ const HangmanGame1vs1: React.FC = () => {
 
 			//*Check if the game is over
 			if (player2WonRoundsRef.current === 3) {
-				console.log(player1WonRoundsRef.current)
-				console.log(player2WonRoundsRef.current)
 				const winner = "Player 2"
 				setMainMessage("Game Over")
 				setMessage(`${winner} Won the game`)
@@ -178,8 +180,6 @@ const HangmanGame1vs1: React.FC = () => {
 			setPlayer1WonRounds((prevState) => prevState + 1)
 			//*Check if the game is over
 			if (player1WonRoundsRef.current === 3) {
-				console.log(player1WonRoundsRef.current)
-				console.log(player2WonRoundsRef.current)
 				const winner = "Player 1"
 				setMainMessage("Game Over")
 				setMessage(`${winner} Won the game`)
@@ -230,7 +230,6 @@ const HangmanGame1vs1: React.FC = () => {
 					activePlayerRef.current === "player1" ? "player2" : "player1"
 				return
 			}
-			console.log("si la letra ya esta en la palabra no deberia pasar aqui")
 
 			//* If the letter is in the word, add the index to the array
 			if (currentWord[i] === currentLetter) {
@@ -284,8 +283,6 @@ const HangmanGame1vs1: React.FC = () => {
 						{ duration: 2000 },
 					)
 				}
-				console.log(player1WonRoundsRef.current)
-				console.log(player2WonRoundsRef.current)
 				//*Check if the game is over
 				if (
 					player1WonRoundsRef.current === 3 ||
@@ -410,7 +407,7 @@ const HangmanGame1vs1: React.FC = () => {
 							showModalCoin={showSpinningCoin}
 							headsOrTails={headsOrTails}
 							changeCoin={changeCoin}
-							activePlayer={activePlayer}
+							activePlayer={whoStarts}
 						/>
 						<BasicModal
 							showModal={showModal}
