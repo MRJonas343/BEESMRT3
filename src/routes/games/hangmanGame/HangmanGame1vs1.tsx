@@ -48,7 +48,7 @@ const HangmanGame1vs1: React.FC = () => {
 	const [hangmanImagePlayer2, setHangmanImagePlayer2] = useState(HangmanImg0)
 	const [player1Mistakes, setPlayer1Mistakes] = useState(0)
 	const [player2Mistakes, setPlayer2Mistakes] = useState(0)
-	const [showSpinningCoin, setShowSpinningCoin] = useState(false)
+	const [showSpinningCoin, setShowSpinningCoin] = useState(true)
 	const [wordToGess, setWordToGess] = useState("")
 	const [hint, setHint] = useState("")
 	const hangmanImages: { [key: number]: string } = {
@@ -357,7 +357,7 @@ const HangmanGame1vs1: React.FC = () => {
 						<h1 className="text-3xl font-Principal text-white text-3d text-center my-2">
 							Hangman Game
 						</h1>
-						<div className="bg-white/70 lg:max-w-[1600px] pb-8 w-11/12 h-auto rounded-lg mx-auto justify-evenly drop-shadow-lg lg:flex lg:flex-col lg:h-[70%] lg:p-10">
+						<div className="bg-white/70 lg:max-w-[1600px] pb-8 w-11/12 h-auto rounded-lg mx-auto justify-evenly drop-shadow-lg lg:flex lg:flex-col lg:h-[70%]">
 							<HangmanStats1vs1
 								activePlayer={activePlayer}
 								player1Mistakes={player1Mistakes}
@@ -371,12 +371,12 @@ const HangmanGame1vs1: React.FC = () => {
 										<img
 											alt="hangman"
 											src={hangmanImagePlayer1}
-											className="w-32 lg:w-40"
+											className="w-32"
 										/>
 										<img
 											alt="hangman"
 											src={hangmanImagePlayer2}
-											className="w-32 lg:w-40"
+											className="w-32"
 										/>
 									</div>
 								</div>
