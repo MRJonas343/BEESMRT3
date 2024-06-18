@@ -60,7 +60,6 @@ const MemoryGameSingleMode: React.FC = () => {
 	//* Get data from BeeSMRT API
 	const fetchData = async () => {
 		try {
-			//? To do : fetch data from the API with the level as a header
 			const { level, trophys } = location.state
 			levelRef.current = level
 			const levelName = String(`${level.substring(2, 7)} ${level.substring(7)}`)
@@ -69,18 +68,17 @@ const MemoryGameSingleMode: React.FC = () => {
 			setLevelName(levelName)
 			setEnglishLevel(englishLevel)
 			setTrophys(trophys)
-
-			// const levelNumber = parseInt(level)
-			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			// const headers = new Headers()
-			// headers.set("englishLevel", level)
-			// const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
-			// 	headers,
-			// })
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			const headers = new Headers()
+			headers.set("englishLevel", level)
+			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
+				headers,
+			})
 
 			//* const jsonData = await response.json()
-			const jsonData = cardsMemoryGame
-			setShowSpinner(false)
+			const jsonData = await response.json()
+			console.log(jsonData)
+			setShowSpinner(!showSpinner)
 			initGame(jsonData)
 		} catch (error) {
 			console.error("Error fetching data:", error)
