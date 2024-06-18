@@ -1,6 +1,5 @@
 import { Route, Routes, HashRouter } from "react-router-dom"
 import { Suspense, lazy } from "react"
-import MyAccNew from "@routes/myAccount/MyAccNew"
 
 //* Components
 import Spinner from "@components/Spinner"
@@ -11,7 +10,7 @@ const NotFound = lazy(() => import("@routes/notFound/NotFound"))
 const LogIn = lazy(() => import("@routes/login/Login"))
 const SignUp = lazy(() => import("@routes/signup/SignUp"))
 const PrivacyPolicy = lazy(() => import("@routes/privacypolicy/PrivacyPolicy"))
-const MyAccount = lazy(() => import("@routes/myAccount/MyAccount"))
+const MyAccNew = lazy(() => import("@routes/myAccount/MyAccNew"))
 const MemoryGameMode = lazy(
 	() => import("@routes/games/memoryGame/MemoryGameMode"),
 )
