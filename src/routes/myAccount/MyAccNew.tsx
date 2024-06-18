@@ -1,9 +1,13 @@
 import NavBar from "@components/NavBar"
+import ProgressBar from "@ramonak/react-progress-bar"
 
 function MyAccNew() {
+	const gradient =
+		"linear-gradient(90deg, rgba(251, 63, 196, 1) 0%, rgba(248, 252, 70, 1) 100%)"
+
 	return (
-		<div className="bg-gray-950 h-screen">
-			<div className="bg-Gradient1 py-1 pb-3">
+		<div className="bg-Gradient1 h-screen animation-bg-ma">
+			<div className="py-1 pb-3">
 				<NavBar />
 			</div>
 			<div className="flex flex-wrap justify-center mt-16 gap-8">
@@ -34,9 +38,12 @@ function MyAccNew() {
 				</div>
 				<div className="bg-white grid gap-2 p-8 rounded-lg w-full mx-4 lg:mx-7">
 					<h1 className="m-0 font-Secundaria text-lg">LEVEL PROGRESS:</h1>
-					<div className="bg-Gradient3 flex justify-center p-1 rounded-full text-center">
-						<span className="font-semibold">LEVEL MAX. [500 LV.]</span>
-					</div>
+					<ProgressBar
+						bgColor={gradient}
+						labelColor="black"
+						height={30}
+						completed={100}
+					/>
 					<div className="flex justify-around mt-10">
 						<div className="grid justify-items-center gap-2">
 							<h1 className="font-semibold font-Secundaria">Trophies</h1>

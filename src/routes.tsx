@@ -64,7 +64,7 @@ const RoutesTree = () => {
 					<Route path="/login" element={<LogIn />} />
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
-					<Route path="/myaccount" element={<MyAccount />} />
+					<Route path="/myaccount" element={<MyAccNew />} />
 					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
 
 					{/* Memory Game Routes */}
