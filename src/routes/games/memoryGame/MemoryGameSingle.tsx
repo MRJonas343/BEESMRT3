@@ -1,7 +1,6 @@
 import { useState, useEffect, FormEvent, useRef } from "react"
 import confetti from "canvas-confetti"
 import { Toaster, toast } from "sonner"
-import cardsMemoryGame from "./dataTest.json"
 import { useLocation, useNavigate } from "react-router-dom"
 
 //* Components
@@ -77,7 +76,6 @@ const MemoryGameSingleMode: React.FC = () => {
 
 			//* const jsonData = await response.json()
 			const jsonData = await response.json()
-			console.log(jsonData)
 			setShowSpinner(!showSpinner)
 			initGame(jsonData)
 		} catch (error) {
@@ -227,7 +225,7 @@ const MemoryGameSingleMode: React.FC = () => {
 		navigate("/games/memorygameLevels")
 	}
 
-	const nextLevel = () => {
+	const nextLevel = async () => {
 		setModalWinOpen(false)
 		try {
 			const currentLevel = levelRef.current
@@ -262,19 +260,16 @@ const MemoryGameSingleMode: React.FC = () => {
 				setEnglishLevel(nextEnglishLevel)
 
 				//*Ask the backend for the next level
-				// const levelNumber = parseInt(level)
-				// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-				// const headers = new Headers()
-				// headers.set("englishLevel", level)
-				// const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
-				// 	headers,
-				// })
-				// const jsonData = await response.json()
+				const levelNumber = nextLevelName
+				const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+				const headers = new Headers()
+				headers.set("englishLevel", levelNumber)
+				const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
+					headers,
+				})
+				const jsonData = await response.json()
 				resetGame()
-				const jsonData = cardsMemoryGame
-
 				initGame(jsonData)
-
 				setShowSpinner(false)
 				return
 			}
@@ -291,16 +286,13 @@ const MemoryGameSingleMode: React.FC = () => {
 			setEnglishLevel(englishLevel)
 
 			//*Ask the backend for the next level
-			// const levelNumber = parseInt(level)
-			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			// const headers = new Headers()
-			// headers.set("englishLevel", level)
-			// const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
-			// 	headers,
-			// })
-			// const jsonData = await response.json()
-
-			const jsonData = cardsMemoryGame
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			const headers = new Headers()
+			headers.set("englishLevel", nextLevelName)
+			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
+				headers,
+			})
+			const jsonData = await response.json()
 			initGame(jsonData)
 			setShowSpinner(false)
 			return
