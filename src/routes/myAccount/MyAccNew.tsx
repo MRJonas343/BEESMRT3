@@ -41,7 +41,7 @@ function MyAccNew() {
 					<ProgressBar
 						bgColor={gradient}
 						labelColor="black"
-						height={30}
+						height={"30"}
 						completed={100}
 					/>
 					<div className="flex justify-around mt-10">
