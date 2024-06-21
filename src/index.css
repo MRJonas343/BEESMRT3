@@ -113,3 +113,7 @@
   transition: 3s;
   transform: perspective(600px) rotateY(2160deg);
 }
+
+.transition-btn-1 {
+  transition: color 0.3s;
+}

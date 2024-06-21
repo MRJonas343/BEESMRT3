@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
-
 //*Components
 import NavBar from "@components/NavBar"
-
 //*Assets
 import VSImage from "@assets/competencia.webp"
 import Single from "@assets/soltero.webp"
