@@ -1,6 +1,5 @@
 import { Route, Routes, HashRouter } from "react-router-dom"
 import { Suspense, lazy } from "react"
-
 //* Components
 import Spinner from "@components/Spinner"
 import HomePage from "@routes/home/HomePage"
@@ -42,6 +41,9 @@ const HangmanGameLevels = lazy(
 
 const HangmanGame1vs1 = lazy(
 	() => import("@routes/games/hangmanGame/HangmanGame1vs1"),
+)
+const DragDropGameLevels = lazy(
+	() => import("@routes/games/dragDropGame/DragDropLevels"),
 )
 
 const RoutesTree = () => {
@@ -98,6 +100,10 @@ const RoutesTree = () => {
 					<Route
 						path="/games/dragdropgameSingle"
 						element={<DragDropGameSingle />}
+					/>
+					<Route
+						path="/games/dragdropgameLevels"
+						element={<DragDropGameLevels />}
 					/>
 				</Routes>
 			</HashRouter>

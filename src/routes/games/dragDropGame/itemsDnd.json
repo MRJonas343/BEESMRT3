@@ -34,5 +34,77 @@
         "word" : "Ribbon",
         "description" : "A long, narrow strip of fabric",
         "image" : "https://i.ibb.co/QFT0wzM/cinta-adhesiva.png"
+    },
+    {
+        "id" : 7,
+        "word" : "banana",
+        "description" : "A long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fplatanos.png"
+    },
+    {
+        "id" : 8,
+        "word" : "apple",
+        "description" : "A round fruit with red or green skin and a whitish interior.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fmanzana.png"
+    },
+    {
+        "id" : 9,
+        "word" : "grape",
+        "description" : "A small, sweet, seedless green fruit.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fuva.png"
+    },
+    {
+        "id" : 10,
+        "word" : "orange",
+        "description" : "A round juicy citrus fruit with a tough bright reddish-yellow rind.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fnaranja.png"
+    },
+    {
+        "id" : 11,
+        "word" : "pear",
+        "description" : "A sweet yellowish- or brownish-green edible fruit that is typically narrow at the stalk and wider toward the base.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Ffruta.png"
+    },
+    {
+        "id" : 12,
+        "word" : "strawberry",
+        "description" : "A sweet soft red fruit with a seed-studded surface.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Ffresa.png"
+    },
+    {
+        "id" : 13,
+        "word" : "watermelon",
+        "description" : "A large melon with a hard, green rind and sweet, juicy, usually red pulp.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fsandia.png"
+    },
+    {
+        "id" : 14,
+        "word" : "pineapple",
+        "description" : "A tropical plant with an edible multiple fruit consisting of coalesced berries, also called pineapples, and the most economically significant plant in the family Bromeliaceae.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fpina.png"
+    },
+    {
+        "id" : 15,
+        "word" : "kiwi",
+        "description" : "A flightless bird native to New Zealand, with hair-like feathers, a long downcurved bill, and short legs.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fkiwi.png"
+    },
+    {
+        "id" : 16,
+        "word" : "mango",
+        "description" : "A stone fruit produced from numerous species of tropical trees belonging to the flowering plant genus Mangifera, cultivated mostly for their edible fruit.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fmango.png"
+    },
+    {
+        "id" : 17,
+        "word" : "avocado",
+        "description" : "A fruit with rough dark green or black skin, smooth light green flesh, and a large seed in the middle.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Fpalta.png"
+    },
+    {
+        "id" : 18,
+        "word" : "lemon",
+        "description" : "A yellow, oval citrus fruit with thick skin and fragrant, acidic juice.",
+        "image" : "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/img%2Flimon.png"
     }
 ]

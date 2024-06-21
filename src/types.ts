@@ -55,7 +55,7 @@ export interface KeyHangmanGameProps {
 	element: string
 }
 
-export interface DraggableItemProps {
+export interface DraggableItemType {
 	idDraggableItem: number
 	draggableImgSrc: string | null
 	shouldDissaperd: boolean
@@ -154,4 +154,12 @@ export interface HangmanGameStats1vs1Props {
 	player2WonRounds: number
 	player1Mistakes: number
 	player2Mistakes: number
+}
+
+export interface DragAndDropGameSingleStats {
+	englishLevel: string
+	level: string
+	completedPercentage: number
+	trophys: number
+	round: number
 }

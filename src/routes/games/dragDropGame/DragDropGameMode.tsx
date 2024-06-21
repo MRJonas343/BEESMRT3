@@ -19,7 +19,7 @@ const DragDropGameMode: React.FC = () => {
 				</h1>
 			</div>
 			<section className="flex flex-col lg:flex-row lg:h-[80dvh] lg:w-[90dvw] lg:mx-auto gap-5 lg:gap-0 lg:justify-evenly items-center">
-				<Link to="/games/dragdropgameSingle">
+				<Link to="/games/dragdropgameLevels">
 					<div className="w-[60dvw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh] lg:flex lg:flex-col lg:items-center lg:justify-center">
 						<div className="overflow-hidden flex items-center justify-center">
 							<img className="w-20 lg:w-28" src={Single} alt="" />

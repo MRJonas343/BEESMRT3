@@ -1,9 +1,9 @@
 import { useDraggable } from "@dnd-kit/core"
 import { CSS } from "@dnd-kit/utilities"
 import { useState, useEffect } from "react"
-import { DraggableItemProps } from "@types"
+import { DraggableItemType } from "@types"
 
-const DraggableItem: React.FC<DraggableItemProps> = ({
+const DraggableItem: React.FC<DraggableItemType> = ({
 	idDraggableItem,
 	draggableImgSrc,
 	shouldDissaperd,
@@ -17,7 +17,7 @@ const DraggableItem: React.FC<DraggableItemProps> = ({
 	useEffect(() => {
 		if (!shouldDissaperd) {
 			setClassNameItem(
-				"elevetedButton bg-white/70 rounded-lg flex items-center justify-center w-36 h-20 lg:w-36 lg:h-36",
+				"elevetedButton bg-white/70 rounded-lg flex items-center justify-center w-32 lg:w-36 lg:h-36",
 			)
 		} else {
 			setClassNameItem("hidden")
@@ -43,7 +43,7 @@ const DraggableItem: React.FC<DraggableItemProps> = ({
 			<img
 				alt="draggableImgSrc"
 				src={draggableImgSrc}
-				className="w-20 h-20 p-2 lg:w-28 lg:h-28"
+				className="w-20 p-2 lg:w-28 lg:h-28"
 			/>
 		</div>
 	)
