@@ -326,7 +326,6 @@ const MemoryGameSingleMode: React.FC = () => {
 			})
 
 			const jsonData = await response.json()
-			console.log(jsonData)
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
