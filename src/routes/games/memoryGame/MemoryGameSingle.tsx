@@ -2,6 +2,7 @@ import { useState, useEffect, FormEvent, useRef } from "react"
 import confetti from "canvas-confetti"
 import { Toaster, toast } from "sonner"
 import { useLocation, useNavigate } from "react-router-dom"
+import { usePersonStore } from "../../../store/auth"
 
 //* Components
 import NavBar from "@components/NavBar"
@@ -21,6 +22,8 @@ const MemoryGameSingleMode: React.FC = () => {
 	//* Location
 	const location = useLocation()
 	const navigate = useNavigate()
+
+	const userEmail = usePersonStore((state) => state.userEmail)
 
 	//* Conffeti effect
 	const duration = 15 * 1000
@@ -162,6 +165,7 @@ const MemoryGameSingleMode: React.FC = () => {
 
 	//*Throw confetti
 	const throwConfetti = () => {
+		assignTrophys()
 		setMainMessage("Victory")
 		setMessage("You have completed the level")
 		setImageMessage(TrofeoImg)
@@ -296,6 +300,33 @@ const MemoryGameSingleMode: React.FC = () => {
 			initGame(jsonData)
 			setShowSpinner(false)
 			return
+		} catch (error) {
+			console.error("Error fetching data:", error)
+		}
+	}
+
+	const assignTrophys = async () => {
+		if (!userEmail) return
+
+		const data = {
+			email: userEmail,
+			game: "MemoryGame",
+			level: levelRef.current,
+		}
+
+		try {
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+
+			const response = await fetch(`${BeeSMRTBackendURL}/assignTrophys`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			})
+
+			const jsonData = await response.json()
+			console.log(jsonData)
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
