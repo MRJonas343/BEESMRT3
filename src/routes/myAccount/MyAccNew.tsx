@@ -1,6 +1,6 @@
 import NavBar from "@components/NavBar"
 import ProgressBar from "@ramonak/react-progress-bar"
-import { usePersonStore } from "../../store/auth"
+import { usePersonStore } from "@store/auth"
 import { useEffect, useState } from "react"
 import BasicModal from "@components/BasicModal"
 import { useNavigate } from "react-router-dom"
