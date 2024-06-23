@@ -317,15 +317,13 @@ const MemoryGameSingleMode: React.FC = () => {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 
-			const response = await fetch(`${BeeSMRTBackendURL}/assignTrophys`, {
+			await fetch(`${BeeSMRTBackendURL}/assignTrophys`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(data),
 			})
-
-			const jsonData = await response.json()
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
