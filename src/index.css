@@ -117,3 +117,7 @@
 .transition-btn-1 {
   transition: color 0.3s;
 }
+
+.basisAdvance {
+  flex: 1 0 22%
+}

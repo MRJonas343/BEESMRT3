@@ -13,7 +13,6 @@ function MyAccNew() {
 	const [message, setMessage] = useState("")
 	const [imageSrc, setImageSrc] = useState("")
 	const token = usePersonStore((state) => state.token)
-	const userFullName = usePersonStore((state) => state.userFullName)
 	const userNickName = usePersonStore((state) => state.userNickName)
 	const userProfileImage = String(
 		usePersonStore((state) => state.userProfileImage),
@@ -39,65 +38,157 @@ function MyAccNew() {
 		"linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
 
 	return (
-		<div className="w-screen h-screen bg-violet-700 overflow-x-hidden">
-			<div className="py-1 pb-3 bg-gradient2">
+		<main className="w-screen h-screen bg-violet-700 overflow-x-hidden">
+			<div className="py-1 pb-3">
 				<NavBar />
 			</div>
 
-			<div className="flex flex-wrap justify-center mt-6 gap-8">
-				<div className="bg-white flex gap-5 p-6 rounded-lg w-11/12 sm:w-1/3">
-					<img width={100} src={userProfileImage} alt="imgProfDef" />
-					<div className="grid">
-						<h1 className="font-semibold">{userNickName}</h1>
-						<h2 className="">{userFullName}</h2>
-						<h2>Grade: Amateur</h2>
-						<h2>English Level : {englishLevel}</h2>
-					</div>
-				</div>
-				<div className="bg-white grid p-8 rounded-lg w-11/12 sm:w-3/5">
-					<h1 className="font-bold m-0">Advancements</h1>
-					<div className="flex flex-wrap gap-4 justify-center">
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-						<img src="/medallas1.svg" alt="imgAd" />
-					</div>
-				</div>
-				<div className="bg-white grid gap-2 p-8 rounded-lg w-full mx-4 lg:mx-7 mb-10">
-					<h1 className="m-0 font-Secundaria text-lg">LEVEL PROGRESS:</h1>
-					<ProgressBar
-						bgColor={gradient}
-						labelColor="black"
-						height={"30"}
-						completed={100}
+			<section className="bg-white flex mx-8 rounded-md">
+				<div className="p-4 justify-end flex">
+					<img
+						height={110}
+						width={110}
+						src={userProfileImage}
+						alt="ProfileImage"
+						className="w-[110px] h-[110px] rounded-full"
 					/>
-					<div className="flex justify-around mt-10">
-						<div className="grid justify-items-center gap-2">
-							<h1 className="font-semibold font-Secundaria">Trophies</h1>
-							<img
-								className="w-10 md:w-14"
-								src="/medallas1.svg"
-								alt="imgTrophy"
-							/>
-							<span className="font-semibold">10,203,343 Trophies</span>
-						</div>
-						<div className="grid justify-items-center items-center">
-							<h1 className="font-semibold font-Secundaria">Global Position</h1>
-							<div className="text-3xl font-bold flex items-center gap-2">
-								<img className="w-10 md:w-14" src="/beeTop.svg" alt="imgtop" />
-								#1
-							</div>
-						</div>
+				</div>
+				<div className="flex gap-4 flex-col justify-center ">
+					<p className="font-Secundaria text-xl font-semibold">
+						{userNickName}
+					</p>
+					<h2 className="font-Secundaria text-lg">Newbie</h2>
+				</div>
+				<div className="flex flex-1 justify-center pl-10 items-center">
+					<p className="font-Principal text-4xl text-Yellow1 text-3d"> # 230</p>
+				</div>
+			</section>
+
+			<section className="bg-white mx-8 mt-4 rounded-md p-6">
+				<h3 className="font-Secundaria text-xl font-semibold pb-6">
+					Advancements
+				</h3>
+				<div className="flex justify-around flex-wrap">
+					<div className="flex flex-col items-center basisAdvance pb-4">
+						<img
+							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/ganador.png"
+							alt="medal"
+							className="w-16 h-16"
+							width={64}
+							height={64}
+						/>
+						<p className="font-Secundaria text-lg text-center">Winner</p>
+					</div>
+					<div className="flex flex-col items-center basisAdvance pb-4">
+						<img
+							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/insignia.png"
+							alt="medal"
+							className="w-16 h-16"
+							width={64}
+							height={64}
+						/>
+						<p className="font-Secundaria text-lg text-center">First Game</p>
+					</div>
+					<div className="flex flex-col items-center basisAdvance pb-4">
+						<img
+							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/podio.png"
+							alt="medal"
+							className="w-16 h-16"
+							width={64}
+							height={64}
+						/>
+						<p className="font-Secundaria text-lg text-center">Top 1</p>
+					</div>
+					<div className="flex flex-col items-center basisAdvance pb-4">
+						<img
+							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/recompensa.png"
+							alt="medal"
+							className="w-16 h-16"
+							width={64}
+							height={64}
+						/>
+						<p className="font-Secundaria text-lg text-center">1000 Trophies</p>
 					</div>
 				</div>
-			</div>
+			</section>
+
+			<section className="bg-white mx-8 mt-4 rounded-md p-6">
+				<h3 className="font-Secundaria text-xl font-semibold pb-6">Progress</h3>
+				<div className="flex flex-col">
+					<ProgressBar
+						completed={60}
+						bgColor={gradient}
+						height="30px"
+						isLabelVisible={true}
+						className="w-full font-Secundaria drop-shadow-md text-3d md:text-3xl"
+					/>
+				</div>
+				<section className="flex justify-around pt-6 text-center">
+					<div>
+						<p className="font-Secundaria text-xl font-semibold pb-6">
+							Trophies
+						</p>
+						<img
+							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/ganador.png"
+							alt="Trofeo"
+							className="w-16 h-16"
+							width={64}
+							height={64}
+						/>
+						<span className="font-Secundaria text-lg text-center pt-2">
+							1400
+						</span>
+					</div>
+					<div>
+						<p className="font-Secundaria text-xl font-semibold pb-6">
+							EnglishLevel
+						</p>
+						<p className="font-Principal text-5xl pt-4 text-Yellow1 text-3d">
+							{englishLevel}
+						</p>
+						<span className="font-Secundaria text-lg text-center">
+							Intermediate
+						</span>
+					</div>
+					<div className="flex flex-col items-center">
+						<p className="font-Secundaria text-xl font-semibold pb-6">
+							Global Position
+						</p>
+						<img
+							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/podio.png"
+							alt="Trofeo"
+							className="w-16 h-16"
+							width={64}
+							height={64}
+						/>
+						<span className="font-Secundaria text-lg pt-2">#230</span>
+					</div>
+				</section>
+			</section>
+
+			<section className="bg-white mx-8 mt-4 rounded-md p-6">
+				<div className="flex justify-around pb-4">
+					<button
+						className="bg-[#9E00FF] py-4 rounded-lg w-[130px] font-Secundaria text-white"
+						type="button"
+					>
+						See LeaderBoard
+					</button>
+					<button
+						className="bg-[#30A127] py-4 rounded-lg w-[130px] font-Secundaria text-white"
+						type="button"
+					>
+						Edit Profile
+					</button>
+					<button
+						className="bg-[#E93030] py-4 rounded-lg w-[130px] font-Secundaria text-white"
+						type="button"
+					>
+						Log out
+					</button>
+				</div>
+			</section>
+
 			<BasicModal
 				showModal={showModal}
 				closeModal={closeModal}
@@ -105,7 +196,7 @@ function MyAccNew() {
 				message={message}
 				imageSrc={imageSrc}
 			/>
-		</div>
+		</main>
 	)
 }
 
