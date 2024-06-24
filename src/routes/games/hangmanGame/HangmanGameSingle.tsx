@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, MouseEvent } from "react"
 import confetti from "canvas-confetti"
-import HangmanDemo from "./hangmanDemo.json"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Toaster, toast } from "sonner"
+import { usePersonStore } from "@store/auth"
 
 //* Componentes
 import NavBar from "@components/NavBar"
@@ -28,6 +28,8 @@ import shyBee from "@assets/abeja-shy.webp"
 import { HangmanWords } from "@types"
 
 const HangmanGameSingle: React.FC = () => {
+	const userEmail = usePersonStore((state) => state.userEmail)
+
 	//* Conffeti effect
 	const randomInRange = (min: number, max: number) => {
 		return Math.random() * (max - min) + min
@@ -95,16 +97,15 @@ const HangmanGameSingle: React.FC = () => {
 			setEnglishLevel(englishLevel)
 			setTrophys(trophys)
 
-			// const levelNumber = parseInt(level)
-			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			// const headers = new Headers()
-			// headers.set("englishLevel", level)
-			// const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
-			// 	headers,
-			// })
-			//const Words = await response.json()
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			const headers = new Headers()
+			headers.set("level", level)
+			const response = await fetch(`${BeeSMRTBackendURL}/getHangmanSingle`, {
+				headers,
+			})
 
-			const Words: HangmanWords[] = HangmanDemo
+			const Words = await response.json()
+
 			hangmanWordsRef.current = Words
 			setRoundContent()
 
@@ -195,11 +196,11 @@ const HangmanGameSingle: React.FC = () => {
 		//* If the letter is not in the word, update the attemps and the hangman image
 		setAttemps((prevState) => prevState + 1)
 		IncorrectAttempsRef.current += 1
-		console.log(IncorrectAttempsRef.current)
 		setHangmanImg(hangmanImages[IncorrectAttempsRef.current])
 	}
 
 	const showWinning = () => {
+		assignTrophys()
 		setImageSrc(Trofeo)
 		setMessage("You have won")
 		setMainMessage("Congratulations")
@@ -219,9 +220,7 @@ const HangmanGameSingle: React.FC = () => {
 	}
 
 	const tryAgain = () => {
-		console.log("try again")
 		IncorrectAttempsRef.current = 0
-		console.log(IncorrectAttempsRef.current)
 		setRound((prevRound) => prevRound - 1)
 		setRoundContent()
 		setShowModal(false)
@@ -232,7 +231,7 @@ const HangmanGameSingle: React.FC = () => {
 		navigate("/games/hangmangameLevels")
 	}
 
-	const nextLevel = () => {
+	const nextLevel = async () => {
 		setShowSpinner(true)
 		setShowModal(false)
 		try {
@@ -267,16 +266,14 @@ const HangmanGameSingle: React.FC = () => {
 				setEnglishLevel(nextEnglishLevel)
 
 				//*Ask the backend for the next level
-				// const levelNumber = parseInt(level)
-				// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-				// const headers = new Headers()
-				// headers.set("englishLevel", level)
-				// const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
-				// 	headers,
-				// })
-				//const Words = await response.json()
+				const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+				const headers = new Headers()
+				headers.set("level", levelRef.current)
+				const response = await fetch(`${BeeSMRTBackendURL}/getHangmanSingle`, {
+					headers,
+				})
+				const Words = await response.json()
 
-				const Words: HangmanWords[] = HangmanDemo
 				hangmanWordsRef.current = Words
 				round.current = 0
 				setRound(0)
@@ -295,16 +292,14 @@ const HangmanGameSingle: React.FC = () => {
 			setEnglishLevel(englishLevel)
 
 			//*Ask the backend for the next level
-			// const levelNumber = parseInt(level)
-			// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-			// const headers = new Headers()
-			// headers.set("englishLevel", level)
-			// const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
-			// 	headers,
-			// })
-			//const Words = await response.json()
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+			const headers = new Headers()
+			headers.set("level", levelRef.current)
+			const response = await fetch(`${BeeSMRTBackendURL}/getHangmanSingle`, {
+				headers,
+			})
+			const Words = await response.json()
 
-			const Words: HangmanWords[] = HangmanDemo
 			hangmanWordsRef.current = Words
 			round.current = 0
 			setRound(0)
@@ -332,6 +327,30 @@ const HangmanGameSingle: React.FC = () => {
 	useEffect(() => {
 		fetchData()
 	}, [])
+
+	const assignTrophys = async () => {
+		if (!userEmail) return
+
+		const data = {
+			email: userEmail,
+			game: "HangmanGame",
+			level: levelRef.current,
+		}
+
+		try {
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+
+			await fetch(`${BeeSMRTBackendURL}/assignTrophys`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			})
+		} catch (error) {
+			console.error("Error fetching data:", error)
+		}
+	}
 
 	return (
 		<>
