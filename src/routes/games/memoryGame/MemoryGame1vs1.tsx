@@ -56,7 +56,7 @@ const MemoryGame1vs1: React.FC = () => {
 		try {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 			const headers = new Headers()
-			headers.set("englishLevel", "B1Level4")
+			headers.set("englishLevel", "B1Level1")
 			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
 				headers,
 			})
