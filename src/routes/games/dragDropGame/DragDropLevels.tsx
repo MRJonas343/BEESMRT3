@@ -111,7 +111,7 @@ const DragAndDropLevels = () => {
 		)
 		const trophys = levelObject?.Trophys
 		const level = levelObject?.Level
-		navigate("/games/memorygameSingle", { state: { level, trophys } })
+		navigate("/games/dragdropgameSingle", { state: { level, trophys } })
 	}
 
 	return (
