@@ -6,18 +6,28 @@ import BasicModal from "@components/BasicModal"
 import { useNavigate } from "react-router-dom"
 import shyBee from "@assets/abeja-shy.webp"
 
-function MyAccNew() {
+const MyAccNew: React.FC = () => {
 	const navigate = useNavigate()
 	const [showModal, setShowModal] = useState(false)
 	const [mainMessage, setMainMessage] = useState("")
 	const [message, setMessage] = useState("")
 	const [imageSrc, setImageSrc] = useState("")
+	const [totalTrophies, setTotalTrophies] = useState(0)
 	const token = usePersonStore((state) => state.token)
 	const userNickName = usePersonStore((state) => state.userNickName)
 	const userProfileImage = String(
 		usePersonStore((state) => state.userProfileImage),
 	)
 	const englishLevel = usePersonStore((state) => state.userEnglishLevel)
+	const userEmail = usePersonStore((state) => state.userEmail)
+	const setUserNickName = usePersonStore((state) => state.setNickName)
+	const setUserProfileImage = usePersonStore((state) => state.setProfileImage)
+	const setUserEnglishLevel = usePersonStore(
+		(state) => state.setUserEnglishLevel,
+	)
+	const setToken = usePersonStore((state) => state.setToken)
+	const setUserEmail = usePersonStore((state) => state.setEmail)
+	const setUserFullName = usePersonStore((state) => state.setFullName)
 
 	useEffect(() => {
 		if (!token) {
@@ -26,12 +36,37 @@ function MyAccNew() {
 			setImageSrc(shyBee)
 			setShowModal(true)
 		} else {
+			fetchUserData()
 		}
 	}, [])
 
 	const closeModal = () => {
 		setShowModal(false)
 		navigate("/login")
+	}
+
+	const fetchUserData = async () => {
+		if (!userEmail) return
+		const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+		const response = await fetch(`${BeeSMRTBackendURL}/getUserInfoDashboard`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				email: userEmail,
+			},
+		})
+		const data = await response.json()
+		setTotalTrophies(data[0].TotalTrophies)
+	}
+
+	const logOut = () => {
+		setUserNickName(null)
+		setUserProfileImage(null)
+		setUserEnglishLevel(null)
+		setToken(null)
+		setUserEmail(null)
+		setUserFullName(null)
+		navigate("/")
 	}
 
 	const gradient =
@@ -147,7 +182,7 @@ function MyAccNew() {
 								height={64}
 							/>
 							<span className="font-Secundaria text-lg text-center pt-2">
-								1400
+								{totalTrophies}
 							</span>
 						</div>
 						<div>
@@ -194,6 +229,7 @@ function MyAccNew() {
 						<button
 							className="bg-[#E93030] rounded-lg w-[110px] font-Principal text-white"
 							type="button"
+							onClick={logOut}
 						>
 							Log out
 						</button>
