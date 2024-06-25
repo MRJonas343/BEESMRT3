@@ -109,14 +109,16 @@ const MemoryGameLevels = () => {
 		)
 		const trophys = levelObject?.Trophys
 		const level = levelObject?.Level
-		navigate("/games/memorygameSingle", { state: { level, trophys } })
+		navigate("/games/dragdropgameSingle", { state: { level, trophys } })
 	}
 
 	return (
 		<div className="w-screen h-screen bg-Gradient2 overflow-x-hidden">
 			<NavBar />
 			<div className="bg-white m-6 p-10 pb-12 rounded-md text-center">
-				<div className="font-Secundaria text-3xl py-3">Memory Game Levels</div>
+				<div className="font-Secundaria text-3xl py-3">
+					Drag and Drop Levels :
+				</div>
 				<div className="flex justify-center gap-4 items-center">
 					<h2 className="font-bold">English level :</h2>
 					<select
