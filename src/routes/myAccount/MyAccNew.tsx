@@ -39,13 +39,13 @@ function MyAccNew() {
 
 	return (
 		<main className="w-screen h-screen bg-violet-700 overflow-x-hidden">
-			<div className="py-1 pb-3">
+			<div className="py-1 pb-3 ">
 				<NavBar />
 			</div>
 
 			<section className="max-w-[1300px] flex flex-col mx-auto">
 				<div className="lg:flex">
-					<section className="bg-white flex mx-6 rounded-md lg:w-2/5 lg:p-4">
+					<section className="bg-white/90 shadow-lg flex mx-6 rounded-md lg:w-2/5 lg:p-4">
 						<div className="p-4 justify-end flex lg:justify-start">
 							<img
 								height={110}
@@ -68,7 +68,7 @@ function MyAccNew() {
 						</div>
 					</section>
 
-					<section className="bg-white mx-6 mt-8 rounded-md p-6 lg:w-3/5 lg:mt-0">
+					<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6 lg:w-3/5 lg:mt-0">
 						<h3 className="font-Secundaria text-xl font-semibold pb-6">
 							Advancements
 						</h3>
@@ -121,7 +121,7 @@ function MyAccNew() {
 					</section>
 				</div>
 
-				<section className="bg-white mx-6 mt-8 rounded-md p-6">
+				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6">
 					<h3 className="font-Secundaria text-xl font-semibold pb-6">
 						Progress
 					</h3>
@@ -129,7 +129,7 @@ function MyAccNew() {
 						<ProgressBar
 							completed={60}
 							bgColor={gradient}
-							height="30px"
+							height="40px"
 							isLabelVisible={true}
 							className="w-full font-Secundaria drop-shadow-md text-3d md:text-3xl"
 						/>
@@ -177,7 +177,7 @@ function MyAccNew() {
 					</section>
 				</section>
 
-				<section className="bg-white mx-6 mt-8 rounded-md p-6 mb-8">
+				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6 mb-8">
 					<div className="flex justify-around">
 						<button
 							className="bg-[#9E00FF] rounded-lg w-[110px] font-Principal text-white"
