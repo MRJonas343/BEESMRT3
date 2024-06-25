@@ -43,76 +43,82 @@ function MyAccNew() {
 				<NavBar />
 			</div>
 
-			<section className="bg-white flex mx-8 rounded-md">
-				<div className="p-4 justify-end flex">
-					<img
-						height={110}
-						width={110}
-						src={userProfileImage}
-						alt="ProfileImage"
-						className="w-[110px] h-[110px] rounded-full"
-					/>
-				</div>
-				<div className="flex gap-4 flex-col justify-center ">
-					<p className="font-Secundaria text-xl font-semibold">
-						{userNickName}
-					</p>
-					<h2 className="font-Secundaria text-lg">Newbie</h2>
-				</div>
-				<div className="flex flex-1 justify-center pl-10 items-center">
-					<p className="font-Principal text-4xl text-Yellow1 text-3d"> # 230</p>
-				</div>
-			</section>
+			<div className="lg:flex">
+				<section className="bg-white flex mx-6 rounded-md lg:w-1/3 lg:p-4">
+					<div className="p-4 justify-end flex lg:justify-start">
+						<img
+							height={110}
+							width={110}
+							src={userProfileImage}
+							alt="ProfileImage"
+							className="w-[110px] h-[110px] rounded-full"
+						/>
+					</div>
+					<div className="flex gap-4 flex-col justify-center">
+						<p className="font-Secundaria text-xl font-semibold">
+							{userNickName}
+						</p>
+						<h2 className="font-Secundaria text-lg">Newbie</h2>
+					</div>
+					<div className="flex flex-1 justify-center pl-10 items-center">
+						<p className="font-Principal text-5xl text-Yellow1 text-3d">
+							# 230
+						</p>
+					</div>
+				</section>
 
-			<section className="bg-white mx-8 mt-4 rounded-md p-6">
-				<h3 className="font-Secundaria text-xl font-semibold pb-6">
-					Advancements
-				</h3>
-				<div className="flex justify-around flex-wrap">
-					<div className="flex flex-col items-center basisAdvance pb-4">
-						<img
-							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/ganador.png"
-							alt="medal"
-							className="w-16 h-16"
-							width={64}
-							height={64}
-						/>
-						<p className="font-Secundaria text-lg text-center">Winner</p>
+				<section className="bg-white mx-6 mt-8 rounded-md p-6 lg:w-2/3 lg:mt-0">
+					<h3 className="font-Secundaria text-xl font-semibold pb-6">
+						Advancements
+					</h3>
+					<div className="flex justify-around flex-wrap">
+						<div className="flex flex-col items-center basisAdvance pb-4">
+							<img
+								src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/ganador.png"
+								alt="medal"
+								className="w-16 h-16"
+								width={64}
+								height={64}
+							/>
+							<p className="font-Secundaria text-lg text-center">Winner</p>
+						</div>
+						<div className="flex flex-col items-center basisAdvance pb-4">
+							<img
+								src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/insignia.png"
+								alt="medal"
+								className="w-16 h-16"
+								width={64}
+								height={64}
+							/>
+							<p className="font-Secundaria text-lg text-center">First Game</p>
+						</div>
+						<div className="flex flex-col items-center basisAdvance pb-4">
+							<img
+								src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/podio.png"
+								alt="medal"
+								className="w-16 h-16"
+								width={64}
+								height={64}
+							/>
+							<p className="font-Secundaria text-lg text-center">Top 1</p>
+						</div>
+						<div className="flex flex-col items-center basisAdvance pb-4">
+							<img
+								src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/recompensa.png"
+								alt="medal"
+								className="w-16 h-16"
+								width={64}
+								height={64}
+							/>
+							<p className="font-Secundaria text-lg text-center">
+								1000 Trophies
+							</p>
+						</div>
 					</div>
-					<div className="flex flex-col items-center basisAdvance pb-4">
-						<img
-							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/insignia.png"
-							alt="medal"
-							className="w-16 h-16"
-							width={64}
-							height={64}
-						/>
-						<p className="font-Secundaria text-lg text-center">First Game</p>
-					</div>
-					<div className="flex flex-col items-center basisAdvance pb-4">
-						<img
-							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/podio.png"
-							alt="medal"
-							className="w-16 h-16"
-							width={64}
-							height={64}
-						/>
-						<p className="font-Secundaria text-lg text-center">Top 1</p>
-					</div>
-					<div className="flex flex-col items-center basisAdvance pb-4">
-						<img
-							src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/recompensa.png"
-							alt="medal"
-							className="w-16 h-16"
-							width={64}
-							height={64}
-						/>
-						<p className="font-Secundaria text-lg text-center">1000 Trophies</p>
-					</div>
-				</div>
-			</section>
+				</section>
+			</div>
 
-			<section className="bg-white mx-8 mt-4 rounded-md p-6">
+			<section className="bg-white mx-6 mt-8 rounded-md p-6">
 				<h3 className="font-Secundaria text-xl font-semibold pb-6">Progress</h3>
 				<div className="flex flex-col">
 					<ProgressBar
@@ -166,22 +172,22 @@ function MyAccNew() {
 				</section>
 			</section>
 
-			<section className="bg-white mx-8 mt-4 rounded-md p-6">
-				<div className="flex justify-around pb-4">
+			<section className="bg-white mx-6 mt-8 rounded-md p-6 mb-8">
+				<div className="flex justify-around">
 					<button
-						className="bg-[#9E00FF] py-4 rounded-lg w-[130px] font-Secundaria text-white"
+						className="bg-[#9E00FF] rounded-lg w-[110px] font-Principal text-white"
 						type="button"
 					>
 						See LeaderBoard
 					</button>
 					<button
-						className="bg-[#30A127] py-4 rounded-lg w-[130px] font-Secundaria text-white"
+						className="bg-[#30A127] py-4 rounded-lg w-[110px] font-Principal text-white"
 						type="button"
 					>
 						Edit Profile
 					</button>
 					<button
-						className="bg-[#E93030] py-4 rounded-lg w-[130px] font-Secundaria text-white"
+						className="bg-[#E93030] rounded-lg w-[110px] font-Principal text-white"
 						type="button"
 					>
 						Log out
