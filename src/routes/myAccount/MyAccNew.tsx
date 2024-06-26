@@ -162,11 +162,14 @@ const MyAccNew: React.FC = () => {
 					</h3>
 					<div className="flex flex-col">
 						<ProgressBar
-							completed={60}
+							completed={totalTrophies}
+							customLabel={String(totalTrophies)}
 							bgColor={gradient}
 							height="40px"
 							isLabelVisible={true}
 							className="w-full font-Secundaria drop-shadow-md text-3d md:text-3xl"
+							maxCompleted={8840}
+							animateOnRender={true}
 						/>
 					</div>
 					<section className="flex justify-around pt-6 text-center">
