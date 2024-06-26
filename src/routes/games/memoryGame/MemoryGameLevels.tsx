@@ -109,7 +109,7 @@ const MemoryGameLevels = () => {
 		)
 		const trophys = levelObject?.Trophys
 		const level = levelObject?.Level
-		navigate("/games/memorygame1vs1", { state: { level, trophys } })
+		navigate("/games/memorygameSingle", { state: { level, trophys } })
 	}
 
 	return (
