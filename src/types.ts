@@ -163,3 +163,17 @@ export interface DragAndDropGameSingleStats {
 	trophys: number
 	round: number
 }
+
+export interface newUserData {
+	fullName: string
+	nickName: string
+	englishLevel: string
+	profileImage: File[]
+}
+
+export interface userDataUpdate {
+	fullName: string
+	nickName: string
+	englishLevel: string
+	profileImage: File[]
+}

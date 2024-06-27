@@ -5,10 +5,13 @@ import { useEffect, useState } from "react"
 import BasicModal from "@components/BasicModal"
 import { useNavigate } from "react-router-dom"
 import shyBee from "@assets/abeja-shy.webp"
+import { useForm } from "react-hook-form"
+import { newUserData } from "@types"
 
 const MyAccNew: React.FC = () => {
 	const navigate = useNavigate()
 	const [showModal, setShowModal] = useState(false)
+	const [showModalEditProfile, setShowModalEditProfile] = useState(false)
 	const [mainMessage, setMainMessage] = useState("")
 	const [message, setMessage] = useState("")
 	const [imageSrc, setImageSrc] = useState("")
@@ -18,6 +21,7 @@ const MyAccNew: React.FC = () => {
 	const userProfileImage = String(
 		usePersonStore((state) => state.userProfileImage),
 	)
+	const userFullName = usePersonStore((state) => state.userFullName)
 	const englishLevel = usePersonStore((state) => state.userEnglishLevel)
 	const userEmail = usePersonStore((state) => state.userEmail)
 	const setUserNickName = usePersonStore((state) => state.setNickName)
@@ -28,6 +32,13 @@ const MyAccNew: React.FC = () => {
 	const setToken = usePersonStore((state) => state.setToken)
 	const setUserEmail = usePersonStore((state) => state.setEmail)
 	const setUserFullName = usePersonStore((state) => state.setFullName)
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm<newUserData>()
 
 	useEffect(() => {
 		if (!token) {
@@ -67,6 +78,41 @@ const MyAccNew: React.FC = () => {
 		setUserEmail(null)
 		setUserFullName(null)
 		navigate("/")
+	}
+
+	const changeProfileData = (form: newUserData) => {
+		const data = {}
+
+		if (form.fullName && form.fullName !== userFullName) {
+			Object.assign(data, { fullName: form.fullName })
+		}
+
+		if (form.nickName && form.nickName !== userNickName) {
+			Object.assign(data, { nickName: form.nickName })
+		}
+
+		if (form.englishLevel && form.englishLevel !== englishLevel) {
+			Object.assign(data, { englishLevel: form.englishLevel })
+		}
+
+		if (form.profileImage.length > 0 && form.profileImage.length < 2) {
+			Object.assign(data, { profileImage: form.profileImage })
+		}
+
+		if (Object.keys(data).length === 0) {
+			setMainMessage("No changes detected")
+			setMessage("You didn't make any changes to your profile")
+			setImageSrc(shyBee)
+			setShowModal(true)
+			return
+		}
+
+		setShowModalEditProfile(!showModalEditProfile)
+		reset()
+	}
+
+	const closeModalEditProfile = () => {
+		setShowModalEditProfile(!showModalEditProfile)
 	}
 
 	const gradient =
@@ -226,6 +272,7 @@ const MyAccNew: React.FC = () => {
 						<button
 							className="bg-[#30A127] py-4 rounded-lg w-[110px] font-Principal text-white"
 							type="button"
+							onClick={() => setShowModalEditProfile(!showModalEditProfile)}
 						>
 							Edit Profile
 						</button>
@@ -238,6 +285,126 @@ const MyAccNew: React.FC = () => {
 						</button>
 					</div>
 				</section>
+			</section>
+
+			<section>
+				<div
+					className={
+						showModalEditProfile
+							? "fixed top-0 left-0 w-screen h-screen bg-gray-400/90 flex justify-center items-center"
+							: "hidden"
+					}
+				>
+					<div className="bg-white w-[90%] rounded-xl p-7 h-auto absolute z-30 top-1/2 left-1/2 fixPosition lg:w-1/3">
+						<h1 className="font-Principal text-2xl text-center text-Yellow1 text-3d">
+							Customize your profile
+						</h1>
+						<form onSubmit={handleSubmit(changeProfileData)}>
+							<div className="font-Principal text:lg md:text-xl leading-7 py-2 text-gray-900">
+								Full name: <br />
+								<input
+									defaultValue={userFullName ? userFullName : ""}
+									autoComplete="username"
+									type="text"
+									className="w-full mb-4 font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out"
+									{...register("fullName", {
+										minLength: 5,
+										maxLength: 50,
+										pattern: /^[A-Za-z\sÁÉÍÓÚáéíóúñÑü\-']+$/,
+									})}
+								/>
+								{errors.fullName?.type === "minLength" && (
+									<p className="text-red-600 font-Secundaria pb-2">
+										Your name should have 5 letters at least
+									</p>
+								)}
+								{errors.fullName?.type === "maxLength" && (
+									<p className="text-red-600 font-Secundaria pb-2">
+										Your name can't be longer that 50 letters
+									</p>
+								)}
+								{errors.fullName?.type === "pattern" && (
+									<p className="text-red-600 font-Secundaria pb-2">
+										Your name should just have letters
+									</p>
+								)}
+								NickName: <br />
+								<input
+									defaultValue={userNickName ? userNickName : ""}
+									autoComplete="username"
+									type="text"
+									className="w-full mb-4 font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out"
+									{...register("nickName", {
+										minLength: 5,
+										maxLength: 50,
+									})}
+								/>
+								{errors.nickName?.type === "minLength" && (
+									<p className="text-red-600 font-Secundaria">
+										Your nickname should have 5 letters at least
+									</p>
+								)}
+								{errors.nickName?.type === "maxLength" && (
+									<p className="text-red-600 font-Secundaria">
+										Your nickname can't be longer that 50 letters
+									</p>
+								)}
+								English Level: <br />
+								<input
+									defaultValue={englishLevel ? englishLevel : ""}
+									autoComplete="username"
+									type="text"
+									className="w-full mb-4 font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out"
+									{...register("englishLevel", {
+										minLength: 2,
+										maxLength: 2,
+									})}
+								/>
+								{errors.englishLevel?.type === "minLength" && (
+									<p className="text-red-600 font-Secundaria mb-2">
+										Your English level should have 2 letters
+									</p>
+								)}
+								{errors.englishLevel?.type === "maxLength" && (
+									<p className="text-red-600 font-Secundaria mb-2">
+										Your English level should have 2 letters
+									</p>
+								)}
+								<label className="block mb-2 font-medium" htmlFor="file_input">
+									Upload file
+								</label>
+								<input
+									className="block p-2 w-full border border-gray-300 rounded-lg cursor-pointer focus:outline-none"
+									aria-describedby="file_input_help"
+									id="file_input"
+									type="file"
+									{...register("profileImage")}
+								/>
+								<p
+									className="mt-2 mb-4 text-sm text-gray-500"
+									id="file_input_help"
+								>
+									SVG, PNG, JPG or GIF (MAX. 800x400px).
+								</p>
+							</div>
+							<div className="flex justify-between">
+								<button
+									className="bg-[#E93030] rounded-lg w-[110px] font-Principal text-white"
+									type="button"
+									onClick={closeModalEditProfile}
+								>
+									Close
+								</button>
+								<button
+									className="bg-[#30A127] py-4 rounded-lg w-[110px] font-Principal text-white"
+									type="submit"
+								>
+									Save
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
 			</section>
 
 			<BasicModal
