@@ -81,33 +81,60 @@ const MyAccNew: React.FC = () => {
 	}
 
 	const changeProfileData = (form: newUserData) => {
-		const data = {}
+		const formToSend = new FormData()
 
 		if (form.fullName && form.fullName !== userFullName) {
-			Object.assign(data, { fullName: form.fullName })
+			formToSend.append("fullName", form.fullName)
 		}
 
 		if (form.nickName && form.nickName !== userNickName) {
-			Object.assign(data, { nickName: form.nickName })
+			formToSend.append("nickName", form.nickName)
 		}
 
 		if (form.englishLevel && form.englishLevel !== englishLevel) {
-			Object.assign(data, { englishLevel: form.englishLevel })
+			formToSend.append("englishLevel", form.englishLevel)
 		}
 
-		if (form.profileImage.length > 0 && form.profileImage.length < 2) {
-			Object.assign(data, { profileImage: form.profileImage })
-		}
-
-		if (Object.keys(data).length === 0) {
-			setMainMessage("No changes detected")
-			setMessage("You didn't make any changes to your profile")
+		if (form.profileImage[0] && form.profileImage[0].size > 5242880) {
+			setMainMessage("The image is too big")
+			setMessage("The image should be less than 5MB")
 			setImageSrc(shyBee)
 			setShowModal(true)
 			return
 		}
 
+		if (form.profileImage.length > 0 && form.profileImage.length < 2) {
+			formToSend.append("profileImage", form.profileImage[0])
+		}
+
+		if (formToSend.entries().next().done) {
+			setMainMessage("No changes detected")
+			setMessage("Please make a change to save")
+			setImageSrc(shyBee)
+			setShowModal(true)
+			return
+		}
+
+		updateData(formToSend)
+
 		setShowModalEditProfile(!showModalEditProfile)
+	}
+
+	const updateData = async (form: FormData) => {
+		const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+
+		const response = await fetch(`${BeeSMRTBackendURL}/updateUserInfo`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				email: userEmail!,
+			},
+			body: form,
+		})
+		const responseData = await response.json()
+		console.log(responseData)
+		//*check the response
+		//*update the states
 		reset()
 	}
 

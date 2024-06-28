@@ -177,3 +177,13 @@ export interface userDataUpdate {
 	englishLevel: string
 	profileImage: File[]
 }
+
+interface sanitizeUserData {
+	fullName: string
+	nickName: string
+	englishLevel: string
+	image: File
+}
+
+export type OptionalNewUserData = Partial<userDataUpdate>
+export type OptionalSanitizeUserData = Partial<sanitizeUserData>
