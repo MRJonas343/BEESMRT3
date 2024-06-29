@@ -104,7 +104,7 @@ const MyAccNew: React.FC = () => {
 		}
 
 		if (form.profileImage.length > 0 && form.profileImage.length < 2) {
-			formToSend.append("profileImage", form.profileImage[0])
+			formToSend.append("image", form.profileImage[0])
 		}
 
 		if (formToSend.entries().next().done) {
@@ -132,9 +132,28 @@ const MyAccNew: React.FC = () => {
 			body: form,
 		})
 		const responseData = await response.json()
-		console.log(responseData)
 		//*check the response
+		if (response.status !== 200) {
+			setMainMessage("Error")
+			setMessage("There was an error updating your data")
+			setImageSrc(shyBee)
+			setShowModal(true)
+			return
+		}
+
 		//*update the states
+		if (responseData.fullName) {
+			setUserFullName(responseData.fullName)
+		}
+		if (responseData.nickName) {
+			setUserNickName(responseData.nickName)
+		}
+		if (responseData.englishLevel) {
+			setUserEnglishLevel(responseData.englishLevel)
+		}
+		if (responseData.profileImg) {
+			setUserProfileImage(responseData.profileImg)
+		}
 		reset()
 	}
 
@@ -379,12 +398,13 @@ const MyAccNew: React.FC = () => {
 								English Level: <br />
 								<input
 									defaultValue={englishLevel ? englishLevel : ""}
-									autoComplete="username"
+									autoComplete="englishLevel"
 									type="text"
 									className="w-full mb-4 font-Secundaria bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out"
 									{...register("englishLevel", {
 										minLength: 2,
 										maxLength: 2,
+										pattern: /(A1|A2|B1|B2|C1|C2)/,
 									})}
 								/>
 								{errors.englishLevel?.type === "minLength" && (
@@ -395,6 +415,11 @@ const MyAccNew: React.FC = () => {
 								{errors.englishLevel?.type === "maxLength" && (
 									<p className="text-red-600 font-Secundaria mb-2">
 										Your English level should have 2 letters
+									</p>
+								)}
+								{errors.englishLevel?.type === "pattern" && (
+									<p className="text-red-600 font-Secundaria mb-2">
+										Your English level should be A1, A2, B1, B2, C1 or C2
 									</p>
 								)}
 								<label className="block mb-2 font-medium" htmlFor="file_input">
