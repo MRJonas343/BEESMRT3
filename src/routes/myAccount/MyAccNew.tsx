@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import shyBee from "@assets/abeja-shy.webp"
 import { useForm } from "react-hook-form"
 import { newUserData } from "@types"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 const MyAccNew: React.FC = () => {
 	const navigate = useNavigate()
