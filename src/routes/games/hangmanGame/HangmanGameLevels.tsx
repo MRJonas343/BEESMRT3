@@ -35,8 +35,10 @@ const HangmanGameLevels = () => {
 			setMessage("To save your progress, you must log in first")
 			setMainMessage("You are not logged in")
 			fetchLevels(null, null)
+			renderContent()
 		} else {
 			fetchLevels(email!, token!)
+			renderContent()
 		}
 	}, [])
 
@@ -44,44 +46,30 @@ const HangmanGameLevels = () => {
 		userEmail: string | null,
 		token: string | null,
 	) => {
-		const headers = {
-			"Content-Type": "application/json",
-			game: "HangmanGame",
-		}
+		const headeres = new Headers()
 
-		if (token) {
-			Object.assign(headers, { Authorization: `Bearer ${token}` })
-			Object.assign(headers, { email: userEmail })
+		if (token !== null && userEmail !== null) {
+			headeres.set("Authorization", `Bearer ${token}`)
+			headeres.set("Content-Type", "application/json")
+			headeres.set("email", userEmail)
+		} else {
+			headeres.set("Content-Type", "application/json")
 		}
 
 		const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 		const response = await fetch(`${BeeSMRTBackendURL}/getHangmanLevels`, {
 			method: "GET",
-			headers: headers,
+			headers: headeres,
 		})
 
 		const data = await response.json()
 		englishLevelsRef.current = data
-
-		if (response.ok) {
-			const newLevels = englishLevelsRef.current.filter(
-				(level: EnglishLevel) => level.EnglishLevel === userEnglishLevel,
-			)
-			console.log("Re-rendering")
-			setEnglishLevels(newLevels)
-			setLoading(!loading)
-			return
-		}
 
 		if (response.status === 401) {
 			setShowModal(true)
 			setImageSrc(shyBee)
 			setMessage("To save your progress, you must log in first")
 			setMainMessage("You are not logged in")
-			const newLevels = englishLevelsRef.current.filter(
-				(level: EnglishLevel) => level.EnglishLevel === userEnglishLevel,
-			)
-			setEnglishLevels(newLevels)
 			setLoading(!loading)
 			return
 		}
@@ -91,14 +79,17 @@ const HangmanGameLevels = () => {
 			setImageSrc(shyBee)
 			setMessage("please log in again to continue playing")
 			setMainMessage("Your session has expired")
-			englishLevelsRef.current = data
-			const newLevels = englishLevelsRef.current.filter(
-				(level: EnglishLevel) => level.EnglishLevel === userEnglishLevel,
-			)
-			setEnglishLevels(newLevels)
 			setLoading(!loading)
 			return
 		}
+	}
+
+	const renderContent = () => {
+		const newEnglishLevels = englishLevelsRef.current.filter(
+			(level) => level.EnglishLevel === userEnglishLevel,
+		)
+		setEnglishLevels(newEnglishLevels)
+		setLoading(!loading)
 	}
 
 	const changeLevels = (e: ChangeEvent<HTMLSelectElement>) => {
