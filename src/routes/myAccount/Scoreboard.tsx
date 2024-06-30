@@ -10,17 +10,27 @@ function Scoreboard() {
 					Scoreboard
 				</h1>
 				<div className="flex flex-wrap lg:flex-row flex-col justify-center items-center gap-3">
-					<div className="bg-white rounded-sm shadow-md shadow-red-950 flex flex-col justify-center font-Secundaria text-lg w-[27vw] border-black py-2">
-						<h1 className="text-2xl font-Principal">My Ranking</h1>
-						<div className="flex flex-wrap">
-							<img src="" alt="pfpImage" /> <h1>UserBee</h1>
+					<div className="bg-white rounded-sm shadow-md shadow-red-950 flex flex-col justify-center font-Secundaria text-lg w-[76vw] md:w-[25vw] border-black py-4 px-6">
+						<h1 className="text-2xl font-Principal text-center">My Ranking</h1>
+						<div className="flex flex-wrap gap-3 items-center">
+							<img width={70} src="/defaultProfile.svg" alt="pfpImage" />{" "}
+							<h1 className="text-xl">UserBee</h1>
+						</div>
+						<div className="pt-3 flex gap-8">
+							<div className="font-semibold">
+								Ranking: <br /> Trophies: <br /> Medalls: <br /> Victories:
+							</div>
+							<div className="text-right">
+								RankingData <br /> TrophiesData <br /> MedallsData <br />{" "}
+								VictoriesData
+							</div>
 						</div>
 					</div>
-					<div className="flex shadow-md shadow-red-950">
-						<div className="bg-white py-2 flex justify-center font-Secundaria text-lg w-[47vw] lg:w-[34vw] border-black">
+					<div className="flex lg:flex-row flex-col shadow-md shadow-red-950">
+						<div className="bg-white py-4 flex justify-center font-Secundaria text-lg w-[72vw] lg:w-[34vw] border-black">
 							Global
 						</div>
-						<div className="bg-white py-2 flex justify-center font-Secundaria text-lg w-[47vw] lg:w-[34vw] border-black">
+						<div className="bg-white py-4 flex justify-center font-Secundaria text-lg w-[72vw] lg:w-[34vw] border-black">
 							Global
 						</div>
 					</div>
