@@ -11,7 +11,6 @@ import shyBee from "@assets/abeja-shy.webp"
 const MemoryGameLevels = () => {
 	const token = usePersonStore((state) => state.token)
 	const email = usePersonStore((state) => state.userEmail)
-	const englishLevel = usePersonStore((state) => state.userEnglishLevel)
 	const [showModal, setShowModal] = useState(false)
 	const [imageSrc, setImageSrc] = useState("")
 	const [message, setMessage] = useState("")
@@ -19,9 +18,6 @@ const MemoryGameLevels = () => {
 	const englishLevelsRef = useRef<EnglishLevel[]>([])
 
 	const navigate = useNavigate()
-
-	//* Supongamos que el nivel de inglés lo saco del local storage
-	const userEnglishLevel = englishLevel || "A1"
 
 	//*Necesito usar programación funcional para filtar los niveles de acuerdo al nivel de ingles del usuario
 	const [englishLevels, setEnglishLevels] = useState<EnglishLevel[]>([])
@@ -66,7 +62,7 @@ const MemoryGameLevels = () => {
 			const data = await response.json()
 			englishLevelsRef.current = data
 			const newLevels = data.filter(
-				(level: EnglishLevel) => level.EnglishLevel === userEnglishLevel,
+				(level: EnglishLevel) => level.EnglishLevel === "A1",
 			)
 			setEnglishLevels(newLevels)
 			return
@@ -80,7 +76,7 @@ const MemoryGameLevels = () => {
 			const data = await response.json()
 			englishLevelsRef.current = data
 			const newLevels = data.filter(
-				(level: EnglishLevel) => level.EnglishLevel === userEnglishLevel,
+				(level: EnglishLevel) => level.EnglishLevel === "A1",
 			)
 			setEnglishLevels(newLevels)
 			return
@@ -89,7 +85,7 @@ const MemoryGameLevels = () => {
 		const data = await response.json()
 		englishLevelsRef.current = data
 		const newLevels = data.filter(
-			(level: EnglishLevel) => level.EnglishLevel === userEnglishLevel,
+			(level: EnglishLevel) => level.EnglishLevel === "A1",
 		)
 		setEnglishLevels(newLevels)
 	}
@@ -116,9 +112,7 @@ const MemoryGameLevels = () => {
 		<div className="w-screen h-screen bg-Gradient2 overflow-x-hidden">
 			<NavBar />
 			<div className="bg-white m-6 p-10 pb-12 rounded-md text-center">
-				<div className="font-Secundaria text-3xl py-3">
-					Memory Game Levels
-				</div>
+				<div className="font-Secundaria text-3xl py-3">Memory Game Levels</div>
 				<div className="flex justify-center gap-4 items-center">
 					<h2 className="font-bold">English level :</h2>
 					<select

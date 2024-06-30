@@ -9,11 +9,10 @@ import { usePersonStore } from "../../../store/auth"
 import shyBee from "@assets/abeja-shy.webp"
 import Spinner from "@components/Spinner"
 
-const HangmanGameLevels = () => {
+const MemoryGameLevels = () => {
 	const [loading, setLoading] = useState(true)
 	const token = usePersonStore((state) => state.token)
 	const email = usePersonStore((state) => state.userEmail)
-	const englishLevel = usePersonStore((state) => state.userEnglishLevel)
 	const [showModal, setShowModal] = useState(false)
 	const [imageSrc, setImageSrc] = useState("")
 	const [message, setMessage] = useState("")
@@ -21,9 +20,6 @@ const HangmanGameLevels = () => {
 	const englishLevelsRef = useRef<EnglishLevel[]>([])
 
 	const navigate = useNavigate()
-
-	//* Supongamos que el nivel de inglés lo saco del local storage
-	const userEnglishLevel = englishLevel || "A1"
 
 	//*Necesito usar programación funcional para filtar los niveles de acuerdo al nivel de ingles del usuario
 	const [englishLevels, setEnglishLevels] = useState<EnglishLevel[]>([])
@@ -35,10 +31,8 @@ const HangmanGameLevels = () => {
 			setMessage("To save your progress, you must log in first")
 			setMainMessage("You are not logged in")
 			fetchLevels(null, null)
-			renderContent()
 		} else {
 			fetchLevels(email!, token!)
-			renderContent()
 		}
 	}, [])
 
@@ -46,30 +40,44 @@ const HangmanGameLevels = () => {
 		userEmail: string | null,
 		token: string | null,
 	) => {
-		const headeres = new Headers()
+		const headers = {
+			"Content-Type": "application/json",
+			game: "HangmanGame",
+		}
 
-		if (token !== null && userEmail !== null) {
-			headeres.set("Authorization", `Bearer ${token}`)
-			headeres.set("Content-Type", "application/json")
-			headeres.set("email", userEmail)
-		} else {
-			headeres.set("Content-Type", "application/json")
+		if (token) {
+			Object.assign(headers, { Authorization: `Bearer ${token}` })
+			Object.assign(headers, { email: userEmail })
 		}
 
 		const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 		const response = await fetch(`${BeeSMRTBackendURL}/getHangmanLevels`, {
 			method: "GET",
-			headers: headeres,
+			headers: headers,
 		})
 
 		const data = await response.json()
-		englishLevelsRef.current = data
+
+		if (response.ok) {
+			englishLevelsRef.current = data
+			const newLevels = data.filter(
+				(level: EnglishLevel) => level.EnglishLevel === "A1",
+			)
+			setEnglishLevels(newLevels)
+			setLoading(!loading)
+		}
 
 		if (response.status === 401) {
 			setShowModal(true)
 			setImageSrc(shyBee)
 			setMessage("To save your progress, you must log in first")
 			setMainMessage("You are not logged in")
+
+			englishLevelsRef.current = data
+			const newLevels = data.filter(
+				(level: EnglishLevel) => level.EnglishLevel === "A1",
+			)
+			setEnglishLevels(newLevels)
 			setLoading(!loading)
 			return
 		}
@@ -79,17 +87,14 @@ const HangmanGameLevels = () => {
 			setImageSrc(shyBee)
 			setMessage("please log in again to continue playing")
 			setMainMessage("Your session has expired")
+			englishLevelsRef.current = data
+			const newLevels = data.filter(
+				(level: EnglishLevel) => level.EnglishLevel === "A1",
+			)
+			setEnglishLevels(newLevels)
 			setLoading(!loading)
 			return
 		}
-	}
-
-	const renderContent = () => {
-		const newEnglishLevels = englishLevelsRef.current.filter(
-			(level) => level.EnglishLevel === userEnglishLevel,
-		)
-		setEnglishLevels(newEnglishLevels)
-		setLoading(!loading)
 	}
 
 	const changeLevels = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -170,4 +175,4 @@ const HangmanGameLevels = () => {
 		</div>
 	)
 }
-export default HangmanGameLevels
+export default MemoryGameLevels
