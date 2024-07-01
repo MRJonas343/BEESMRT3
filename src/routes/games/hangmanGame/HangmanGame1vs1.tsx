@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, MouseEvent } from "react"
 import confetti from "canvas-confetti"
-import HangmanDemo from "./hangmanDemo.json"
 import { useNavigate } from "react-router-dom"
 import { Toaster, toast } from "sonner"
 
@@ -75,13 +74,20 @@ const HangmanGame1vs1: React.FC = () => {
 
 	//* Get data from BeeSMRT API
 	const fetchData = async () => {
+		const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 		try {
-			const Words: HangmanWords[] = HangmanDemo
-			hangmanWordsRef.current = Words
+			const response = await fetch(`${BeeSMRTBackendURL}/getHangman1vs1`, {
+				method: "GET",
+				headers: { "Content-Type": "application/json" },
+			})
+
+			const data = await response.json()
+			hangmanWordsRef.current = data
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
-		setShowSpinner(false)
+		initRound()
+		setShowSpinner(!showSpinner)
 		setShowSpinningCoin(!showSpinningCoin)
 	}
 
@@ -119,7 +125,6 @@ const HangmanGame1vs1: React.FC = () => {
 
 	useEffect(() => {
 		fetchData()
-		initRound()
 	}, [])
 
 	const nextRound = () => {

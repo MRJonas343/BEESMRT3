@@ -10,6 +10,7 @@ const LogIn = lazy(() => import("@routes/login/Login"))
 const SignUp = lazy(() => import("@routes/signup/SignUp"))
 const PrivacyPolicy = lazy(() => import("@routes/privacypolicy/PrivacyPolicy"))
 const MyAccNew = lazy(() => import("@routes/myAccount/MyAccNew"))
+
 const MemoryGameMode = lazy(
 	() => import("@routes/games/memoryGame/MemoryGameMode"),
 )
@@ -42,6 +43,7 @@ const HangmanGameLevels = lazy(
 const HangmanGame1vs1 = lazy(
 	() => import("@routes/games/hangmanGame/HangmanGame1vs1"),
 )
+
 const DragDropGameLevels = lazy(
 	() => import("@routes/games/dragDropGame/DragDropLevels"),
 )

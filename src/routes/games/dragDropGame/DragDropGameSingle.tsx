@@ -12,13 +12,13 @@ import confetti from "canvas-confetti"
 import { useLocation } from "react-router-dom"
 import { Toaster, toast } from "sonner"
 import { useNavigate } from "react-router-dom"
+import { usePersonStore } from "@store/auth"
 
 //* Componentes
 import NavBar from "@components/NavBar"
 import ModalSingleMode from "@components/ModalSingleModes"
 import DraggableItem from "@components/DraggableItem"
 import DroppableItem from "@components/DroppableItem"
-import ItemsDnDGame from "./itemsDnd.json"
 import DragDropStatsSingle from "@components/DragDropStatsSingle"
 import Spinner from "@components/Spinner"
 
@@ -29,6 +29,7 @@ import Trofeo from "@assets/trofeo.webp"
 import { ItemsDnDGameProps, DraggableItemType, DroppableProps } from "@types"
 
 const DragDropGameSingle: React.FC = () => {
+	const userEmail = usePersonStore((state) => state.userEmail)
 	const navigate = useNavigate()
 	const location = useLocation()
 	//* Conffeti effect
@@ -77,14 +78,13 @@ const DragDropGameSingle: React.FC = () => {
 		setLevelName(levelName)
 		setEnglishLevel(englishLevel)
 		setTrophys(trophys)
-		// const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
-		// 	const headers = new Headers()
-		// 	headers.set("englishLevel", level)
-		// 	const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
-		// 		headers,
-		// 	})
-		//const jsonData = await response.json()
-		const jsonData = ItemsDnDGame
+		const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+		const headers = new Headers()
+		headers.set("englishLevel", level)
+		const response = await fetch(`${BeeSMRTBackendURL}/getDragAndDropSingle`, {
+			headers,
+		})
+		const jsonData = await response.json()
 
 		const firstPart = jsonData.slice(0, 6)
 		const secondPart = jsonData.slice(6, 12)
@@ -197,6 +197,7 @@ const DragDropGameSingle: React.FC = () => {
 				setMessage("You have completed the level")
 				setImageSrc(Trofeo)
 				setShowModal(true)
+				assignTrophys()
 				return
 			}
 			if (pointsRef.current === 6 && roundRef.current < 3) {
@@ -268,15 +269,21 @@ const DragDropGameSingle: React.FC = () => {
 				const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 				const headers = new Headers()
 				headers.set("englishLevel", levelNumber)
-				const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
-					headers,
-				})
+				const response = await fetch(
+					`${BeeSMRTBackendURL}/getDragAndDropSingle`,
+					{
+						headers,
+					},
+				)
 				const jsonData = await response.json()
 				const firstPart = jsonData.slice(0, 6)
 				const secondPart = jsonData.slice(6, 12)
 				const thirdPart = jsonData.slice(12, 18)
 				itemsRefGen.current = jsonData
 				itemsRef.current = [firstPart, secondPart, thirdPart]
+				roundRef.current = 1
+				pointsRef.current = 0
+				setRound(0)
 				initGame()
 				setShowSpinner(false)
 				return
@@ -296,18 +303,48 @@ const DragDropGameSingle: React.FC = () => {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 			const headers = new Headers()
 			headers.set("englishLevel", nextLevelName)
-			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGame1vs1`, {
-				headers,
-			})
+			const response = await fetch(
+				`${BeeSMRTBackendURL}/getDragAndDropSingle`,
+				{
+					headers,
+				},
+			)
+
 			const jsonData = await response.json()
 			const firstPart = jsonData.slice(0, 6)
 			const secondPart = jsonData.slice(6, 12)
 			const thirdPart = jsonData.slice(12, 18)
 			itemsRefGen.current = jsonData
 			itemsRef.current = [firstPart, secondPart, thirdPart]
+			roundRef.current = 1
+			pointsRef.current = 0
+			setRound(0)
 			initGame()
 			setShowSpinner(false)
 			return
+		} catch (error) {
+			console.error("Error fetching data:", error)
+		}
+	}
+	const assignTrophys = async () => {
+		if (!userEmail) return
+
+		const data = {
+			email: userEmail,
+			game: "DragAndDropGame",
+			level: levelRef.current,
+		}
+
+		try {
+			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+
+			await fetch(`${BeeSMRTBackendURL}/assignTrophys`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			})
 		} catch (error) {
 			console.error("Error fetching data:", error)
 		}
