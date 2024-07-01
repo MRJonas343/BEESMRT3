@@ -269,7 +269,7 @@ const MemoryGameSingleMode: React.FC = () => {
 				const headers = new Headers()
 				headers.set("englishLevel", levelNumber)
 				const response = await fetch(
-					`${BeeSMRTBackendURL}getMemoryGameSingle`,
+					`${BeeSMRTBackendURL}/getMemoryGameSingle`,
 					{
 						headers,
 					},
@@ -296,7 +296,7 @@ const MemoryGameSingleMode: React.FC = () => {
 			const BeeSMRTBackendURL = import.meta.env.VITE_BEESMRT_BACKEND_URL
 			const headers = new Headers()
 			headers.set("englishLevel", nextLevelName)
-			const response = await fetch(`${BeeSMRTBackendURL}getMemoryGameSingle`, {
+			const response = await fetch(`${BeeSMRTBackendURL}/getMemoryGameSingle`, {
 				headers,
 			})
 			const jsonData = await response.json()
