@@ -47,7 +47,7 @@ const MyAccNew: React.FC = () => {
 		B1: "Intermediate",
 		B2: "Upper Intermediate",
 		C1: "Advanced",
-		C2: "Proficiency",
+		C2: "Proficient",
 	}
 
 	useEffect(() => {
@@ -209,7 +209,7 @@ const MyAccNew: React.FC = () => {
 
 					<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6 lg:w-3/5 lg:mt-0">
 						<h3 className="font-Secundaria text-xl font-semibold pb-6">
-							Advancements
+							Achievements
 						</h3>
 						<div className="flex justify-around flex-wrap">
 							<div className="flex flex-col items-center basisAdvance pb-4">
