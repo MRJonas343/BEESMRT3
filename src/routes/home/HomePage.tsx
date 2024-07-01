@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
 		<main className="w-screen h-screen bg-Gradient2 overflow-x-hidden">
 			<NavBar />
 
-			<h1 className="animate-tilt animate-duration-1000 animate-iteration-count-infinite  text-4xl text-center pb-3 text-white text-3d3 font-Principal tracking-wide from-neutral-400 md:text-4xl md:py-5 lg:text-6xl xl:py-6">
+			<h1 className="animate-tilt animate-duration-1000 animate-iteration-count-infinite  text-4xl text-center pb-3 text-white text-3d3 font-Principal tracking-wide from-neutral-400 md:text-4xl md:py-5 lg:text-6xl xl:py-6 text-sh xl:pb-0 xl:pt-10">
 				BEESMRT GAMES
 			</h1>
 			<section className="grid grid-cols-2 justify-items-center gap-4 h-[84dvh] md:h-[82dvh] lg:flex lg:justify-center lg:items-center lg:gap-4 lg:h-[70dvh]">
