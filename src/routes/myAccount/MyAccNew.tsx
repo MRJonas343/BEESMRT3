@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import shyBee from "@assets/abeja-shy.webp"
 import { useForm } from "react-hook-form"
 import { newUserData } from "@types"
+// import { Link } from "react-router-dom"
 
 const MyAccNew: React.FC = () => {
 	const navigate = useNavigate()
@@ -309,12 +310,14 @@ const MyAccNew: React.FC = () => {
 
 				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6 mb-8">
 					<div className="flex justify-around">
+						{/* <Link to="/Scoreboard"> */}
 						<button
 							className="bg-[#9E00FF] rounded-lg w-[110px] font-Principal text-white"
 							type="button"
 						>
 							See LeaderBoard
 						</button>
+						{/* </Link> */}
 						<button
 							className="bg-[#30A127] py-4 rounded-lg w-[110px] font-Principal text-white"
 							type="button"
