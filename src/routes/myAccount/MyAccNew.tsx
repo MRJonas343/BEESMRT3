@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 import shyBee from "@assets/abeja-shy.webp"
 import { useForm } from "react-hook-form"
 import { newUserData } from "@types"
-// import { Link } from "react-router-dom"
 
 const MyAccNew: React.FC = () => {
 	const navigate = useNavigate()
@@ -16,6 +15,7 @@ const MyAccNew: React.FC = () => {
 	const [mainMessage, setMainMessage] = useState("")
 	const [message, setMessage] = useState("")
 	const [imageSrc, setImageSrc] = useState("")
+	const [englishLevelName, setEnglishLevelName] = useState("")
 	const [totalTrophies, setTotalTrophies] = useState(0)
 	const token = usePersonStore((state) => state.token)
 	const userNickName = usePersonStore((state) => state.userNickName)
@@ -41,6 +41,15 @@ const MyAccNew: React.FC = () => {
 		reset,
 	} = useForm<newUserData>()
 
+	const levelNames: { [key: string]: string } = {
+		A1: "Beginner",
+		A2: "Elementary",
+		B1: "Intermediate",
+		B2: "Upper Intermediate",
+		C1: "Advanced",
+		C2: "Proficiency",
+	}
+
 	useEffect(() => {
 		if (!token) {
 			setMainMessage("You are not logged in")
@@ -49,6 +58,7 @@ const MyAccNew: React.FC = () => {
 			setShowModal(true)
 		} else {
 			fetchUserData()
+			setEnglishLevelName(levelNames[englishLevel!])
 		}
 	}, [])
 
@@ -151,6 +161,7 @@ const MyAccNew: React.FC = () => {
 		}
 		if (responseData.englishLevel) {
 			setUserEnglishLevel(responseData.englishLevel)
+			setEnglishLevelName(levelNames[responseData.englishLevel])
 		}
 		if (responseData.profileImg) {
 			setUserProfileImage(responseData.profileImg)
@@ -289,7 +300,7 @@ const MyAccNew: React.FC = () => {
 								{englishLevel}
 							</p>
 							<span className="font-Secundaria text-lg text-center">
-								Intermediate
+								{englishLevelName}
 							</span>
 						</div>
 						<div className="flex flex-col items-center">
