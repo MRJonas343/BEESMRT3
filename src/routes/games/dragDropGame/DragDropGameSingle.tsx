@@ -283,6 +283,7 @@ const DragDropGameSingle: React.FC = () => {
 				itemsRef.current = [firstPart, secondPart, thirdPart]
 				roundRef.current = 1
 				pointsRef.current = 0
+				setCompletedPercentage(0)
 				setRound(0)
 				initGame()
 				setShowSpinner(false)
@@ -321,6 +322,7 @@ const DragDropGameSingle: React.FC = () => {
 			setRound(0)
 			initGame()
 			setShowSpinner(false)
+			setCompletedPercentage(0)
 			return
 		} catch (error) {
 			console.error("Error fetching data:", error)
