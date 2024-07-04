@@ -9,7 +9,8 @@
     "check": "biome check src",
     "lint": "biome lint src",
     "format": "biome format src",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test" : "playwright test"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
@@ -26,6 +27,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.45.1",
     "@types/canvas-confetti": "^1.6.4",
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
