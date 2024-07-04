@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 import * as path from "node:path"
@@ -17,9 +15,4 @@ export default defineConfig({
 		},
 	},
 	plugins: [react()],
-	test: {
-		environment: "jsdom",
-		setupFiles: "./src/test/setup.ts",
-		globals: true,
-	},
 })
