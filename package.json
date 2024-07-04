@@ -10,7 +10,9 @@
     "lint": "biome lint src",
     "format": "biome format src",
     "preview": "vite preview",
-    "test" : "playwright test"
+    "test" : "playwright test",
+    "testUi": "playwright test --project chromium --headed",
+    "createTest" : "playwright codegen https://beesmrt2.vercel.app/"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
