@@ -55,12 +55,11 @@ const MemoryGameLevels = () => {
 			method: "GET",
 			headers: headers,
 		})
-
-		if (response.status === 401) {
+		if (response.status === 498) {
 			setShowModal(true)
 			setImageSrc(shyBee)
-			setMessage("To save your progress, you must log in first")
-			setMainMessage("You are not logged in")
+			setMessage("please log in again to continue playing")
+			setMainMessage("Your session has expired")
 			const data = await response.json()
 			englishLevelsRef.current = data
 			const newLevels = data.filter(
@@ -71,11 +70,11 @@ const MemoryGameLevels = () => {
 			return
 		}
 
-		if (response.status === 498) {
+		if (response.status === 401) {
 			setShowModal(true)
 			setImageSrc(shyBee)
-			setMessage("please log in again to continue playing")
-			setMainMessage("Your session has expired")
+			setMessage("To save your progress, you must log in first")
+			setMainMessage("You are not logged in")
 			const data = await response.json()
 			englishLevelsRef.current = data
 			const newLevels = data.filter(
