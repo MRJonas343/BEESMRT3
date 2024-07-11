@@ -77,6 +77,21 @@ const MyAccNew: React.FC = () => {
 				email: userEmail,
 			},
 		})
+
+		if (response.status === 498) {
+			setMainMessage("Your session has expired")
+			setMessage("Please log in again to continue playing")
+			setImageSrc(shyBee)
+			setShowModal(true)
+		}
+
+		if (response.status === 401) {
+			setMainMessage("You are not logged in")
+			setMessage("Please log in to access to your account")
+			setImageSrc(shyBee)
+			setShowModal(true)
+		}
+
 		const data = await response.json()
 		setTotalTrophies(data[0].TotalTrophies)
 	}
@@ -321,14 +336,13 @@ const MyAccNew: React.FC = () => {
 
 				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6 mb-8">
 					<div className="flex justify-around">
-						{/* <Link to="/Scoreboard"> */}
 						<button
 							className="bg-[#9E00FF] rounded-lg w-[110px] font-Principal text-white"
 							type="button"
 						>
 							See LeaderBoard
 						</button>
-						{/* </Link> */}
+
 						<button
 							className="bg-[#30A127] py-4 rounded-lg w-[110px] font-Principal text-white"
 							type="button"
