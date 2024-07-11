@@ -165,9 +165,7 @@ const DragDrop1vs1: React.FC = () => {
 				setPlayer1Points((prevState) => prevState + 1)
 				setActivePlayerStats("player2")
 				activePlayerRef.current = "player2"
-			}
-
-			if (activePlayerRef.current === "player2") {
+			} else {
 				setPlayer2Points((prevState) => prevState + 1)
 				setActivePlayerStats("player1")
 				activePlayerRef.current = "player1"
