@@ -49,6 +49,10 @@ const DragDropGameLevels = lazy(
 	() => import("@routes/games/dragDropGame/DragDropLevels"),
 )
 
+const DragDropGame1vs1 = lazy(
+	() => import("@routes/games/dragDropGame/DragDrop1vs1"),
+)
+
 const RoutesTree = () => {
 	return (
 		<Suspense
@@ -105,6 +109,7 @@ const RoutesTree = () => {
 						path="/games/dragdropgameSingle"
 						element={<DragDropGameSingle />}
 					/>
+					<Route path="/games/dragdrop1vs1" element={<DragDropGame1vs1 />} />
 					<Route
 						path="/games/dragdropgameLevels"
 						element={<DragDropGameLevels />}

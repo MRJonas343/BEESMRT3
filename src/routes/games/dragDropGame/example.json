@@ -1,0 +1,92 @@
+[
+	{
+		"id": 253,
+		"word": "Breakfast",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F1.webp"
+	},
+	{
+		"id": 254,
+		"word": "Commute",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F2.webp"
+	},
+	{
+		"id": 255,
+		"word": "Laundry",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F3.webp"
+	},
+	{
+		"id": 256,
+		"word": "Grocery",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F4.webp"
+	},
+	{
+		"id": 257,
+		"word": "Exercise",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F5.webp"
+	},
+	{
+		"id": 258,
+		"word": "Work",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F6.webp"
+	},
+	{
+		"id": 259,
+		"word": "Meeting",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F7.webp"
+	},
+	{
+		"id": 260,
+		"word": "Lunch",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F8.webp"
+	},
+	{
+		"id": 261,
+		"word": "Chores",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F9.webp"
+	},
+	{
+		"id": 262,
+		"word": "Cooking",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F10.webp"
+	},
+	{
+		"id": 263,
+		"word": "Dinner",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F11.webp"
+	},
+	{
+		"id": 264,
+		"word": "Reading",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F12.webp"
+	},
+	{
+		"id": 265,
+		"word": "Television",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F13.webp"
+	},
+	{
+		"id": 266,
+		"word": "Cleaning",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F14.webp"
+	},
+	{
+		"id": 267,
+		"word": "Shopping",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F15.webp"
+	},
+	{
+		"id": 268,
+		"word": "Relaxation",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F16.webp"
+	},
+	{
+		"id": 269,
+		"word": "Sleep",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F17.webp"
+	},
+	{
+		"id": 270,
+		"word": "Routine",
+		"image": "https://pub-40fc7e9e2b504feb9a00dc3138bf464e.r2.dev/DragAndDropGame%2FB1Level3%2F18.webp"
+	}
+]

@@ -71,7 +71,6 @@ export interface DroppableProps {
 export interface ItemsDnDGameProps {
 	id: number
 	word: string
-	description: string
 	image: string
 }
 
@@ -162,6 +161,11 @@ export interface DragAndDropGameSingleStats {
 	completedPercentage: number
 	trophys: number
 	round: number
+}
+export interface DragDrop1vs1StatsProps {
+	activePlayer: string
+	player1Points: number
+	player2Points: number
 }
 
 export interface newUserData {

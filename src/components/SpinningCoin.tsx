@@ -1,6 +1,6 @@
-//*Assets
-import cara from "@assets/contento.png"
-import cruz from "@assets/cruz-roja.png"
+//* Assets
+import RedBee from "@assets/redbee.jpeg"
+import BlueBee from "@assets/bluebee.jpeg"
 
 //* Types
 import { SpinningCoinProps } from "@types"
@@ -59,15 +59,15 @@ const SpinningCoin: React.FC<SpinningCoinProps> = ({
 						<div className={faceClassName}>
 							<img
 								alt="cara"
-								src={cara}
-								className="absolute w-full h-full object-cover"
+								src={RedBee}
+								className="absolute rounded-full w-full h-full object-cover"
 							/>
 						</div>
 						<div className={backClassName}>
 							<img
 								alt="cruz"
-								src={cruz}
-								className="w-full h-full object-cover"
+								src={BlueBee}
+								className="w-full rounded-full h-full object-cover"
 							/>
 						</div>
 					</div>

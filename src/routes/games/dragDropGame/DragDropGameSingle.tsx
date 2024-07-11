@@ -353,7 +353,7 @@ const DragDropGameSingle: React.FC = () => {
 	}
 
 	return (
-		<main className="w-screen h-screen bg-green-400 overflow-x-hidden">
+		<main className="w-screen h-screen bg-[#64C5D5] overflow-x-hidden">
 			{showSpinner ? (
 				<Spinner />
 			) : (

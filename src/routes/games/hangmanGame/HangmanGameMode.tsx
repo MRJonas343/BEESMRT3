@@ -18,9 +18,9 @@ const HangmanGameMode: React.FC = () => {
 					Select Mode
 				</h1>
 			</div>
-			<section className="flex flex-col lg:flex-row lg:h-[80dvh] lg:w-[90dvw] lg:mx-auto gap-5 lg:gap-0 lg:justify-evenly items-center">
+			<section className="flex flex-col lg:flex-row lg:h-[80vh] lg:w-[90vw] lg:mx-auto gap-5 lg:gap-0 lg:justify-evenly items-center">
 				<Link to="/games/hangmangameLevels">
-					<div className="w-[60dvw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh] lg:flex lg:flex-col lg:items-center lg:justify-center">
+					<div className="w-[60vw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25vh] lg:w-[25vw] lg:h-[50vh] lg:flex lg:flex-col lg:items-center lg:justify-center">
 						<div className="overflow-hidden flex items-center justify-center">
 							<img className="w-20 lg:w-28" src={Single} alt="" />
 						</div>
@@ -41,7 +41,7 @@ const HangmanGameMode: React.FC = () => {
 				</Link>
 
 				<Link to="/games/hangmangame1vs1">
-					<div className="w-[60dvw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh] lg:flex lg:flex-col lg:items-center lg:justify-center">
+					<div className="w-[60vw] hover:scale-105 ease-in-out duration-200 p-6 rounded-lg bg-white h-[25vh] lg:w-[25vw] lg:h-[50vh] lg:flex lg:flex-col lg:items-center lg:justify-center">
 						<div className="overflow-hidden flex items-center justify-center">
 							<img className="w-20 lg:w-28" src={VSImage} alt="" />
 						</div>
@@ -61,8 +61,8 @@ const HangmanGameMode: React.FC = () => {
 					</div>
 				</Link>
 
-				<div className="hover:scale-105 ease-in-out duration-200 w-[60dvw] relative p-6 rounded-lg bg-white h-[25dvh] lg:w-[25dvw] lg:h-[50dvh]">
-					<div className="centerAbsolute rounded-lg z-10 w-[60dvw] h-[25dvh] bg-yellow-400/90 lg:w-[25dvw] lg:h-[50dvh]">
+				<div className="hover:scale-105 ease-in-out duration-200 w-[60vw] relative p-6 rounded-lg bg-white h-[25vh] lg:w-[25vw] lg:h-[50vh]">
+					<div className="centerAbsolute rounded-lg z-10 w-[60vw] h-[25vh] bg-yellow-400/90 lg:w-[25vw] lg:h-[50vh]">
 						<div className="centerAbsolute">
 							<img
 								alt="comingSoon"
