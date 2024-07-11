@@ -164,7 +164,9 @@ const DragDrop1vs1: React.FC = () => {
 			if (activePlayerRef.current === "player1") {
 				setPlayer1Points((prevState) => prevState + 1)
 				setActivePlayerStats("player2")
-			} else {
+			}
+
+			if (activePlayerRef.current === "player2") {
 				setPlayer2Points((prevState) => prevState + 1)
 				setActivePlayerStats("player1")
 			}
@@ -208,7 +210,7 @@ const DragDrop1vs1: React.FC = () => {
 				roundRef.current = roundRef.current + 1
 				toast(
 					<div className="flex flex-col mx-auto text-center tracking-wider py-6 font-Principal text-3d text-green-600 text-4xl">
-						<div>Nest Round</div>
+						<div>Next Round</div>
 					</div>,
 					{ duration: 1000 },
 				)
