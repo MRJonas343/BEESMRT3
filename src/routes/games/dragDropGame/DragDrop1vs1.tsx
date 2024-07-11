@@ -164,11 +164,13 @@ const DragDrop1vs1: React.FC = () => {
 			if (activePlayerRef.current === "player1") {
 				setPlayer1Points((prevState) => prevState + 1)
 				setActivePlayerStats("player2")
+				activePlayerRef.current = "player2"
 			}
 
 			if (activePlayerRef.current === "player2") {
 				setPlayer2Points((prevState) => prevState + 1)
 				setActivePlayerStats("player1")
+				activePlayerRef.current = "player1"
 			}
 
 			//*Update the droppable areas and the draggable items
