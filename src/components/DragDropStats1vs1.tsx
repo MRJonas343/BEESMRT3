@@ -22,8 +22,8 @@ const DragDrop1vs1Stats: React.FC<DragDrop1vs1StatsProps> = ({
 
 	return (
 		<>
-			<div className="pt-4 pb-1 flex justify-between flex-row w-full">
-				<div className="flex w-4/6 justify-center gap-6 px-8 items-center ">
+			<div className="pt-4 pb-1 flex justify-between flex-row w-full lg:pt-8">
+				<div className="flex w-4/6 justify-center gap-6 px-8 items-center lg:gap-12">
 					<div>
 						<img src={RedBee} alt="Red Bee" className={player1ClassName} />
 					</div>
@@ -35,7 +35,7 @@ const DragDrop1vs1Stats: React.FC<DragDrop1vs1StatsProps> = ({
 					</div>
 				</div>
 
-				<div className="w-2/6 flex flex-col mr-6">
+				<div className="w-2/6 flex flex-col lg:gap-3 mr-6 lg:justify-center">
 					<p className="text-xl font-Principal text-red-400 text-3d lg:text-3xl">
 						Player 1 points : {player1Points}
 					</p>
