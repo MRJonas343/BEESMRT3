@@ -238,9 +238,13 @@ const DragDrop1vs1: React.FC = () => {
 				setMainMessage("Congratulations Player 1")
 				setMessage("You won the game")
 				setImageSrc(Trofeo)
-			} else {
+			} else if (player1Points < player2Points) {
 				setMainMessage("Congratulations Player 2")
 				setMessage("You won the game")
+				setImageSrc(Trofeo)
+			} else {
+				setMainMessage("It's a tie")
+				setMessage("You both are winners")
 				setImageSrc(Trofeo)
 			}
 		}
