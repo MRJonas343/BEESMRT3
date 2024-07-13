@@ -57,7 +57,7 @@ const ModalSingleMode: React.FC<ModalSingleModeProps> = ({
 					{mainMessage}
 				</h1>
 				<hr />
-				<p className="pt-3 text-5xl text-center font-Principal text-Pink1 tracking-wider">
+				<p className="pt-3 text-3d text-5xl text-center font-Principal text-Pink1 tracking-wider">
 					{message}
 				</p>
 				<img className="flex w-72 mx-auto pt-5" src={imageSrc} alt="Message" />
