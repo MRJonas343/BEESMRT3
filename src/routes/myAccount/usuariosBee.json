@@ -1,0 +1,50 @@
+[
+	{
+		"nickName": "FinalTest",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/test7@test.com.png",
+		"englishLevel": "C1",
+		"TotalTrophies": "1100"
+	},
+	{
+		"nickName": "Artur",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/2202012@utrivieramaya.edu.mx.jpeg",
+		"englishLevel": "C2",
+		"TotalTrophies": "450"
+	},
+	{
+		"nickName": "Magda",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/mf.cafesanlorenzo@gmail.com.jpeg",
+		"englishLevel": null,
+		"TotalTrophies": "50"
+	},
+	{
+		"nickName": "Mr.Bee434",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/test7@test.com.png",
+		"englishLevel": "A1",
+		"TotalTrophies": "0"
+	},
+	{
+		"nickName": "Yam3101",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/angelmay_810@hotmail.com.png",
+		"englishLevel": "C1",
+		"TotalTrophies": "0"
+	},
+	{
+		"nickName": "alandev",
+		"profileImg": null,
+		"englishLevel": null,
+		"TotalTrophies": "0"
+	},
+	{
+		"nickName": "Sheryl",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/test7@test.com.png",
+		"englishLevel": "A2",
+		"TotalTrophies": "0"
+	},
+	{
+		"nickName": "Nathmiau",
+		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/test7@test.com.png",
+		"englishLevel": "B1",
+		"TotalTrophies": "0"
+	}
+]
