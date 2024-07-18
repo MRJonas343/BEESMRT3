@@ -46,5 +46,23 @@
 		"profileImg": "https://pub-241a841ae4ea425fa274a2a6b42464d9.r2.dev/test7@test.com.png",
 		"englishLevel": "B1",
 		"TotalTrophies": "0"
+	},
+	{
+		"nickName": "JohnDoe",
+		"profileImg": "",
+		"englishLevel": "B2",
+		"TotalTrophies": "200"
+	},
+	{
+		"nickName": "JaneSmith",
+		"profileImg": "",
+		"englishLevel": "C1",
+		"TotalTrophies": "320"
+	},
+	{
+		"nickName": "AlexK",
+		"profileImg": "",
+		"englishLevel": "A2",
+		"TotalTrophies": "150"
 	}
 ]

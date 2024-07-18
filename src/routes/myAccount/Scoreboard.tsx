@@ -5,38 +5,36 @@ function Scoreboard() {
 	return (
 		<div className="bg-rose-600 w-screen h-screen overflow-x-hidden">
 			<NavBar />
-
 			<div className="flex flex-col justify-center items-center gap-5">
 				<h1 className="bg-white font-Principal text-4xl font-semibold shadow-rose-950 shadow-lg py-4 px-10 rounded-md mt-7">
-					TOP best MONTH USERS
+					TOP Best Month Users
 				</h1>
-				<div className="flex flex-wrap justify-center gap-5">
-					{usuariosBee.map((user, index) => (
-						<div
-							key={index}
-							className="bg-white shadow-md shadow-red-950 flex flex-col justify-center font-Secundaria text-lg w-[230px] border-black py-6 rounded-2xl"
-						>
-							<h1 className="text-2xl font-Principal text-center">
-								{user.nickName}
-							</h1>
-							<div className="flex flex-wrap gap-3 items-center justify-center">
-								<img
-									className="rounded-full shadow-slate-500 shadow-md"
-									width={90}
-									src={user.profileImg || "/defaultProfile.svg"}
-									alt="pfpImage"
-								/>
-							</div>
-							<div className="pt-3 flex justify-around">
-								<div className="font-semibold">
-									English Level: <br /> Trophies:
+				<div className="bg-white rounded-md shadow-lg p-5 w-4/5">
+					<ul className="divide-y divide-gray-200">
+						{usuariosBee.map((user, index) => (
+							<li
+								key={index}
+								className="py-4 flex items-center justify-between"
+							>
+								<div className="flex items-center">
+									<img
+										className="h-12 w-12 rounded-full shadow-slate-500 shadow-md"
+										src={user.profileImg || "/defaultProfile.svg"}
+										alt={`${user.nickName}'s profile`}
+									/>
+									<div className="ml-4">
+										<h2 className="text-xl font-Principal">{user.nickName}</h2>
+										<div className="text-sm text-gray-500">
+											English Level: {user.englishLevel || "N/A"}
+										</div>
+									</div>
 								</div>
-								<div className="text-right">
-									{user.englishLevel || "N/A"} <br /> {user.TotalTrophies}
+								<div className="text-lg font-semibold">
+									Trophies: {user.TotalTrophies}
 								</div>
-							</div>
-						</div>
-					))}
+							</li>
+						))}
+					</ul>
 				</div>
 			</div>
 		</div>
