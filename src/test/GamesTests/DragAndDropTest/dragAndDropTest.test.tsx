@@ -1,0 +1,1 @@
+//No se pueden arrastrar los elementos
