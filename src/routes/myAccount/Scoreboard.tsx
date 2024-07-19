@@ -1,7 +1,67 @@
 import NavBar from "@components/NavBar"
-import usuariosBee from "./usuariosBee.json"
+import { useEffect, useState } from "react"
+import BasicModal from "@components/BasicModal"
+import shyBee from "@assets/abeja-shy.webp"
+import { useNavigate } from "react-router-dom"
+
+interface UserBee {
+	nickName: string
+	profileImg: string
+	englishLevel: string
+	TotalTrophies: number
+}
 
 function Scoreboard() {
+	const [showModal, setShowModal] = useState(false)
+	const [imageSrc, setImageSrc] = useState("")
+	const [message, setMessage] = useState("")
+	const [mainMessage, setMainMessage] = useState("")
+	const [usuariosBee, setUsuariosBee] = useState<UserBee[]>([])
+
+	const navigate = useNavigate()
+
+	const closeModal = () => {
+		setShowModal(!showModal)
+		navigate("/login")
+	}
+
+	const fetchUsers = async () => {
+		const BACKEND_URL = import.meta.env.VITE_BEESMRT_BACKEND_URL
+		const response = await fetch(`${BACKEND_URL}/getLeaderBoard`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+		if (response.status === 401) {
+			setMessage("You are not authorized to see this content")
+			setMainMessage("Unauthorized")
+			setImageSrc(shyBee)
+			setShowModal(true)
+			return
+		}
+
+		if (response.status === 498) {
+			setMessage("Your session has expired")
+			setMainMessage("Session Expired")
+			setImageSrc(shyBee)
+			setShowModal(true)
+			return
+		}
+
+		if (response.status === 404) {
+			console.log("Leaderboard not found")
+			return
+		}
+
+		const data: UserBee[] = await response.json()
+		setUsuariosBee(data)
+	}
+
+	useEffect(() => {
+		fetchUsers()
+	}, [])
+
 	return (
 		<div className="bg-rose-600 w-screen h-screen overflow-x-hidden">
 			<NavBar />
@@ -48,6 +108,14 @@ function Scoreboard() {
 						))}
 					</ul>
 				</div>
+
+				<BasicModal
+					showModal={showModal}
+					imageSrc={imageSrc}
+					message={message}
+					mainMessage={mainMessage}
+					closeModal={closeModal}
+				/>
 			</div>
 		</div>
 	)

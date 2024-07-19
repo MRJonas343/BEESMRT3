@@ -3,7 +3,7 @@ import { Suspense, lazy } from "react"
 //* Components
 import Spinner from "@components/Spinner"
 import HomePage from "@routes/home/HomePage"
-import Scoreboard from "@routes/myAccount/Scoreboard"
+
 const About = lazy(() => import("@routes/about/About"))
 const Contact = lazy(() => import("@routes/contact/Contact"))
 const NotFound = lazy(() => import("@routes/notFound/NotFound"))
@@ -63,6 +63,7 @@ const SentenceScrambleSingleMode = lazy(
 const SentenceScrambleSingle = lazy(
 	() => import("@routes/games/sentenceScramble/SentenceScrambleLevels"),
 )
+const Leaderboard = lazy(() => import("@routes/myAccount/Scoreboard"))
 const RoutesTree = () => {
 	return (
 		<Suspense
@@ -84,7 +85,7 @@ const RoutesTree = () => {
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/myaccount" element={<MyAccNew />} />
 					<Route path="/myAccount/MyAccNew" element={<MyAccNew />} />
-					<Route path="/Scoreboard" element={<Scoreboard />} />
+					<Route path="/myAccount/Scoreboard" element={<Leaderboard />} />
 
 					{/* Memory Game Routes */}
 					<Route path="/games/memorygameMode" element={<MemoryGameMode />} />

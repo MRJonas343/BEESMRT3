@@ -339,6 +339,7 @@ const MyAccNew: React.FC = () => {
 						<button
 							className="bg-[#9E00FF] rounded-lg w-[110px] font-Principal text-white"
 							type="button"
+							onClick={() => navigate("/myAccount/Scoreboard")}
 						>
 							See LeaderBoard
 						</button>
