@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import BasicModal from "@components/BasicModal"
 import shyBee from "@assets/abeja-shy.webp"
 import { useNavigate } from "react-router-dom"
-
+import { usePersonStore } from "@store/auth"
 interface UserBee {
 	nickName: string
 	profileImg: string
@@ -18,6 +18,8 @@ function Scoreboard() {
 	const [mainMessage, setMainMessage] = useState("")
 	const [usuariosBee, setUsuariosBee] = useState<UserBee[]>([])
 
+	const token = usePersonStore((state) => state.token)
+
 	const navigate = useNavigate()
 
 	const closeModal = () => {
@@ -31,6 +33,7 @@ function Scoreboard() {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
 			},
 		})
 		if (response.status === 401) {
