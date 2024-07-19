@@ -128,7 +128,7 @@ const SignUp: React.FC = () => {
 					<div className="flex items-center h-10 gap-2">
 						<img src={HelloBee} className="w-10" alt="helloBee" />
 						<span className="font-Principal mt-2 text-4xl text-white text-3d tracking-wide">
-							BeeSMART
+							BeeSMRT
 						</span>
 					</div>
 					<ul className="pt-4">
