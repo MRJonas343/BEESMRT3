@@ -8,7 +8,7 @@ import HomeCard from "@components/HomeCard"
 import MemoryGameImg from "@assets/memoryGame.webp"
 import HangmanImg from "@assets/hangmanImg.webp"
 import DragImg from "@assets/dragDropGame.webp"
-import ComingSoonImage from "@assets/comingSoon.webp"
+import SentencesScrambleImg from "@assets/scrambler.webp"
 
 const HomePage: React.FC = () => {
 	return (
@@ -43,9 +43,13 @@ const HomePage: React.FC = () => {
 					/>
 				</Link>
 
-				<div className="bg-white/70 p-5 rounded-2xl h-[40dvh] w-[43dvw] flex flex-col items-center justify-center overflow-hidden rounded-2x md:h-[37dvh] lg:w-[22dvw] lg:h-[55dvh]">
-					<img src={ComingSoonImage} alt={""} className="w-32 lg:w-full" />
-				</div>
+				<Link to="/games/sentenceScrambleMode" className="flex">
+					<HomeCard
+						imageSrc={SentencesScrambleImg}
+						title="Scramble Sentences"
+						text="Unscramble the sentences to form a correct sentence."
+					/>
+				</Link>
 			</section>
 		</main>
 	)

@@ -53,6 +53,16 @@ const DragDropGame1vs1 = lazy(
 	() => import("@routes/games/dragDropGame/DragDrop1vs1"),
 )
 
+const SentenceScrambleMode = lazy(
+	() => import("@routes/games/sentenceScramble/SentenceScrambleMode"),
+)
+
+const SentenceScrambleSingleMode = lazy(
+	() => import("@routes/games/sentenceScramble/SentenceScrambleSingleMode"),
+)
+const SentenceScrambleSingle = lazy(
+	() => import("@routes/games/sentenceScramble/SentenceScrambleLevels"),
+)
 const RoutesTree = () => {
 	return (
 		<Suspense
@@ -113,6 +123,20 @@ const RoutesTree = () => {
 					<Route
 						path="/games/dragdropgameLevels"
 						element={<DragDropGameLevels />}
+					/>
+
+					{/* Sentence Scramble Routes */}
+					<Route
+						path="/games/sentenceScrambleMode"
+						element={<SentenceScrambleMode />}
+					/>
+					<Route
+						path="/games/sentenceScrambleLevels"
+						element={<SentenceScrambleSingle />}
+					/>
+					<Route
+						path="/games/sentenceScrambleSingle"
+						element={<SentenceScrambleSingleMode />}
 					/>
 				</Routes>
 			</HashRouter>

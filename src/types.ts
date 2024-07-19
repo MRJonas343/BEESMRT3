@@ -61,6 +61,12 @@ export interface DraggableItemType {
 	shouldDissaperd: boolean
 }
 
+export interface DraggableItemSentenceScrambleProps {
+	idDraggableItem: number
+	word: string
+	shouldDissaperd: boolean
+}
+
 export interface DroppableProps {
 	idDroppableItem: number
 	imgDropped: string | null

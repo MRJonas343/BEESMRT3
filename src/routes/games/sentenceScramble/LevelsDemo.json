@@ -1,0 +1,110 @@
+[
+	{
+		"EnglishLevel": "A1",
+		"LevelName": "Everyday Objects",
+		"Level": "A1Level1",
+		"Trophys": 10
+	},
+	{
+		"EnglishLevel": "A1",
+		"LevelName": "Family and Friends",
+		"Level": "A1Level2",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A1",
+		"LevelName": "Daily Routines",
+		"Level": "A1Level3",
+		"Trophys": 30
+	},
+	{
+		"EnglishLevel": "A1",
+		"LevelName": "Time and Weather",
+		"Level": "A1Level4",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A1",
+		"LevelName": "Places and Directions",
+		"Level": "A1Level5",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A1",
+		"LevelName": "Hobbies and Interests",
+		"Level": "A1Level6",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A2",
+		"LevelName": "Shopping and Money",
+		"Level": "A2Level1",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A2",
+		"LevelName": "Health and Fitness",
+		"Level": "A2Level2",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A2",
+		"LevelName": "Food and Drinks",
+		"Level": "A2Level3",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A2",
+		"LevelName": "Travel and Transport",
+		"Level": "A2Level4",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A2",
+		"LevelName": "Work and Jobs",
+		"Level": "A2Level5",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "A2",
+		"LevelName": "Education and Learning",
+		"Level": "A2Level6",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "B1",
+		"LevelName": "Media and Entertainment",
+		"Level": "B1Level1",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "B1",
+		"LevelName": "Social Issues",
+		"Level": "B1Level2",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "B1",
+		"LevelName": "Daily Life",
+		"Level": "B1Level3",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "B1",
+		"LevelName": "Describing people",
+		"Level": "B1Level4",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "B1",
+		"LevelName": "Travel Experiences",
+		"Level": "B1Level5",
+		"Trophys": 0
+	},
+	{
+		"EnglishLevel": "B1",
+		"LevelName": "Science and Technology",
+		"Level": "B1Level6",
+		"Trophys": 0
+	}
+]
