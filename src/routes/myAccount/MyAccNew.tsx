@@ -7,6 +7,26 @@ import { useNavigate } from "react-router-dom"
 import shyBee from "@assets/abeja-shy.webp"
 import { useForm } from "react-hook-form"
 import { newUserData } from "@types"
+import PossibleAchivements from "./PossibleAchievements.json"
+interface Achievement {
+	name: string
+	image: string
+}
+
+const AchievementComponent: React.FC<Achievement> = ({ name, image }) => {
+	return (
+		<div className="flex flex-col items-center w-1/3 md:w-1/4 pb-4">
+			<img
+				src={image}
+				alt="medal"
+				className="w-12 h-12 md:w-16 md:h-16"
+				width={48}
+				height={48}
+			/>
+			<p className="font-Secundaria text-lg text-center">{name}</p>
+		</div>
+	)
+}
 
 const MyAccNew: React.FC = () => {
 	const navigate = useNavigate()
@@ -17,6 +37,8 @@ const MyAccNew: React.FC = () => {
 	const [imageSrc, setImageSrc] = useState("")
 	const [englishLevelName, setEnglishLevelName] = useState("")
 	const [totalTrophies, setTotalTrophies] = useState(0)
+	const [userPosition, setUserPosition] = useState(0)
+	const [achievements, setAchievements] = useState<Achievement[]>([])
 	const token = usePersonStore((state) => state.token)
 	const userNickName = usePersonStore((state) => state.userNickName)
 	const userProfileImage = String(
@@ -93,7 +115,26 @@ const MyAccNew: React.FC = () => {
 		}
 
 		const data = await response.json()
-		setTotalTrophies(data[0].TotalTrophies)
+
+		if (data.userPosition !== "Unclassified") {
+			data.userPosition = `# ${data.userPosition}`
+		}
+
+		setUserPosition(data.userPosition)
+		setTotalTrophies(data.TotalTrophys)
+
+		if (data.userAchivements.length === 0) {
+			return
+		}
+
+		const userAchivements = data.userAchivements.map((achivement: string) => {
+			const achivementData = PossibleAchivements.find(
+				(possibleAchivement) => possibleAchivement.name === achivement,
+			)
+			return achivementData
+		})
+
+		setAchievements(userAchivements)
 	}
 
 	const logOut = () => {
@@ -202,11 +243,11 @@ const MyAccNew: React.FC = () => {
 					<section className="bg-white/90 shadow-lg flex mx-6 rounded-md lg:w-2/5 lg:p-4">
 						<div className="p-4 justify-end flex lg:justify-start">
 							<img
-								height={110}
-								width={110}
+								height={70}
+								width={70}
 								src={userProfileImage}
-								alt="ProfileImage"
-								className="w-[110px] h-[110px] rounded-full"
+								alt={String(userNickName)}
+								className="w-[70px] h-[70px] lg:w-[110px] lg:h-[100px] rounded-full"
 							/>
 						</div>
 						<div className="flex gap-4 flex-col justify-center">
@@ -216,8 +257,8 @@ const MyAccNew: React.FC = () => {
 							<h2 className="font-Secundaria text-lg">Newbie</h2>
 						</div>
 						<div className="flex flex-1 justify-center pl-10 items-center">
-							<p className="font-Principal text-5xl text-Yellow1 text-3d">
-								# 230
+							<p className="font-Principal text-4xl text-Yellow1 text-3d">
+								{userPosition}
 							</p>
 						</div>
 					</section>
@@ -227,132 +268,93 @@ const MyAccNew: React.FC = () => {
 							Achievements
 						</h3>
 						<div className="flex justify-around flex-wrap">
-							<div className="flex flex-col items-center basisAdvance pb-4">
-								<img
-									src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/ganador.png"
-									alt="medal"
-									className="w-16 h-16"
-									width={64}
-									height={64}
+							{achievements.map((achievement) => (
+								<AchievementComponent
+									key={achievement.name}
+									name={achievement.name}
+									image={achievement.image}
 								/>
-								<p className="font-Secundaria text-lg text-center">Winner</p>
-							</div>
-							<div className="flex flex-col items-center basisAdvance pb-4">
-								<img
-									src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/insignia.png"
-									alt="medal"
-									className="w-16 h-16"
-									width={64}
-									height={64}
-								/>
-								<p className="font-Secundaria text-lg text-center">
-									First Game
-								</p>
-							</div>
-							<div className="flex flex-col items-center basisAdvance pb-4">
-								<img
-									src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/podio.png"
-									alt="medal"
-									className="w-16 h-16"
-									width={64}
-									height={64}
-								/>
-								<p className="font-Secundaria text-lg text-center">Top 1</p>
-							</div>
-							<div className="flex flex-col items-center basisAdvance pb-4">
-								<img
-									src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/recompensa.png"
-									alt="medal"
-									className="w-16 h-16"
-									width={64}
-									height={64}
-								/>
-								<p className="font-Secundaria text-lg text-center">
-									1000 Trophies
-								</p>
-							</div>
+							))}
 						</div>
 					</section>
 				</div>
 
-				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6">
+				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md py-6 px-6">
 					<h3 className="font-Secundaria text-xl font-semibold pb-6">
 						Progress
 					</h3>
 					<div className="flex flex-col">
 						<ProgressBar
-							completed={totalTrophies}
-							customLabel={String(totalTrophies)}
+							completed={Math.ceil((totalTrophies / 8840) * 100)}
 							bgColor={gradient}
 							height="40px"
 							isLabelVisible={true}
 							className="w-full font-Secundaria drop-shadow-md text-3d md:text-3xl"
-							maxCompleted={8840}
 							animateOnRender={true}
 						/>
 					</div>
-					<section className="flex justify-around pt-6 text-center">
-						<div>
-							<p className="font-Secundaria text-xl font-semibold pb-6">
+					<section className="flex pt-6">
+						<div className="flex flex-col items-center w-1/3">
+							<p className="font-Secundaria text-xl font-semibold pb-4">
 								Trophies
 							</p>
 							<img
 								src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/ganador.png"
 								alt="Trofeo"
-								className="w-16 h-16"
-								width={64}
-								height={64}
+								className="w-12 h-12 md:w-16 md:h-16"
+								width={48}
+								height={48}
 							/>
-							<span className="font-Secundaria text-lg text-center pt-2">
+							<span className="font-Secundaria text-lg pt-2">
 								{totalTrophies}
 							</span>
 						</div>
-						<div>
-							<p className="font-Secundaria text-xl font-semibold pb-6">
-								EnglishLevel
+						<div className="flex flex-col items-center w-1/3">
+							<p className="font-Secundaria text-xl font-semibold pb-1">
+								E. Level
 							</p>
-							<p className="font-Principal text-5xl pt-4 text-Yellow1 text-3d">
+							<p className="font-Principal text-4xl pt-5 text-Yellow1 text-3d">
 								{englishLevel}
 							</p>
-							<span className="font-Secundaria text-lg text-center">
+							<span className="font-Secundaria text-lg pt-2">
 								{englishLevelName}
 							</span>
 						</div>
-						<div className="flex flex-col items-center">
-							<p className="font-Secundaria text-xl font-semibold pb-6">
-								Global Position
+						<div className="flex flex-col items-center w-1/3">
+							<p className="font-Secundaria text-xl font-semibold pb-4">
+								Position
 							</p>
 							<img
 								src="https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/podio.png"
 								alt="Trofeo"
-								className="w-16 h-16"
-								width={64}
-								height={64}
+								className="w-12 h-12 md:w-16 md:h-16"
+								width={48}
+								height={48}
 							/>
 							<span className="font-Secundaria text-lg pt-2">#230</span>
 						</div>
 					</section>
 				</section>
 
-				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md p-6 mb-8">
-					<div className="flex justify-around">
+				<section className="bg-white/90 shadow-lg mx-6 mt-8 rounded-md py-4 mb-8">
+					<div className="flex justify-evenly">
 						<button
-							className="bg-[#9E00FF] rounded-lg w-[110px] font-Principal text-white"
+							className="bg-[#9E00FF] rounded-lg w-[100px] font-Principal text-white"
 							type="button"
 							onClick={() => navigate("/myAccount/Scoreboard")}
 						>
-							See LeaderBoard
+							LeaderBoard
 						</button>
 
 						<button
-							className="bg-[#30A127] py-4 rounded-lg w-[110px] font-Principal text-white"
+							className="bg-[#30A127] py-4 rounded-lg w-[100px] font-Principal text-white"
 							type="button"
 							onClick={() => setShowModalEditProfile(!showModalEditProfile)}
 						>
 							Edit Profile
 						</button>
 						<button
-							className="bg-[#E93030] rounded-lg w-[110px] font-Principal text-white"
+							className="bg-[#E93030] rounded-lg w-[100px] font-Principal text-white"
 							type="button"
 							onClick={logOut}
 						>

@@ -1,0 +1,42 @@
+[
+	{
+		"name": "FirstGame",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/firstGame.webp"
+	},
+	{
+		"name": "Lollipop",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/lollipop.webp"
+	},
+	{
+		"name": "Bronze",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/bronze.webp"
+	},
+	{
+		"name": "Silver",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/silver.webp"
+	},
+	{
+		"name": "Gold",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/gold.webp"
+	},
+	{
+		"name": "Platinum",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/platinum.webp"
+	},
+	{
+		"name": "Diamond",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/diamond.webp"
+	},
+	{
+		"name": "Master",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/master.webp"
+	},
+	{
+		"name": "GrandMaster",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/grandMaster.webp"
+	},
+	{
+		"name": "Challenger",
+		"image": "https://pub-634c4c6c8002422595e483ed8ca88991.r2.dev/challenger.webp"
+	}
+]
