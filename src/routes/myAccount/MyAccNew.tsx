@@ -123,11 +123,11 @@ const MyAccNew: React.FC = () => {
 		setUserPosition(data.userPosition)
 		setTotalTrophies(data.TotalTrophys)
 
-		if (data.userAchivements.length === 0) {
+		if (data.userAchievements.length === 0) {
 			return
 		}
 
-		const userAchivements = data.userAchivements.map((achivement: string) => {
+		const userAchivements = data.userAchievements.map((achivement: string) => {
 			const achivementData = PossibleAchivements.find(
 				(possibleAchivement) => possibleAchivement.name === achivement,
 			)
