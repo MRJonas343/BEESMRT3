@@ -68,7 +68,7 @@ const RoutesTree = () => {
 	return (
 		<Suspense
 			fallback={
-				<div className="flex w-vw h-vh items-center justify-center bg-Gradient1">
+				<div className="flex w-dvw h-dvh items-center justify-center bg-Gradient1">
 					<Spinner />
 				</div>
 			}

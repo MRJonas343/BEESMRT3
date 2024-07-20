@@ -1,6 +1,6 @@
 const Spinner: React.FC = () => {
 	return (
-		<div className="flex w-vw h-5/6 items-center justify-center">
+		<div className="flex w-dvw h-5/6 items-center justify-center">
 			<svg
 				fill="currentColor"
 				viewBox="0 0 1792 1792"
