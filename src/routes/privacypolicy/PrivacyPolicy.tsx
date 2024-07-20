@@ -5,7 +5,7 @@ const PrivacyPolicy: React.FC = () => {
 		<>
 			<main className="w-screen h-screen bg-Gradient1 overflow-x-hidden">
 				<NavBar />
-				<section className="bg-white/90 p-6 lg:p-8 w-[90dvw] mx-auto rounded-lg my-3 shadow-lg">
+				<section className="bg-white/90 p-6 lg:p-8 w-[90vw] mx-auto rounded-lg my-3 shadow-lg">
 					<h1 className="font-Principal text-2xl text-center">
 						Privacy Policy
 					</h1>
