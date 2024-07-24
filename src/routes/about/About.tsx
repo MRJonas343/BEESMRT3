@@ -48,7 +48,7 @@ const About = () => {
 				<section className="bg-white/90 h-auto shadow-2xl rounded-xl lg:pl-14 px-8 py-5 font-light grid gap-5">
 					<AboutCard
 						image={Control}
-						title="Learning by Play:"
+						title="Learning by Playing:"
 						text="With BeeSMRT, learning English becomes an exciting and dynamic experience through a wide range of interactive and challenging games."
 					/>
 					<AboutCard

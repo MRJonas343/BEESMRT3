@@ -1,8 +1,8 @@
 import NavBar from "@components/NavBar"
 import SentenceScrambleStatsSingleMode from "@components/SentenceScrambleStatsSingleMode"
-import { useState, useEffect } from "react"
-import DraggableItemSentenceScramble from "@components/DraggableItemSentenceScramble"
-import { DndContext, closestCenter, useDroppable } from "@dnd-kit/core"
+import { useState, useEffect, useRef } from "react"
+//import DraggableItemSentenceScramble from "@components/DraggableItemSentenceScramble"
+import { DndContext, useDroppable } from "@dnd-kit/core"
 import {
 	useSensors,
 	useSensor,
@@ -11,9 +11,9 @@ import {
 	KeyboardSensor,
 	DragEndEvent,
 } from "@dnd-kit/core"
-//import exampleData from "./data.json"
+import exampleData from "./data.json"
 import { SortableContext, rectSwappingStrategy } from "@dnd-kit/sortable"
-//import SortableElementSentenScramble from "@components/SortableElementSentenScramble"
+import SortableElementSentenScramble from "@components/SortableElementSentenScramble"
 
 const SentenceScrambleSingleMode = () => {
 	const [englishLevel] = useState("A1")
@@ -22,50 +22,57 @@ const SentenceScrambleSingleMode = () => {
 	const [trophies] = useState(0)
 	const [round, setRound] = useState(0)
 	const [sentence] = useState("Hey, how are you doing?")
-	//const roundRef = useRef(0)
+	const roundRef = useRef(0)
 
-	const words = [
-		{
-			word: "Hello",
-			id: 10,
-		},
-		{
-			word: "World",
-			id: 20,
-		},
+	// const words = [
+	// 	{
+	// 		word: "Hello",
+	// 		id: 10,
+	// 	},
+	// 	{
+	// 		word: "World",
+	// 		id: 20,
+	// 	},
 
-		{
-			word: "How",
-			id: 30,
-		},
-		{
-			word: "Are",
-			id: 40,
-		},
-		{
-			word: "You",
-			id: 50,
-		},
-		{
-			word: "Doing",
-			id: 60,
-		},
-		{
-			word: "Today",
-			id: 70,
-		},
-		{
-			word: "Good",
-			id: 80,
-		},
-		{
-			word: "Morning",
-			id: 90,
-		},
-	]
+	// 	{
+	// 		word: "How",
+	// 		id: 30,
+	// 	},
+	// 	{
+	// 		word: "Are",
+	// 		id: 40,
+	// 	},
+	// 	{
+	// 		word: "You",
+	// 		id: 50,
+	// 	},
+	// 	{
+	// 		word: "Doing",
+	// 		id: 60,
+	// 	},
+	// 	{
+	// 		word: "Today",
+	// 		id: 70,
+	// 	},
+	// 	{
+	// 		word: "Good",
+	// 		id: 80,
+	// 	},
+	// 	{
+	// 		word: "Morning",
+	// 		id: 90,
+	// 	},
+	// ]
+
+	type wordInitialZone = {
+		word: string
+		id: number
+	}
 
 	// const [wordsInDropZone, setWordsInDropZone] = useState(words)
-	// const [wordsInInitialZone, setWordsInInitialZone] = useState(words)
+	const [wordsInInitialZone, setWordsInInitialZone] = useState<
+		wordInitialZone[]
+	>([])
 
 	const { setNodeRef } = useDroppable({
 		id: "dropzone",
@@ -83,34 +90,36 @@ const SentenceScrambleSingleMode = () => {
 	}
 
 	const updateSentence = () => {
-		//const data = exampleData[roundRef.current]
-		//const words = data.sentence.split(" ")
-		//setWords(words)
+		const data = exampleData[roundRef.current]
+		const words = data.sentence.split(" ")
+		setWordsInInitialZone(words.map((word) => ({ word, id: generateId() })))
+	}
+
+	const generateId = () => {
+		return Math.floor(Math.random() * 1001)
 	}
 
 	useEffect(() => {
 		initGame()
 	}, [])
 
-	const handleDropZone1 = (event: DragEndEvent) => {
-		console.log(event)
-	}
-
-	const handleDropZone2 = (event: DragEndEvent) => {
-		const { active, over } = event
-
-		if (active.id === over?.id) return
-
-		// setWordSortable((words) => {
-		// 	const activeIndex = words.findIndex((word) => word.id === active.id)
-		// 	const overIndex = words.findIndex((word) => word.id === over?.id)
-
-		// 	const newWords = [...words]
-		// 	newWords[activeIndex] = words[overIndex]
-		// 	newWords[overIndex] = words[activeIndex]
-
-		// 	return newWords
-		// })
+	const handleDropZone = (event: DragEndEvent) => {
+		//*In case the item is dropped outside the dropzone or in the same position
+		if (!event.over || event.active.id === event.over.id) {
+			return
+		}
+		//* Interchange the items
+		const overIndex = wordsInInitialZone.findIndex(
+			(word) => word.id === event.over?.id,
+		)
+		const activeIndex = wordsInInitialZone.findIndex(
+			(word) => word.id === event.active.id,
+		)
+		const newWords = [...wordsInInitialZone]
+		const temp = newWords[overIndex]
+		newWords[overIndex] = newWords[activeIndex]
+		newWords[activeIndex] = temp
+		setWordsInInitialZone(newWords)
 	}
 
 	return (
@@ -132,49 +141,30 @@ const SentenceScrambleSingleMode = () => {
 					<p className="font-Secundaria p-2">{sentence}</p>
 				</div>
 
-				<DndContext
-					sensors={sensores}
-					onDragEnd={handleDropZone1}
-					autoScroll={false}
-				>
-					<DndContext
-						sensors={sensores}
-						onDragEnd={handleDropZone2}
-						autoScroll={false}
-						collisionDetection={closestCenter}
-					>
+				<DndContext sensors={sensores} onDragEnd={handleDropZone}>
+					<SortableContext items={[]} strategy={rectSwappingStrategy}>
 						<button
 							type="button"
 							className="bg-red-300 h-[240px] my-2 rounded-lg shadow-md grid grid-cols-3 mx-3 p-4 gap-4"
 							ref={setNodeRef}
-						>
-							{/* <SortableContext
-								items={wordSortable}
-								strategy={rectSwappingStrategy}
-							>
-								{wordSortable.map((word, index) => (
-									<SortableElementSentenScramble
-										key={index}
-										id={word.id}
-										word={word.word}
-									/>
-								))}
-							</SortableContext> */}
-						</button>
-					</DndContext>
+						/>
+					</SortableContext>
 
-					<section className="grid grid-cols-3 mx-3 p-4 gap-4">
-						<SortableContext items={words} strategy={rectSwappingStrategy}>
-							{words.map((word, index) => (
-								<DraggableItemSentenceScramble
+					<SortableContext
+						items={wordsInInitialZone}
+						strategy={rectSwappingStrategy}
+					>
+						<section className="grid grid-cols-3 mx-3 p-4 gap-4">
+							{wordsInInitialZone.map((word, index) => (
+								<SortableElementSentenScramble
 									key={index}
-									idDraggableItem={word.id}
-									shouldDissaperd={false}
+									idDroppableItem={word.id}
+									id={word.id}
 									word={word.word}
 								/>
 							))}
-						</SortableContext>
-					</section>
+						</section>
+					</SortableContext>
 				</DndContext>
 			</section>
 		</main>
