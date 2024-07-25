@@ -113,6 +113,7 @@ const SentenceScrambleLevels = () => {
 		//const level = levelObject?.Level
 		setMainMessage("Sorry for the inconvenience")
 		setMessage("We are working hard to bring you this game soon")
+		setImageSrc(shyBee)
 		setShowModal(true)
 	}
 
