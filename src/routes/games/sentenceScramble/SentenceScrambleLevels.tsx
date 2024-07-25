@@ -1,5 +1,5 @@
 import NavBar from "@components/NavBar"
-import { ChangeEvent, MouseEvent } from "react"
+import { ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import { EnglishLevel } from "@types"
@@ -104,14 +104,21 @@ const SentenceScrambleLevels = () => {
 		setEnglishLevels(newEnglishLevels)
 	}
 
-	const redirectToGame = (e: MouseEvent<HTMLButtonElement>) => {
-		const chosenLevel = e.currentTarget.textContent
-		const levelObject = englishLevels.find(
-			(level) => level.LevelName === chosenLevel,
-		)
-		const trophys = levelObject?.Trophys
-		const level = levelObject?.Level
-		navigate("/games/sentenceScrambleSingle", { state: { level, trophys } })
+	const redirectToGame = () => {
+		//const chosenLevel = e.currentTarget.textContent
+		// const levelObject = englishLevels.find(
+		// 	(level) => level.LevelName === chosenLevel,
+		// )
+		//const trophys = levelObject?.Trophys
+		//const level = levelObject?.Level
+		setMainMessage("Sorry for the inconvenience")
+		setMessage("We are working hard to bring you this game soon")
+		setShowModal(true)
+	}
+
+	const closeModal = () => {
+		setShowModal(false)
+		navigate("/")
 	}
 
 	return (
@@ -164,7 +171,7 @@ const SentenceScrambleLevels = () => {
 					</div>
 					<BasicModal
 						showModal={showModal}
-						closeModal={() => setShowModal(!showModal)}
+						closeModal={closeModal}
 						imageSrc={imageSrc}
 						message={message}
 						mainMessage={mainMessage}
