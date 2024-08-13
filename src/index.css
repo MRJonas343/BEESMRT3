@@ -43,16 +43,24 @@
 }
 
 .bg-close-menu {
-  background-image: url('../src/assets/icon-hamburger.svg');
-
+  background-image: url('../src/assets/icon-close.svg');
 }
 
 .text-3d {
-  text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow: 
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
+
 .text-3d2 {
-  text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow: 
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black;
 }
 
 .text-3d3 {

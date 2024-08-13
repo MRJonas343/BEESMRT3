@@ -8,7 +8,7 @@ through dynamic and fun games.
 **Instalation**
 
 - Clone the project : Git clone https://github.com/MRJonas343/BeeSMRT2.git
-- Download dependencies : npm i
+- Download dependencies : bun i
 
 **Recommended extensions**
 
