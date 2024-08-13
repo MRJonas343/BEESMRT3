@@ -1,7 +1,7 @@
 import { lazy } from "react"
 import { Navigate, Route } from "react-router-dom"
 import { SemiPrivateRoutes } from "@/models/routes"
-import RoutesWithNotFound from "@/utils/RoutesWithNotFound"
+import { RoutesWithNotFound } from "@/utils"
 
 const GameMenu = lazy(() => import("./GameMenu"))
 const MemoryGameSingleMode = lazy(

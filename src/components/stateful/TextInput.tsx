@@ -2,7 +2,7 @@ import { Input } from "@nextui-org/react"
 import { TextInputModel } from "./models/TextInput.model"
 import { FC } from "react"
 
-const TextInput: FC<TextInputModel> = ({
+export const TextInput: FC<TextInputModel> = ({
 	autoFocus,
 	className,
 	label,
@@ -65,4 +65,3 @@ const TextInput: FC<TextInputModel> = ({
 		</>
 	)
 }
-export default TextInput

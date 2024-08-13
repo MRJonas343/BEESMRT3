@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import useAuthStore from "@/context/Auth.context"
 import logoWhite from "@assets/logo_white.webp"
 
-const NavBar: FC = () => {
+export const NavBar: FC = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const buttonMenuClassName = isMenuOpen
@@ -88,5 +88,3 @@ const NavBar: FC = () => {
 		</nav>
 	)
 }
-
-export default NavBar

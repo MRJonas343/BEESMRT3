@@ -1,18 +1,20 @@
+import { useState } from "react"
 import { PublicRoutes } from "@/models/routes"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Link } from "react-router-dom"
 import { useAuthUser } from "@/hooks/useAuthUser"
 import { FormValues } from "@/models/FormValues"
-import { useState } from "react"
 import { MdEmail } from "react-icons/md"
-import StaticPagesLayout from "@/components/stateless/layouts/StaticPagesLayout"
-import MainButton from "@/components/stateful/MainButton"
-import TextInput from "@/components/stateful/TextInput"
-import NavBar from "@/components/stateful/NavBar"
 import HelloBee from "@assets/beeLogin.webp"
-import Typography from "@/components/stateless/Typography"
-import PasswordEye from "@/components/stateful/PasswordEye"
 import useAuthStore from "@/context/Auth.context"
+import {
+	MainButton,
+	NavBar,
+	TextInput,
+	PasswordEye,
+	StaticPagesLayout,
+	Typography,
+} from "@/components"
 
 const Login = () => {
 	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)

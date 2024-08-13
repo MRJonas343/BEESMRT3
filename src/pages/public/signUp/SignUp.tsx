@@ -1,14 +1,16 @@
-import NavBar from "@/components/stateful/NavBar"
-import Typography from "@/components/stateless/Typography"
-import StaticPagesLayout from "@/components/stateless/layouts/StaticPagesLayout"
-import TextInput from "@/components/stateful/TextInput"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { FormValues } from "@/models/FormValues"
-import MainButton from "@/components/stateful/MainButton"
 import { useCreateUser } from "@/hooks/useCreateUser"
-import PasswordEye from "@/components/stateful/PasswordEye"
 import { MdEmail } from "react-icons/md"
 import { useState } from "react"
+import {
+	MainButton,
+	NavBar,
+	PasswordEye,
+	StaticPagesLayout,
+	TextInput,
+	Typography,
+} from "@/components"
 
 const SignUp = () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false)

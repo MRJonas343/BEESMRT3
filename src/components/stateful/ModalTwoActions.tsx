@@ -14,7 +14,7 @@ import { createPortal } from "react-dom"
  * @param secondaryAction - The function to execute when the secondary action button is clicked.
  */
 
-const ModalTwoActions: FC<ModalTwoActionsProps> = ({
+export const ModalTwoActions: FC<ModalTwoActionsProps> = ({
 	message,
 	mainMessage,
 	imageSrc,
@@ -67,5 +67,3 @@ const ModalTwoActions: FC<ModalTwoActionsProps> = ({
 		portalRoot,
 	)
 }
-
-export default ModalTwoActions

@@ -1,7 +1,7 @@
+import { lazy } from "react"
 import { Navigate, Route } from "react-router-dom"
 import { PrivateRoutes, PremiumRoutes } from "../../models/routes"
-import RoutesWithNotFound from "../../utils/RoutesWithNotFound"
-import { lazy } from "react"
+import { RoutesWithNotFound } from "@/utils"
 
 const Forge = lazy(() => import("./premiumUsers/forge/Forge"))
 const OnlineMode = lazy(() => import("./premiumUsers/onlineMode/OnlineMode"))

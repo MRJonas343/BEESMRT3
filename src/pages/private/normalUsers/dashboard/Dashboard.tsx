@@ -1,4 +1,4 @@
-import MainButton from "@/components/stateful/MainButton"
+import { MainButton } from "@/components"
 import useAuthStore from "@/context/Auth.context"
 
 const Dashboard = () => {

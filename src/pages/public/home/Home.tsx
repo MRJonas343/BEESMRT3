@@ -1,6 +1,5 @@
-import StaticPagesLayout from "@/components/stateless/layouts/StaticPagesLayout"
-import Typography from "@/components/stateless/Typography"
-import NavBar from "@/components/stateful/NavBar"
+import { NavBar, StaticPagesLayout, Typography } from "@/components"
+
 const Home = () => {
 	return (
 		<StaticPagesLayout>

@@ -6,7 +6,11 @@ export interface TypographyProps {
 	className?: string
 }
 
-const Typography: FC<TypographyProps> = ({ children, className, textType }) => {
+export const Typography: FC<TypographyProps> = ({
+	children,
+	className,
+	textType,
+}) => {
 	if (textType === "MegaTitle")
 		return (
 			<h1
@@ -36,4 +40,3 @@ const Typography: FC<TypographyProps> = ({ children, className, textType }) => {
 	if (textType === "caption")
 		return <p className={`${className} text-sm font-Secundaria`}>{children}</p>
 }
-export default Typography

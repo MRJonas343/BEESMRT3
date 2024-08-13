@@ -4,7 +4,7 @@ import { QueryClient } from "@tanstack/react-query"
 import { BrowserRouter } from "react-router-dom"
 import { Suspense } from "react"
 import { Toaster } from "react-hot-toast"
-import Loader from "./components/stateless/Loader.tsx"
+import { Loader } from "./components"
 const App = () => {
 	const queryClient = new QueryClient()
 

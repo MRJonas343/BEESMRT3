@@ -1,6 +1,4 @@
-import StaticPagesLayout from "@/components/stateless/layouts/StaticPagesLayout"
-import NavBar from "@/components/stateful/NavBar"
-import Typography from "@/components/stateless/Typography"
+import { Typography, NavBar, StaticPagesLayout } from "@/components"
 import GameCard from "./components/GameCard"
 import { games } from "./constant/availableGames"
 

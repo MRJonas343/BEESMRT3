@@ -1,9 +1,9 @@
-import ModalTwoActions from "@/components/stateful/ModalTwoActions"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PublicRoutes } from "@/models/routes"
+import { ModalTwoActions } from "@/components"
 
-const ModalShouldLogin = () => {
+export const ModalShouldLogin = () => {
 	const [shouldShowModal, setShouldShowModal] = useState(true)
 	const navigate = useNavigate()
 
@@ -31,5 +31,3 @@ const ModalShouldLogin = () => {
 		</>
 	)
 }
-
-export default ModalShouldLogin

@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/react"
 import { SubmitButtonProps } from "./models/SubmitButton"
 import { FC } from "react"
 
-const MainButton: FC<SubmitButtonProps> = ({
+export const MainButton: FC<SubmitButtonProps> = ({
 	children,
 	type,
 	disabled,
@@ -29,4 +29,3 @@ const MainButton: FC<SubmitButtonProps> = ({
 		</Button>
 	)
 }
-export default MainButton

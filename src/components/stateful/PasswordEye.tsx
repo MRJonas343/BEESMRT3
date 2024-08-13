@@ -6,7 +6,10 @@ export interface PasswordEyeProps {
 	toggleVisibility: () => void
 }
 
-const PasswordEye: FC<PasswordEyeProps> = ({ isVisible, toggleVisibility }) => {
+export const PasswordEye: FC<PasswordEyeProps> = ({
+	isVisible,
+	toggleVisibility,
+}) => {
 	return (
 		<button
 			className="focus:outline-none"
@@ -22,4 +25,3 @@ const PasswordEye: FC<PasswordEyeProps> = ({ isVisible, toggleVisibility }) => {
 		</button>
 	)
 }
-export default PasswordEye

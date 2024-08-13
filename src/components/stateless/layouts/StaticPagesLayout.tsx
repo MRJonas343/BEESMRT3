@@ -1,7 +1,7 @@
 import { StaticPageLayoutProps } from "./models/StaticPageLayoutProps"
 import { FC } from "react"
 
-const StaticPagesLayout: FC<StaticPageLayoutProps> = ({
+export const StaticPagesLayout: FC<StaticPageLayoutProps> = ({
 	children,
 	className,
 }) => {
@@ -13,4 +13,3 @@ const StaticPagesLayout: FC<StaticPageLayoutProps> = ({
 		</>
 	)
 }
-export default StaticPagesLayout

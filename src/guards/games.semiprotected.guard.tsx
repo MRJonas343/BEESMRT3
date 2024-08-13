@@ -1,5 +1,6 @@
 import useAuthStore from "@/context/Auth.context"
-import ModalShouldLogin from "@/utils/ModalShouldLogin"
+import { ModalShouldLogin } from "@/utils"
+
 import { Outlet } from "react-router-dom"
 
 /**

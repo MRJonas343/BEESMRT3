@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom"
 interface props {
 	children: JSX.Element[] | JSX.Element | React.ReactNode
 }
-const RoutesWithNotFound = ({ children }: props) => {
+export const RoutesWithNotFound = ({ children }: props) => {
 	return (
 		<Routes>
 			{children}
@@ -11,4 +11,3 @@ const RoutesWithNotFound = ({ children }: props) => {
 		</Routes>
 	)
 }
-export default RoutesWithNotFound

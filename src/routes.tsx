@@ -1,29 +1,34 @@
 import { lazy } from "react"
 import { Route, useNavigate } from "react-router-dom"
-import RoutesWithNotFound from "./utils/RoutesWithNotFound"
+import { NextUIProvider } from "@nextui-org/react"
+import { RoutesWithNotFound } from "./utils"
 import {
 	PremiumRoutes,
 	PrivateRoutes,
 	PublicRoutes,
 	SemiPrivateRoutes,
 } from "./models/routes"
-import AuthGuard from "./guards/auth.protected.guard"
-import GamesGuard from "./guards/games.semiprotected.guard"
-import PremiumGuard from "./guards/auth.premium.guard"
 
+//*Guard components
 const HomeGuard = lazy(() => import("./guards/home.guard"))
+const AuthGuard = lazy(() => import("./guards/auth.protected.guard"))
+const GamesGuard = lazy(() => import("./guards/games.semiprotected.guard"))
+const PremiumGuard = lazy(() => import("./guards/auth.premium.guard"))
+
+//*Pages components
 const Home = lazy(() => import("./pages/public/home/Home"))
 const Login = lazy(() => import("./pages/public/login/Login"))
 const SignUp = lazy(() => import("./pages/public/signUp/SignUp"))
 const About = lazy(() => import("./pages/public/about/About"))
+const Contact = lazy(() => import("./pages/public/contact/Contact"))
 const PrivacyPolicy = lazy(
 	() => import("./pages/public/privacyPolicy/PrivacyPolicy"),
 )
+
+//*Protected pages components
 const SemiPrivate = lazy(() => import("./pages/games/SemiPrivate"))
+const Premium = lazy(() => import("./pages/private/Premium"))
 const Private = lazy(() => import("./pages/private/Private"))
-import Contact from "./pages/public/contact/Contact"
-import Premium from "./pages/private/Premium"
-import { NextUIProvider } from "@nextui-org/react"
 
 const RoutesTree = () => {
 	const navigate = useNavigate()
