@@ -9,6 +9,7 @@ through dynamic and fun games.
 
 - Clone the project : Git clone https://github.com/MRJonas343/BeeSMRT2.git
 - Download dependencies : bun i
+- Run proyect : bun dev
 
 **Recommended extensions**
 
