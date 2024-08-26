@@ -17,18 +17,9 @@ export const axiosInterceptor = (beesmartApi: AxiosInstance) => {
 			return response
 		},
 		(error) => {
-			console.log({ error: error })
-			displayToastError(getValidationError(error.code))
+			const codeError = error.response?.data?.error || error.code
+			displayToastError(getValidationError(codeError))
 			return Promise.reject(error)
 		},
 	)
 }
-
-/* beesmartApi.interceptors.request.use((request) => {
-	 if(request.url?.includes("update")) {
-	 	//*If I'll face a problem with the request because
-		//*is multipart/form-data I'll use the following code	
-	 return request
-	 }
-	})
- */

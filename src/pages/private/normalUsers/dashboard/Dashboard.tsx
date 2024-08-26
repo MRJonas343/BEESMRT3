@@ -1,10 +1,11 @@
 import { MainButton } from "@/components"
-import useAuthStore from "@/context/Auth.context"
+import { useLogOut } from "@/hooks/useLogOut"
 
 const Dashboard = () => {
-	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)
+	const { mutation } = useLogOut()
+
 	const logOut = () => {
-		setIsAuthenticated(false)
+		mutation.mutate()
 	}
 
 	return (

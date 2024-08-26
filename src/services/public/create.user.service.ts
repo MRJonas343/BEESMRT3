@@ -1,5 +1,7 @@
 import { beesmartApi } from "@/api/beesmrt.api"
+
 import { APIROUTES } from "@/models/Api.routes"
+import { CreateUserResponse } from "../interfaces/createUserResponse"
 
 const createUserService = async (
 	email: string,
@@ -7,12 +9,15 @@ const createUserService = async (
 	nickName: string,
 	englishLevel: string,
 ) => {
-	const { data } = await beesmartApi.post(APIROUTES.signup, {
-		email,
-		password,
-		nickName,
-		englishLevel,
-	})
+	const { data } = await beesmartApi.post<CreateUserResponse>(
+		APIROUTES.signup,
+		{
+			email,
+			password,
+			nickName,
+			englishLevel,
+		},
+	)
 	return data
 }
 

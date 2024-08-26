@@ -2,9 +2,12 @@ import { useMutation } from "@tanstack/react-query"
 import { FormValues } from "@/models/FormValues"
 import createUserService from "@/services/public/create.user.service"
 import { useNavigate } from "react-router-dom"
-import { PublicRoutes } from "@/models/routes"
+import { PrivateRoutes } from "@/models/routes"
+import useAuthStore from "@/context/Auth.context"
 
 export const useCreateUser = () => {
+	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)
+
 	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: (data: FormValues) =>
@@ -14,8 +17,10 @@ export const useCreateUser = () => {
 				data.nickName,
 				data.englishLevel.toUpperCase(),
 			),
-		onSuccess: () => {
-			navigate(`/${PublicRoutes.LOGIN}`)
+		onSuccess: (data) => {
+			const { email, nickName, englishLevel } = data
+			setIsAuthenticated(true, email, nickName, englishLevel)
+			navigate(`/${PrivateRoutes.PRIVATE}`)
 		},
 		retry: 2,
 	})

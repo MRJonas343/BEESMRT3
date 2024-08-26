@@ -6,7 +6,6 @@ import { useAuthUser } from "@/hooks/useAuthUser"
 import { FormValues } from "@/models/FormValues"
 import { MdEmail } from "react-icons/md"
 import HelloBee from "@assets/beeLogin.webp"
-import useAuthStore from "@/context/Auth.context"
 import {
 	MainButton,
 	NavBar,
@@ -17,7 +16,6 @@ import {
 } from "@/components"
 
 const Login = () => {
-	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 	const { mutation } = useAuthUser()
 
@@ -29,7 +27,6 @@ const Login = () => {
 	} = useForm<FormValues>()
 
 	const onSubmit: SubmitHandler<FormValues> = (data) => {
-		setIsAuthenticated(true)
 		mutation.mutate(data)
 		reset()
 	}

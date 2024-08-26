@@ -7,12 +7,14 @@ import { PrivateRoutes } from "@/models/routes"
 
 export const useAuthUser = () => {
 	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)
+
 	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: (data: FormValues) =>
 			authUserService(data.email, data.password),
-		onSuccess: () => {
-			setIsAuthenticated(true)
+		onSuccess: (data) => {
+			const { email, nickName, englishLevel } = data
+			setIsAuthenticated(true, email, nickName, englishLevel)
 			navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true })
 		},
 		retry: 2,
