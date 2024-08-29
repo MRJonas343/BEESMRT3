@@ -71,7 +71,7 @@ const Login = () => {
 								/>
 								<TextInput
 									label="password"
-									autoComplete="password"
+									autoComplete="current-password"
 									register={register}
 									formLabel="password"
 									type={isPasswordVisible ? "text" : "password"}

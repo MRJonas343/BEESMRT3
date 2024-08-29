@@ -7,15 +7,6 @@ export const PublicRoutes = {
 	CONTACT: "contact",
 }
 
-export const SemiPrivateRoutes = {
-	SEMIPRIVATE: "semiprivate",
-	GAMEMENU: "game-menu",
-	MEMORYGAMESINGLEMODE: "memory-game-single",
-	MEMORYGAME1V1MODE: "memory-game-1v1",
-	MEMORYGAMEONLINEMODE: "memory-game-online",
-	HANGMANGAMESINGLEMODE: "hangman-game-single",
-}
-
 export const PrivateRoutes = {
 	PRIVATE: "private",
 	DASHBOARD: "dashboard",
@@ -23,6 +14,11 @@ export const PrivateRoutes = {
 	FRIENDS: "friends",
 	LEADERBOARD: "leaderboard",
 	TOURNAMENTS: "tournaments",
+	GAMEMENU: "game-menu",
+	MEMORYGAMESINGLEMODE: "memory-game-single",
+	MEMORYGAME1V1MODE: "memory-game-1v1",
+	MEMORYGAMEONLINEMODE: "memory-game-online",
+	HANGMANGAMESINGLEMODE: "hangman-game-single",
 }
 
 export const PremiumRoutes = {

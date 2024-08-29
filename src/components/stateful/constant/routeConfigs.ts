@@ -1,11 +1,11 @@
-import { PrivateRoutes, PublicRoutes, SemiPrivateRoutes } from "@/models/routes"
+import { PrivateRoutes, PublicRoutes } from "@/models/routes"
 
 export const routeConfigs = {
 	public: [
 		{ avialableRoute: `/${PublicRoutes.SIGNUP}`, routeName: "Sign Up" },
 		{
-			avialableRoute: `/${SemiPrivateRoutes.SEMIPRIVATE}`,
-			routeName: "Try Games",
+			avialableRoute: `/${PublicRoutes.CONTACT}`,
+			routeName: "Contact Us",
 		},
 		{ avialableRoute: `/${PublicRoutes.ABOUT}`, routeName: "About Us" },
 	],

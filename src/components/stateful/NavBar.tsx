@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { PrivateRoutes, PublicRoutes, SemiPrivateRoutes } from "@/models/routes"
+import { PrivateRoutes, PublicRoutes } from "@/models/routes"
 import { routeConfigs } from "./constant/routeConfigs"
 import { Link } from "react-router-dom"
 import useAuthStore from "@/context/Auth.context"
@@ -23,7 +23,7 @@ export const NavBar: FC = () => {
 	return (
 		<nav className="w-[95%] pt-4 px-4 mx-auto overflow-hidden h-12 flex items-center justify-between font-Principal text-3xl text-3d text-white xl:w-screen xl:px-12">
 			<Link
-				to={isAuthenticated ? `/${SemiPrivateRoutes.SEMIPRIVATE}` : "/"}
+				to={isAuthenticated ? `/private/${PrivateRoutes.GAMEMENU}` : "/"}
 				className="w-1/3 max-w-[240px] hover:scale-110 ease-in-out duration-200"
 			>
 				<img alt="logo" src={logoWhite} className="w-40" />

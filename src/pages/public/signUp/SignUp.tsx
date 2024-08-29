@@ -40,6 +40,7 @@ const SignUp = () => {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<TextInput
 						autoFocus
+						autoComplete="nickname"
 						formLabel="nickName"
 						register={register}
 						errors={errors}
@@ -60,6 +61,7 @@ const SignUp = () => {
 						required
 					/>
 					<TextInput
+						autoComplete="email"
 						formLabel="email"
 						register={register}
 						errors={errors}
@@ -73,6 +75,7 @@ const SignUp = () => {
 						}
 					/>
 					<TextInput
+						autoComplete="new-password"
 						formLabel="password"
 						register={register}
 						errors={errors}
@@ -94,6 +97,7 @@ const SignUp = () => {
 						type={isPasswordVisible ? "text" : "password"}
 					/>
 					<TextInput
+						autoComplete="new-password"
 						formLabel="confirmPassword"
 						register={register}
 						errors={errors}

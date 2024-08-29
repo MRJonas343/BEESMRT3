@@ -14,7 +14,14 @@ const GameCard: FC<GameCardProps> = ({ imageSrc, text, title }) => {
 			onClick={() => {}}
 			className="bg-white/70 w-[43vw] h-[40vh] flex flex-col items-center overflow-auto p-5 rounded-2xl ease-in-out duration-200 hover:scale-105 hover:bg-yellow-400 cursor-pointer md:h-[37vh] lg:w-[22vw] lg:h-[55vh] lg:pt-20 shadow-2xl"
 		>
-			<img src={imageSrc} alt={title} className="w-28" />
+			<img
+				loading="eager"
+				src={imageSrc}
+				width={112}
+				height={112}
+				alt={title}
+				className="w-28"
+			/>
 			<h2 className="py-3 text-xl tracking-wide text-center text-white font-Principal text-3d md:text-2xl">
 				{title}
 			</h2>
