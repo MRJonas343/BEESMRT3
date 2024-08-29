@@ -4,7 +4,12 @@ import { games } from "./constant/availableGames"
 
 const GameMenu = () => {
 	return (
-		<StaticPagesLayout className="h-screen">
+		<StaticPagesLayout
+			title="Games"
+			index="follow"
+			metaDescription="Play games and have fun with Beesmrt Games"
+			className="h-screen"
+		>
 			<NavBar />
 			<Typography
 				className="pt-3 text-center lg:pt-8 lg:text-5xl animate-bouncing animate-iteration-count-infinite"
