@@ -3,6 +3,7 @@ import GameCard from "./components/GameCard"
 import { games } from "./constant/availableGames"
 
 const GameMenu = () => {
+	console.log("rendering GameMenu")
 	return (
 		<StaticPagesLayout
 			title="Games"

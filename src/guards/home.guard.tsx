@@ -1,16 +1,20 @@
 import useAuthStore from "@/context/Auth.context"
-import { Outlet } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 import { PrivateRoutes } from "../models/routes"
+import { FC, ReactNode } from "react"
 
-const HomeGuard = () => {
+interface HomeGuardProps {
+	children: ReactNode
+}
+
+const HomeGuard: FC<HomeGuardProps> = ({ children }) => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
 	if (isAuthenticated) {
-		return <Navigate replace to={PrivateRoutes.PRIVATE} />
+		return <Navigate to={`/${PrivateRoutes.GAMEMENU}`} replace />
 	}
 
-	return <Outlet />
+	return <>{children}</>
 }
 
 export default HomeGuard

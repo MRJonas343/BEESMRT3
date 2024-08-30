@@ -1,3 +1,5 @@
+import { JSX } from "react"
+
 export interface SubmitButtonProps {
 	children: React.ReactNode | JSX.Element | JSX.Element[] | string
 	type: "submit" | "reset" | "button"

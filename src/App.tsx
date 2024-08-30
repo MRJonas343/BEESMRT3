@@ -1,25 +1,21 @@
-import RoutesTree from "./routes.tsx"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { QueryClient } from "@tanstack/react-query"
-import { BrowserRouter } from "react-router-dom"
+import { RouterProvider } from "react-router-dom"
 import { Suspense } from "react"
 import { Toaster } from "react-hot-toast"
 import { Loader } from "./components"
+import { router } from "./routes"
 
 const App = () => {
 	const queryClient = new QueryClient()
 
 	return (
-		<>
-			<QueryClientProvider client={queryClient}>
-				<Suspense fallback={<Loader />}>
-					<BrowserRouter>
-						<RoutesTree />
-					</BrowserRouter>
-					<Toaster />
-				</Suspense>
-			</QueryClientProvider>
-		</>
+		<QueryClientProvider client={queryClient}>
+			<Suspense fallback={<Loader />}>
+				<RouterProvider router={router} />
+				<Toaster />
+			</Suspense>
+		</QueryClientProvider>
 	)
 }
 

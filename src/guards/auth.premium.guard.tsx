@@ -1,20 +1,21 @@
-import { PrivateRoutes, PublicRoutes } from "../models/routes"
-import { Outlet, Navigate } from "react-router-dom"
+import { PrivateRoutes } from "../models/routes"
+import { Navigate } from "react-router-dom"
 import useAuthStore from "@/context/Auth.context"
+import { FC, ReactNode } from "react"
 
-const PremiumGuard = () => {
-	const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+interface PremiumGuardProps {
+	children: ReactNode
+}
+
+const PremiumGuard: FC<PremiumGuardProps> = ({ children }) => {
+	const isAuth = useAuthStore((state) => state.isAuthenticated)
 	const isPremium = useAuthStore((state) => state.isPremium)
 
-	if (!isAuthenticated) {
-		return <Navigate replace to={PublicRoutes.LOGIN} />
+	if (!isPremium || !isAuth) {
+		return <Navigate to={`/${PrivateRoutes.GAMEMENU}`} replace />
 	}
 
-	if (!isPremium) {
-		return <Navigate replace to={PrivateRoutes.PRIVATE} />
-	}
-
-	return <Outlet />
+	return <> {children}</>
 }
 
 export default PremiumGuard

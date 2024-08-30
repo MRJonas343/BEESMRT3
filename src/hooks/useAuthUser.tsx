@@ -15,7 +15,7 @@ export const useAuthUser = () => {
 		onSuccess: (data) => {
 			const { email, nickName, englishLevel } = data
 			setIsAuthenticated(true, email, nickName, englishLevel)
-			navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true })
+			navigate(`/${PrivateRoutes.GAMEMENU}`, { replace: true })
 		},
 		retry: 2,
 	})

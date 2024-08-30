@@ -20,7 +20,7 @@ export const useCreateUser = () => {
 		onSuccess: (data) => {
 			const { email, nickName, englishLevel } = data
 			setIsAuthenticated(true, email, nickName, englishLevel)
-			navigate(`/${PrivateRoutes.PRIVATE}`)
+			navigate(`/${PrivateRoutes.DASHBOARD}`)
 		},
 		retry: 2,
 	})

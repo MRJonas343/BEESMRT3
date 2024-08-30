@@ -8,7 +8,6 @@ export const PublicRoutes = {
 }
 
 export const PrivateRoutes = {
-	PRIVATE: "private",
 	DASHBOARD: "dashboard",
 	EVENTS: "events",
 	FRIENDS: "friends",
@@ -22,7 +21,6 @@ export const PrivateRoutes = {
 }
 
 export const PremiumRoutes = {
-	PREMIUM: "premium",
 	FORGE: "forge",
 	ONLINEMODE: "online-mode",
 	PREMIUMCONTENT: "premium-content",

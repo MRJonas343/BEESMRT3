@@ -1,16 +1,20 @@
 import useAuthStore from "@/context/Auth.context"
-import { Outlet } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 import { PublicRoutes } from "../models/routes"
+import { FC, ReactNode } from "react"
 
-const AuthGuard = () => {
+interface AuthGuardProps {
+	children: ReactNode
+}
+
+const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
 	if (!isAuthenticated) {
-		return <Navigate replace to={PublicRoutes.LOGIN} />
+		return <Navigate replace to={`/${PublicRoutes.LOGIN}`} />
 	}
 
-	return <Outlet />
+	return <>{children}</>
 }
 
 export default AuthGuard

@@ -20,7 +20,7 @@ interface AuthState {
 
 const userAPI: StateCreator<AuthState> = (set) => ({
 	isAuthenticated: false,
-	isPremium: false,
+	isPremium: true,
 	email: null,
 	nickName: null,
 	englishLevel: null,
