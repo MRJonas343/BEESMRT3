@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { FormValues } from "@/models/FormValues"
 import authUserService from "@/services/public/auth.user.service"
-import useAuthStore from "@/context/Auth.context"
+import useAuthStore from "@/store/Auth.store"
 import { useNavigate } from "react-router-dom"
 import { PrivateRoutes } from "@/models/routes"
 

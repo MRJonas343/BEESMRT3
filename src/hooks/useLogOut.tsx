@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import { PublicRoutes } from "@/models/routes"
-import useAuthStore from "@/context/Auth.context"
+import useAuthStore from "@/store/Auth.store"
 import logOutService from "@/services/public/logOut.user.service"
 
 export const useLogOut = () => {

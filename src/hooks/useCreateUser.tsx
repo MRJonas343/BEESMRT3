@@ -3,7 +3,7 @@ import { FormValues } from "@/models/FormValues"
 import createUserService from "@/services/public/create.user.service"
 import { useNavigate } from "react-router-dom"
 import { PrivateRoutes } from "@/models/routes"
-import useAuthStore from "@/context/Auth.context"
+import useAuthStore from "@/store/Auth.store"
 
 export const useCreateUser = () => {
 	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)

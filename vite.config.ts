@@ -11,7 +11,7 @@ export default defineConfig({
 			"@utils": path.resolve(__dirname, "./src/utils"),
 			"@assets": path.resolve(__dirname, "./src/assets"),
 			"@hooks": path.resolve(__dirname, "./src/hooks"),
-			"@context": path.resolve(__dirname, "./src/context"),
+			"@store": path.resolve(__dirname, "./src/store"),
 			"@adapters": path.resolve(__dirname, "./src/adapters"),
 			"@guards": path.resolve(__dirname, "./src/guards"),
 			"@interceptors": path.resolve(__dirname, "./src/interceptors"),

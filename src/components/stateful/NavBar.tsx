@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { PrivateRoutes, PublicRoutes } from "@/models/routes"
 import { routeConfigs } from "./constant/routeConfigs"
 import { Link } from "react-router-dom"
-import useAuthStore from "@/context/Auth.context"
+import useAuthStore from "@/store/Auth.store"
 import logoWhite from "@assets/logo_white.webp"
 
 export const NavBar: FC = () => {

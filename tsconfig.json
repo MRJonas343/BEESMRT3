@@ -9,7 +9,7 @@
 			"@hooks/*": ["./src/hooks/*"],
 			"@adapters/*": ["./src/adapters/*"],
 			"@services/*": ["./src/services/*"],
-			"@contexts/*": ["./src/contexts/*"],
+			"@store/*": ["./src/store/*"],
 			"@pages/*": ["./src/pages/*"],
 			"@guards/*": ["./src/guards/*"],
 			"@interceptors/*": ["./src/interceptors/*"],

@@ -1,6 +1,6 @@
 import { PrivateRoutes } from "../models/routes"
 import { Navigate, Outlet } from "react-router-dom"
-import useAuthStore from "@/context/Auth.context"
+import useAuthStore from "@/store/Auth.store"
 import { FC } from "react"
 
 const PremiumGuard: FC = () => {
