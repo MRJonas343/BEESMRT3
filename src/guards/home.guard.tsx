@@ -1,7 +1,7 @@
 import useAuthStore from "@/store/Auth.store"
-import { Navigate, Outlet } from "react-router-dom"
-import { PrivateRoutes } from "../models/routes"
+import { PrivateRoutes } from "@/models"
 import { FC } from "react"
+import { Navigate, Outlet } from "react-router-dom"
 
 const HomeGuard: FC = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated)

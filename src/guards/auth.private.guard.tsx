@@ -1,6 +1,6 @@
 import useAuthStore from "@/store/Auth.store"
+import { PublicRoutes } from "@/models"
 import { Navigate, Outlet } from "react-router-dom"
-import { PublicRoutes } from "../models/routes"
 import { FC } from "react"
 
 const AuthGuard: FC = () => {

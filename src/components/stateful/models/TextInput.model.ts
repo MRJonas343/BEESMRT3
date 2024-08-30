@@ -1,6 +1,7 @@
 import { Path, UseFormRegister, FieldErrors, Validate } from "react-hook-form"
 import { FormValues } from "@/models/FormValues"
 import { JSX } from "react"
+
 type enumType = "text" | "password" | "email" | "number"
 
 export interface TextInputModel {

@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
-import { PublicRoutes } from "@/models/routes"
 import useAuthStore from "@/store/Auth.store"
 import logOutService from "@/services/public/logOut.user.service"
+import { PublicRoutes } from "@/models"
 
 export const useLogOut = () => {
 	const cleanStore = useAuthStore((state) => state.cleanStore)

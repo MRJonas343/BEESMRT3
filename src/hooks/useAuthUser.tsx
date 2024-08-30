@@ -1,9 +1,8 @@
-import { useMutation } from "@tanstack/react-query"
-import { FormValues } from "@/models/FormValues"
 import authUserService from "@/services/public/auth.user.service"
+import { useMutation } from "@tanstack/react-query"
 import useAuthStore from "@/store/Auth.store"
 import { useNavigate } from "react-router-dom"
-import { PrivateRoutes } from "@/models/routes"
+import { FormValues, PrivateRoutes } from "@/models"
 
 export const useAuthUser = () => {
 	const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)

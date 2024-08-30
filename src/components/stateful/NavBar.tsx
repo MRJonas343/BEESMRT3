@@ -1,9 +1,9 @@
-import { FC, useState } from "react"
-import { PrivateRoutes, PublicRoutes } from "@/models/routes"
-import { routeConfigs } from "./constant/routeConfigs"
-import { Link } from "react-router-dom"
 import useAuthStore from "@/store/Auth.store"
 import logoWhite from "@assets/logo_white.webp"
+import { PrivateRoutes, PublicRoutes } from "@/models"
+import { FC, useState } from "react"
+import { routeConfigs } from "./constant/routeConfigs"
+import { Link } from "react-router-dom"
 
 export const NavBar: FC = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
