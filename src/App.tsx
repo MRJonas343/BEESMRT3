@@ -5,6 +5,7 @@ import { Suspense } from "react"
 import { Toaster } from "react-hot-toast"
 import { Loader } from "./components"
 import { router } from "./routes"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 const App = () => {
 	const queryClient = new QueryClient()
@@ -15,6 +16,7 @@ const App = () => {
 				<RouterProvider router={router} />
 				<Toaster />
 			</Suspense>
+			<ReactQueryDevtools />
 		</QueryClientProvider>
 	)
 }
