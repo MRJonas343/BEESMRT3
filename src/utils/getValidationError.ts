@@ -1,7 +1,6 @@
 import { TypeWithKey } from "@/models/typeWithKey"
 
-// biome-ignore lint/suspicious/noExplicitAny: <Haven't find how to type it>
-export const getValidationError = (errorCode: any) => {
+export const getValidationError = (errorCode: string) => {
 	const codeMatcher: TypeWithKey<string> = {
 		ERR_NETWORK:
 			"Ups! Something went wrong with the network. Please try again later.",
@@ -9,13 +8,14 @@ export const getValidationError = (errorCode: any) => {
 		ERR_BAD_REQUEST: "Ups! The request was not valid.",
 		ERR_BAD_RESPONSE: "Ups! The beehive is not working properly.",
 		ERR_EMAIL_ALREADY_EXISTS: "Ups! The email is already in use.",
-		ERR_INVALID_CREDENTIALS: "Ups! The credentials are not valid.",
+		ERR_INVALID_CREDENTIALS: "Tryng to play with the credentials, huh?",
 		ERR_INVALID_USER_EMAIL: "Ups! The email is not valid.",
 		ERR_INVALID_USER_PASSWORD: "Ups! The password is not valid.",
 		ERR_INVALID_USER_NICKNAME: "Ups! The nickname is not valid.",
 		ERR_INVALID_ENGLISH_LEVEL: "Ups! The English level is not valid.",
 		ERR_SERVER_ERROR: "Ups! The beehive is not working properly.",
 		ERR_USER_NOT_FOUND: "Ups! The user was not found.",
+		ERR_TOKEN_EXPIRED: "Ups! The session has expired.",
 	}
 
 	return (
