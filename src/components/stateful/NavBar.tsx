@@ -85,7 +85,7 @@ export const NavBar: FC = () => {
 				}
 			>
 				<button type="button" className="hidden lg:block w-max text-3d">
-					{isAuthenticated ? "Dashboard" : "Log in"}
+					{isAuthenticated ? "Dashboard" : "Start Playing"}
 				</button>
 			</NavLink>
 		</nav>
