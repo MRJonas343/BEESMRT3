@@ -1,4 +1,11 @@
+import { NavBar } from "@/components"
+
 const Contact = () => {
-	return <div>Contact</div>
+	return (
+		<>
+			<NavBar />
+			Contact
+		</>
+	)
 }
 export default Contact
