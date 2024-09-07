@@ -1,4 +1,10 @@
+import { NavBar } from "@/components"
 const Events = () => {
-	return <div>Events</div>
+	return (
+		<>
+			<NavBar />
+			Events
+		</>
+	)
 }
 export default Events

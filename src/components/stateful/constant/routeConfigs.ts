@@ -11,11 +11,11 @@ export const routeConfigs = {
 	],
 	private: [
 		{
-			avialableRoute: `/private/${PrivateRoutes.FRIENDS}`,
+			avialableRoute: `/${PrivateRoutes.FRIENDS}`,
 			routeName: "Friends",
 		},
 		{
-			avialableRoute: `/private/${PrivateRoutes.EVENTS}`,
+			avialableRoute: `/${PrivateRoutes.EVENTS}`,
 			routeName: "Events",
 		},
 		{ avialableRoute: `/${PublicRoutes.ABOUT}`, routeName: "About Us" },

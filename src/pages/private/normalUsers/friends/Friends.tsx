@@ -1,4 +1,10 @@
+import { NavBar } from "@/components"
 const Friends = () => {
-	return <div>Friends</div>
+	return (
+		<>
+			<NavBar />
+			Friends
+		</>
+	)
 }
 export default Friends
